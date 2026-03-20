@@ -79,6 +79,10 @@ Stock symbol listing data:
 - https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt
 - https://www.nasdaqtrader.com/dynamic/symdir/otherlisted.txt
 
-# Stock Indices Data
+## Stock Indices Data
 
 https://www.kaggle.com/datasets/guillemservera/global-stock-indices-historical-data
+
+## Market Cap Data
+
+https://data.worldbank.org/indicator/CM.MKT.LCAP.CD
