@@ -68,9 +68,17 @@ https://www.iso.org/iso-3166-country-codes.html
 Actually acquired from:
 https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes
 
-## NASDAQ ETF Data
+## Stock Listing Data
 
 Data sourced from:
-https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset/data
+https://www.kaggle.com/datasets/qks1lver/amex-nyse-nasdaq-stock-histories
 
 Due to the large amount of not immediately relevant data, a few ETFs are chosen for now.
+
+Stock symbol listing data:
+- https://www.nasdaqtrader.com/dynamic/symdir/nasdaqlisted.txt
+- https://www.nasdaqtrader.com/dynamic/symdir/otherlisted.txt
+
+# Stock Indices Data
+
+https://www.kaggle.com/datasets/guillemservera/global-stock-indices-historical-data
