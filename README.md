@@ -6,7 +6,7 @@
 | Botond Kovacs | 341415 |
 | Sankalp Gambhir | 354377 |
 
-[Milestone 1](#milestone-1) • [Milestone 2](#milestone-2) • [Milestone 3](#milestone-3)
+[Milestone 1](./milestone1) • [Milestone 2](./milestone2) • [Milestone 3](#milestone-3)
 
 [Webpage (WIP)](https://com-480-data-visualization.github.io/special-operations/)
 
