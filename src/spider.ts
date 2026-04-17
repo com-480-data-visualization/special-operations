@@ -17,7 +17,7 @@ export interface SpiderData {
 
 // Visual constants
 const RADIUS = 220;
-const MARGIN = 90;
+const MARGIN = 140;
 const SVG_SIZE = (RADIUS + MARGIN) * 2;
 const MAX_VALUE = 8; // axes go from 0 to 8×
 const GRID_LEVELS = [1, 2, 4, 6, 8];
@@ -95,7 +95,7 @@ export function createSpiderChart(
       .attr("stroke", "#444")
       .attr("stroke-width", 1);
 
-    const [lx, ly] = polarToXY(RADIUS + 24, angle);
+    const [lx, ly] = polarToXY(RADIUS + 35, angle);
     const anchor =
       Math.abs(Math.cos(angle)) < 0.15
         ? "middle"
