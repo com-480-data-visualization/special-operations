@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { createSpiderChart, type SpiderData } from "./spider.ts";
 
 async function main() {
-  const data = (await d3.json("/spider_data.json")) as SpiderData;
+  const data = (await d3.json("./spider_data.json")) as SpiderData;
 
   const select = document.getElementById("country-select") as HTMLSelectElement;
   const slider = document.getElementById("year-slider") as HTMLInputElement;
