@@ -85,4 +85,24 @@ https://www.kaggle.com/datasets/guillemservera/global-stock-indices-historical-d
 
 ## Market Cap Data
 
+World Bank market capitalisation of listed domestic companies (current USD):
 https://data.worldbank.org/indicator/CM.MKT.LCAP.CD
+
+File: `data/worldbank/market-cap-current-usd-2026.csv`
+
+Exclusions: Russia, China, India, and Sweden, due to spotty data.
+
+**ETF-proxy gap filling:**  
+For several countries the World Bank series has gaps in recent years.
+Gaps are filled using the country's iShares MSCI ETF price as a proxy:
+
+> MC(year) ≈ MC(last_known_year) × (ETF_price(year) / ETF_price(last_known_year))
+
+## ETF Price Data (iShares MSCI country ETFs)
+
+iShares MSCI country ETF daily price history. Files: `data/nasdaq/etf/EW*.csv`
+
+Data after 2020 was supplemented using yfinance.
+
+Countries for which reliable data from 2000 was not easily available are
+excluded for now.
