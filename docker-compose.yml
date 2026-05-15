@@ -1,0 +1,16 @@
+# Runs the local Vite development server in Docker while keeping dependencies
+# inside an isolated container volume.
+services:
+  web:
+    build:
+      context: .
+    command: sh -c "npm install --no-audit --no-fund && npm run dev -- --host 0.0.0.0"
+    user: node
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+
+volumes:
+  node_modules:

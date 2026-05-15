@@ -3,13 +3,19 @@ Preprocess economic data into a JSON file for the spider chart visualization.
 """
 
 import json
-import os
+from pathlib import Path
 import sys
 
 import pandas as pd
-import yfinance as yf
 
-DATA_DIR = "data"
+try:
+    import yfinance as yf
+except ImportError:
+    yf = None
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = ROOT_DIR / "data"
+PUBLIC_DIR = ROOT_DIR / "public"
 BASELINE_YEAR = 2000
 LATEST_YEAR = 2023 
 
@@ -40,6 +46,57 @@ ETF_COUNTRY_MAP: dict[str, tuple[str, str]] = {
     "USA": ("hist", "SPY"),
 }
 
+# Region metadata used by the final narrative site.
+REGION_BY_COUNTRY: dict[str, str] = {
+    "AUS": "Asia-Pacific",
+    "CAN": "North America",
+    "SWE": "Europe",
+    "DEU": "Europe",
+    "HKG": "Asia-Pacific",
+    "ITA": "Europe",
+    "JPN": "Asia-Pacific",
+    "BEL": "Europe",
+    "CHE": "Europe",
+    "MYS": "Asia-Pacific",
+    "NLD": "Europe",
+    "AUT": "Europe",
+    "ESP": "Europe",
+    "FRA": "Europe",
+    "SGP": "Asia-Pacific",
+    "GBR": "Europe",
+    "MEX": "North America",
+    "KOR": "Asia-Pacific",
+    "BRA": "Latin America",
+    "USA": "North America",
+}
+
+METRIC_METADATA: dict[str, dict[str, str | bool]] = {
+    "GDP": {
+        "unit": "current US$",
+        "absoluteLabel": "Economic weight",
+        "aggregate": "sum",
+        "absoluteComparable": True,
+    },
+    "GDP per Capita": {
+        "unit": "current US$ per person",
+        "absoluteLabel": "Prosperity",
+        "aggregate": "mean",
+        "absoluteComparable": True,
+    },
+    "ETF Price": {
+        "unit": "ETF share price, adjusted close",
+        "absoluteLabel": "ETF price",
+        "aggregate": "mean",
+        "absoluteComparable": False,
+    },
+    "Market Cap": {
+        "unit": "current US$",
+        "absoluteLabel": "Listed company market value",
+        "aggregate": "sum",
+        "absoluteComparable": True,
+    },
+}
+
 WB_SKIPROWS = 4
 _yf_cache: dict[str, pd.DataFrame] = {}
 
@@ -47,7 +104,7 @@ _yf_cache: dict[str, pd.DataFrame] = {}
 # ── Data helpers ──────────────────────────────────────────────────────────────
 
 def load_wb(filename: str) -> pd.DataFrame:
-    path = os.path.join(DATA_DIR, "worldbank", filename)
+    path = DATA_DIR / "worldbank" / filename
     df = pd.read_csv(path, skiprows=WB_SKIPROWS, index_col="Country Code")
     for col in df.columns:
         if str(col).strip().isdigit():
@@ -58,6 +115,10 @@ def load_wb(filename: str) -> pd.DataFrame:
 def _get_yf_supplement(symbol: str) -> pd.DataFrame:
     """Download 2020-2024 data via yfinance (cached). Returns df with 'close' column."""
     if symbol in _yf_cache:
+        return _yf_cache[symbol]
+    if yf is None:
+        print(f"  yfinance unavailable for {symbol}; using local ETF history only.", file=sys.stderr)
+        _yf_cache[symbol] = pd.DataFrame()
         return _yf_cache[symbol]
     try:
         ticker = yf.Ticker(symbol)
@@ -80,11 +141,11 @@ def load_etf_data(source: str, symbol: str) -> pd.DataFrame:
     """Load ETF data from local file, supplement with yfinance for post-2020 years.
     Returns a DataFrame with a 'close' column, indexed by date (ascending)."""
     if source == "etf":
-        path = os.path.join(DATA_DIR, "nasdaq", "etf", f"{symbol}.csv")
+        path = DATA_DIR / "nasdaq" / "etf" / f"{symbol}.csv"
         df = pd.read_csv(path, index_col="Date", parse_dates=True)
         df = df.rename(columns={"Close": "close"})
     elif source == "hist":
-        path = os.path.join(DATA_DIR, "stock", "history", f"{symbol}.csv")
+        path = DATA_DIR / "stock" / "history" / f"{symbol}.csv"
         df = pd.read_csv(path, index_col="date", parse_dates=True)
         df = df.rename(columns={"close": "close"})
         df = df.sort_index()
@@ -166,12 +227,29 @@ def normalize_series(raw: dict, years: list[int], base: float) -> list:
     ]
 
 
+def absolute_series(raw: dict, years: list[int]) -> list:
+    return [
+        round(raw[y], 4) if raw.get(y) is not None else None
+        for y in years
+    ]
+
+
+def make_metric_series(raw: dict, years: list[int], base: float, metric: str) -> dict:
+    metadata = METRIC_METADATA[metric]
+    return {
+        "normalized": normalize_series(raw, years, base),
+        "absolute": absolute_series(raw, years),
+        "unit": metadata["unit"],
+        "absoluteComparable": metadata["absoluteComparable"],
+    }
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main() -> None:
     print("Loading World Bank data...")
     iso_codes = pd.read_csv(
-        os.path.join(DATA_DIR, "iso", "countries.csv"), index_col="alpha-3"
+        DATA_DIR / "iso" / "countries.csv", index_col="alpha-3"
     )
     gdp = load_wb("gdp-current-usd-2026.csv")
     gdp_pc = load_wb("gdp-capita-current-usd-2026.csv")
@@ -212,9 +290,11 @@ def main() -> None:
         etf_raw = {y: get_annual_etf_price(etf_df, y) for y in years}
 
         timeseries: dict = {
-            "GDP": normalize_series(gdp_series, years, gdp_base),
-            "GDP per Capita": normalize_series(gdp_pc_series, years, gdp_pc_base),
-            "ETF Price": normalize_series(etf_raw, years, etf_base),
+            "GDP": make_metric_series(gdp_series, years, gdp_base, "GDP"),
+            "GDP per Capita": make_metric_series(
+                gdp_pc_series, years, gdp_pc_base, "GDP per Capita"
+            ),
+            "ETF Price": make_metric_series(etf_raw, years, etf_base, "ETF Price"),
         }
 
         # Market cap (optional; excluded for CHN, IND, SWE, RUS)
@@ -223,7 +303,9 @@ def main() -> None:
             mc_base = mc_series.get(BASELINE_YEAR) if mc_series else None
             if mc_series and mc_base and mc_base > 0:
                 mc_filled, n_filled = fill_mc_gaps(mc_series, etf_df, years)
-                timeseries["Market Cap"] = normalize_series(mc_filled, years, mc_base)
+                timeseries["Market Cap"] = make_metric_series(
+                    mc_filled, years, mc_base, "Market Cap"
+                )
                 suffix = f"MC ok ({n_filled} years ETF-proxy filled)"
             else:
                 suffix = "MC skipped: no 2000 baseline"
@@ -235,6 +317,7 @@ def main() -> None:
         )
         countries_out[iso3] = {
             "name": str(country_name),
+            "region": REGION_BY_COUNTRY[iso3],
             "etf": symbol,
             "timeseries": timeseries,
         }
@@ -250,14 +333,17 @@ def main() -> None:
         "latestYear": LATEST_YEAR,
         "years": years,
         "axes": universal_axes,
+        "metricMetadata": METRIC_METADATA,
+        "regions": sorted(set(REGION_BY_COUNTRY.values())),
         "mcExcluded": sorted(MC_EXCLUDE),
         "countries": countries_out,
     }
 
-    os.makedirs("../public", exist_ok=True)
-    output_path = "../public/spider_data.json"
+    PUBLIC_DIR.mkdir(exist_ok=True)
+    output_path = PUBLIC_DIR / "spider_data.json"
     with open(output_path, "w") as f:
-        json.dump(output, f, separators=(",", ":"))
+        json.dump(output, f, indent=2)
+        f.write("\n")
 
     # summary
     print(f"\n Wrote {len(countries_out)} countries to {output_path}")

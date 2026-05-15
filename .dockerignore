@@ -1,0 +1,7 @@
+# Keeps local-only and generated files out of Docker build contexts.
+node_modules
+dist
+.git
+.DS_Store
+npm-debug.log*
+coverage
