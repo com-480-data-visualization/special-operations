@@ -3,32 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Special Operations: Country Growth Profiles</title>
-    <script type="module" crossorigin src="/special-operations/assets/index-Cxe8tmIp.js"></script>
-    <link rel="stylesheet" crossorigin href="/special-operations/assets/index-Cb7SUqo1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <title>Is Europe Falling Behind?</title>
+    <script type="module" crossorigin src="/special-operations/assets/index-Ci7-S7FA.js"></script>
+    <link rel="stylesheet" crossorigin href="/special-operations/assets/index-C4-K2j5K.css">
   </head>
   <body>
     <div id="app">
-      <header>
-        <h1>Country Growth Profiles</h1>
-        <p>Growth relative to <strong>year 2000</strong> baseline &mdash; select a country and drag the year slider</p>
+      <header class="page-header">
+        <p class="eyebrow">COM&middot;480 &nbsp;&middot;&nbsp; Data Visualization</p>
+        <h1>
+          Is Europe <em>really</em> falling behind?
+        </h1>
+        <p class="lede">
+          Choose an economic indicator, animate it through time, and compare a
+          handful of countries across the metrics that matter.
+        </p>
       </header>
 
-      <div id="controls">
-        <div class="control-group">
-          <label for="country-select">Country</label>
-          <select id="country-select"></select>
-        </div>
-        <div class="control-group">
-          <label for="year-slider">Year: <span id="year-label">2024</span></label>
-          <input type="range" id="year-slider" min="2000" max="2024" value="2024" step="1" />
-        </div>
-      </div>
+      <main class="mvp-layout">
+        <section class="map-panel" aria-label="Interactive map">
+          <div class="control-bar">
+            <div class="control-group control-group--inputs">
+              <label class="control-field">
+                <span class="control-label">Indicator</span>
+                <select id="indicator-select"></select>
+              </label>
 
-      <div id="chart-container">
-        <div id="spider-chart"></div>
-        <div id="legend"></div>
-      </div>
+              <label class="control-field control-field--year">
+                <span class="control-label">
+                  Year <span id="year-label" class="control-value">2023</span>
+                </span>
+                <input id="year-slider" type="range" min="2000" max="2023" value="2023" step="1" />
+              </label>
+
+              <button id="play-button" class="play-button" type="button" aria-label="Play timeline">
+                <span class="play-button__icon" aria-hidden="true"></span>
+                <span class="play-button__label">Play</span>
+              </button>
+            </div>
+
+            <div class="control-group control-group--toggles">
+              <div class="segmented-control" aria-label="Visualization mode">
+                <button id="map-mode" type="button" data-active="true">Map</button>
+                <button id="scatter-mode" type="button">Scatter</button>
+              </div>
+
+              <div class="segmented-control" aria-label="Selection mode">
+                <button id="country-mode" type="button" data-active="true">Countries</button>
+                <button id="region-mode" type="button">Regions</button>
+              </div>
+
+              <div class="segmented-control" aria-label="Value mode">
+                <button id="growth-mode" type="button" data-active="true">Growth</button>
+                <button id="absolute-mode" type="button">Absolute</button>
+              </div>
+
+              <button id="toggle-spider" class="ghost-button" type="button" aria-pressed="false">Show spider</button>
+            </div>
+          </div>
+
+          <div id="map-chart" class="map-chart"></div>
+
+          <aside id="spider-panel" class="spider-overlay" aria-label="Spider comparison" hidden>
+            <div class="spider-heading">
+              <div>
+                <p class="eyebrow">Spider graph</p>
+                <h2>Profile comparison</h2>
+              </div>
+              <button id="close-spider" type="button" aria-label="Close spider graph">Close</button>
+            </div>
+            <p id="spider-caption">Click countries on the map to compare their full normalized profiles.</p>
+            <div id="spider-chart" class="chart"></div>
+          </aside>
+
+          <section class="evolution-panel" aria-label="Evolution chart">
+            <div>
+              <p class="eyebrow">Evolution</p>
+              <h2 id="evolution-title">Indicator trajectory</h2>
+            </div>
+            <div id="evolution-chart" class="chart"></div>
+          </section>
+
+          <div class="selection-strip">
+            <p id="selected-summary"></p>
+            <button id="reset-selection" type="button">Reset selection</button>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <p>
+          Growth mode normalizes every country to its year-2000 baseline.
+          Absolute mode reveals economic scale where the underlying units are
+          comparable; ETF prices remain a normalized public-market proxy.
+        </p>
+      </footer>
     </div>
   </body>
 </html>
