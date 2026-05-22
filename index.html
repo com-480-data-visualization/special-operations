@@ -44,6 +44,11 @@
                 <span class="play-button__icon" aria-hidden="true"></span>
                 <span class="play-button__label">Play</span>
               </button>
+
+              <div class="selection-control">
+                <p id="selected-summary"></p>
+                <button id="reset-selection" class="ghost-button reset-selection-button" type="button">Reset selection</button>
+              </div>
             </div>
 
             <div class="control-group control-group--toggles">
@@ -88,10 +93,21 @@
             <div id="evolution-chart" class="chart"></div>
           </section>
 
-          <div class="selection-strip">
-            <p id="selected-summary"></p>
-            <button id="reset-selection" type="button">Reset selection</button>
-          </div>
+          <section class="treemap-panel" aria-label="Country / sector treemap">
+            <div class="treemap-panel__heading">
+              <div>
+                <p class="eyebrow">Market structure</p>
+                <h2 id="treemap-title">Country → Sector treemap</h2>
+              </div>
+              <label class="control-field control-field--treemap-time">
+                <span class="control-label">
+                  Snapshot <span id="treemap-date-label" class="control-value">2025</span>
+                </span>
+                <input id="treemap-slider" type="range" min="0" max="0" value="0" step="1" />
+              </label>
+            </div>
+            <div id="treemap-chart" class="chart"></div>
+          </section>
         </section>
       </main>
 

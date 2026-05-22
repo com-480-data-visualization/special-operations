@@ -16,6 +16,7 @@ import {
 import { createEvolutionChart } from "./evolution-chart.js";
 import { createIndicatorMap } from "./regional-map.js";
 import { createSpiderChart } from "./spider.js";
+import { createTreemap } from "./treemap.js";
 
 const ANIMATION_MS = 650;
 const DEFAULT_REGIONS = [...REGION_ORDER];
@@ -49,6 +50,8 @@ async function main() {
   const spiderContainer = getRequiredElement("spider-chart");
   const evolutionTitle = getRequiredElement("evolution-title");
   const evolutionContainer = getRequiredElement("evolution-chart");
+  const treemapSlider = getRequiredElement("treemap-slider");
+  const treemapDateLabel = getRequiredElement("treemap-date-label");
 
   let selectedIso3 = DEFAULT_SELECTION.filter((iso3) => iso3 in data.countries);
   let selectedRegions = [...DEFAULT_REGIONS];
@@ -68,6 +71,28 @@ async function main() {
   const updateMap = createIndicatorMap(mapContainer, data, toggleCountry, toggleRegion);
   const updateSpider = createSpiderChart(spiderContainer, data);
   const updateEvolution = createEvolutionChart(evolutionContainer, data);
+
+  // Load treemap data (preprocessed JSON) and initialize treemap component.
+  // Treemap: load data and initialize, but keep it fully independent (no selection, no axis, just year)
+  let treemap = null;
+  let treemapData = null;
+  let treemapSnapshots = [];
+  try {
+    treemapData = await d3.json("./treemap_data.json");
+    const treemapContainer = getRequiredElement("treemap-chart");
+    treemap = createTreemap(treemapContainer, treemapData);
+    treemapSnapshots = (treemapData.snapshots || [])
+      .slice()
+      .sort((a, b) => a.key.localeCompare(b.key));
+    treemapSlider.min = "0";
+    treemapSlider.max = String(Math.max(0, treemapSnapshots.length - 1));
+    treemapSlider.value = String(Math.max(0, treemapSnapshots.length - 1));
+    treemapSlider.disabled = treemapSnapshots.length <= 1;
+    updateRangeProgress(treemapSlider);
+  } catch (e) {
+    console.warn("treemap_data.json not found or failed to load:", e);
+    treemapSlider.disabled = true;
+  }
 
   /**
    * Adds or removes one country from the comparison set.
@@ -162,6 +187,22 @@ async function main() {
       selectionMode,
       valueMode,
     });
+
+    renderTreemap();
+  }
+
+  /**
+   * Renders the market-structure treemap from its own 2025-to-latest timeline.
+   */
+  function renderTreemap() {
+    if (!treemap || !treemapSnapshots.length) {
+      treemapDateLabel.textContent = "No data";
+      return;
+    }
+    const snapshotIndex = Number.parseInt(treemapSlider.value, 10);
+    const snapshot = treemapSnapshots[Math.min(snapshotIndex, treemapSnapshots.length - 1)];
+    treemapDateLabel.textContent = snapshot.label;
+    treemap.renderKey(snapshot.key);
   }
 
   /**
@@ -198,6 +239,10 @@ async function main() {
 
   indicatorSelect.addEventListener("change", render);
   yearSlider.addEventListener("input", render);
+  treemapSlider.addEventListener("input", () => {
+    updateRangeProgress(treemapSlider);
+    renderTreemap();
+  });
   playButton.addEventListener("click", toggleAnimation);
   mapModeButton.addEventListener("click", () => {
     viewMode = "map";
