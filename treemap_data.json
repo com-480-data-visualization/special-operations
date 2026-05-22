@@ -1,0 +1,2540 @@
+{
+  "years": [
+    "2015-04-01",
+    "2015-08-31",
+    "2016-01-29",
+    "2016-05-31",
+    "2016-10-31",
+    "2017-01-31",
+    "2017-08-31",
+    "2018-02-28",
+    "2018-05-31",
+    "2018-12-31",
+    "2020-08-31",
+    "2021-01-29",
+    "2021-07-30",
+    "2021-11-30",
+    "2021-12-31",
+    "2022-04-29",
+    "2022-11-30",
+    "2023-02-28",
+    "2023-09-29",
+    "2024-02-29",
+    "2024-11-29",
+    "2024-12-31",
+    "2025-12-31",
+    "2026-05-14"
+  ],
+  "snapshots": [
+    {
+      "key": "2015-04-01",
+      "label": "Apr 2015",
+      "year": "2015"
+    },
+    {
+      "key": "2015-08-31",
+      "label": "Aug 31 2015",
+      "year": "2015"
+    },
+    {
+      "key": "2016-01-29",
+      "label": "Jan 29 2016",
+      "year": "2016"
+    },
+    {
+      "key": "2016-05-31",
+      "label": "Mai 31 2016",
+      "year": "2016"
+    },
+    {
+      "key": "2016-10-31",
+      "label": "Okt 31 2016",
+      "year": "2016"
+    },
+    {
+      "key": "2017-01-31",
+      "label": "Jan 31 2017",
+      "year": "2017"
+    },
+    {
+      "key": "2017-08-31",
+      "label": "Aug 31 2017",
+      "year": "2017"
+    },
+    {
+      "key": "2018-02-28",
+      "label": "Feb 28 2018",
+      "year": "2018"
+    },
+    {
+      "key": "2018-05-31",
+      "label": "Mai 31 2018",
+      "year": "2018"
+    },
+    {
+      "key": "2018-12-31",
+      "label": "Dez 31 2018",
+      "year": "2018"
+    },
+    {
+      "key": "2020-08-31",
+      "label": "Aug 31 2020",
+      "year": "2020"
+    },
+    {
+      "key": "2021-01-29",
+      "label": "Jan 29 2021",
+      "year": "2021"
+    },
+    {
+      "key": "2021-07-30",
+      "label": "Jul 30 2021",
+      "year": "2021"
+    },
+    {
+      "key": "2021-11-30",
+      "label": "Nov 30 2021",
+      "year": "2021"
+    },
+    {
+      "key": "2021-12-31",
+      "label": "Dez 31 2021",
+      "year": "2021"
+    },
+    {
+      "key": "2022-04-29",
+      "label": "Apr 29 2022",
+      "year": "2022"
+    },
+    {
+      "key": "2022-11-30",
+      "label": "Nov 30 2022",
+      "year": "2022"
+    },
+    {
+      "key": "2023-02-28",
+      "label": "Feb 28 2023",
+      "year": "2023"
+    },
+    {
+      "key": "2023-09-29",
+      "label": "Sep 29 2023",
+      "year": "2023"
+    },
+    {
+      "key": "2024-02-29",
+      "label": "Feb 29 2024",
+      "year": "2024"
+    },
+    {
+      "key": "2024-11-29",
+      "label": "Nov 29 2024",
+      "year": "2024"
+    },
+    {
+      "key": "2024-12-31",
+      "label": "Dez 31 2024",
+      "year": "2024"
+    },
+    {
+      "key": "2025-12-31",
+      "label": "31 Dez 2025",
+      "year": "2025"
+    },
+    {
+      "key": "2026-05-14",
+      "label": "14 Mai 2026",
+      "year": "2026"
+    }
+  ],
+  "data": {
+    "2015-04-01": [
+      {
+        "name": "United States",
+        "value": 0.5295000000000001,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0793,
+        "sectors": {
+          "Financials": 19.57,
+          "Information Technology": 10.58,
+          "Consumer Discretionary": 21.99,
+          "Health Care": 7.21,
+          "Industrials": 19.17,
+          "Consumer Staples": 6.66,
+          "Energy": 0.94,
+          "Materials": 5.76,
+          "Communication Services": 5.19,
+          "Utilities": 2.44
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0695,
+        "sectors": {}
+      },
+      {
+        "name": "France",
+        "value": 0.0349,
+        "sectors": {}
+      },
+      {
+        "name": "Switzerland",
+        "value": 0.032400000000000005,
+        "sectors": {}
+      },
+      {
+        "name": "Other",
+        "value": 0.2544,
+        "sectors": {}
+      }
+    ],
+    "2015-08-31": [
+      {
+        "name": "United States",
+        "value": 0.5241475852414759,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0802919708029197,
+        "sectors": {
+          "Financials": 19.57,
+          "Information Technology": 10.58,
+          "Consumer Discretionary": 21.99,
+          "Health Care": 7.21,
+          "Industrials": 19.17,
+          "Consumer Staples": 6.66,
+          "Energy": 0.94,
+          "Materials": 5.76,
+          "Communication Services": 5.19,
+          "Utilities": 2.44
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0701929807019298,
+        "sectors": {}
+      },
+      {
+        "name": "France",
+        "value": 0.03469653034696531,
+        "sectors": {}
+      },
+      {
+        "name": "Switzerland",
+        "value": 0.0336966303369663,
+        "sectors": {}
+      },
+      {
+        "name": "Other",
+        "value": 0.256974302569743,
+        "sectors": {}
+      }
+    ],
+    "2016-01-29": [
+      {
+        "name": "United States",
+        "value": 0.5342534253425343,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.07920792079207921,
+        "sectors": {
+          "Financials": 19.57,
+          "Information Technology": 10.58,
+          "Consumer Discretionary": 21.99,
+          "Health Care": 7.21,
+          "Industrials": 19.17,
+          "Consumer Staples": 6.66,
+          "Energy": 0.94,
+          "Materials": 5.76,
+          "Communication Services": 5.19,
+          "Utilities": 2.44
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0668066806680668,
+        "sectors": {}
+      },
+      {
+        "name": "France",
+        "value": 0.033903390339033904,
+        "sectors": {}
+      },
+      {
+        "name": "Switzerland",
+        "value": 0.032003200320032,
+        "sectors": {}
+      },
+      {
+        "name": "Other",
+        "value": 0.2538253825382538,
+        "sectors": {}
+      }
+    ],
+    "2016-05-31": [
+      {
+        "name": "United States",
+        "value": 0.5355,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0774,
+        "sectors": {
+          "Financials": 19.57,
+          "Information Technology": 10.58,
+          "Consumer Discretionary": 21.99,
+          "Health Care": 7.21,
+          "Industrials": 19.17,
+          "Consumer Staples": 6.66,
+          "Energy": 0.94,
+          "Materials": 5.76,
+          "Communication Services": 5.19,
+          "Utilities": 2.44
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0654,
+        "sectors": {}
+      },
+      {
+        "name": "France",
+        "value": 0.0332,
+        "sectors": {
+          "Consumer Discretionary": 37.32,
+          "Health Care": 2.14,
+          "Industrials": 6.02,
+          "Consumer Staples": 6.08,
+          "Energy": 8.06,
+          "Materials": 4.14,
+          "Communication Services": 22.26,
+          "Utilities": 10.28,
+          "Real Estate": 2.01
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.031400000000000004,
+        "sectors": {
+          "Financials": 1.41
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.2571,
+        "sectors": {}
+      }
+    ],
+    "2016-10-31": [
+      {
+        "name": "United States",
+        "value": 0.5265,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0815,
+        "sectors": {
+          "Financials": 19.57,
+          "Information Technology": 10.58,
+          "Consumer Discretionary": 21.99,
+          "Health Care": 7.21,
+          "Industrials": 19.17,
+          "Consumer Staples": 6.66,
+          "Energy": 0.94,
+          "Materials": 5.76,
+          "Communication Services": 5.19,
+          "Utilities": 2.44
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.058899999999999994,
+        "sectors": {}
+      },
+      {
+        "name": "France",
+        "value": 0.0326,
+        "sectors": {
+          "Consumer Discretionary": 37.32,
+          "Health Care": 2.14,
+          "Industrials": 6.02,
+          "Consumer Staples": 6.08,
+          "Energy": 8.06,
+          "Materials": 4.14,
+          "Communication Services": 22.26,
+          "Utilities": 10.28,
+          "Real Estate": 2.01
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.0321,
+        "sectors": {
+          "Financials": 1.41
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.26839999999999997,
+        "sectors": {}
+      }
+    ],
+    "2017-01-31": [
+      {
+        "name": "United States",
+        "value": 0.5344534453445344,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.07910791079107911,
+        "sectors": {
+          "Financials": 19.57,
+          "Information Technology": 10.58,
+          "Consumer Discretionary": 21.99,
+          "Health Care": 7.21,
+          "Industrials": 19.17,
+          "Consumer Staples": 6.66,
+          "Energy": 0.94,
+          "Materials": 5.76,
+          "Communication Services": 5.19,
+          "Utilities": 2.44
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.058605860586058614,
+        "sectors": {}
+      },
+      {
+        "name": "France",
+        "value": 0.032203220322032204,
+        "sectors": {
+          "Consumer Discretionary": 37.32,
+          "Health Care": 2.14,
+          "Industrials": 6.02,
+          "Consumer Staples": 6.08,
+          "Energy": 8.06,
+          "Materials": 4.14,
+          "Communication Services": 22.26,
+          "Utilities": 10.28,
+          "Real Estate": 2.01
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.03290329032903291,
+        "sectors": {
+          "Financials": 1.41
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.2627262726272627,
+        "sectors": {}
+      }
+    ],
+    "2017-08-31": [
+      {
+        "name": "United States",
+        "value": 0.521,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0767,
+        "sectors": {
+          "Financials": 19.57,
+          "Information Technology": 10.58,
+          "Consumer Discretionary": 21.99,
+          "Health Care": 7.21,
+          "Industrials": 19.17,
+          "Consumer Staples": 6.66,
+          "Energy": 0.94,
+          "Materials": 5.76,
+          "Communication Services": 5.19,
+          "Utilities": 2.44
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0579,
+        "sectors": {}
+      },
+      {
+        "name": "France",
+        "value": 0.0348,
+        "sectors": {}
+      },
+      {
+        "name": "China",
+        "value": 0.0344,
+        "sectors": {
+          "Financials": 39.76,
+          "Information Technology": 14.74,
+          "Consumer Discretionary": 4.81,
+          "Health Care": 2.04,
+          "Industrials": 6.97,
+          "Consumer Staples": 3.91,
+          "Energy": 9.85,
+          "Materials": 2.49,
+          "Communication Services": 11.2,
+          "Utilities": 3.85
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.2752,
+        "sectors": {}
+      }
+    ],
+    "2018-02-28": [
+      {
+        "name": "United States",
+        "value": 0.525,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.08039999999999999,
+        "sectors": {
+          "Financials": 19.57,
+          "Information Technology": 10.58,
+          "Consumer Discretionary": 21.99,
+          "Health Care": 7.21,
+          "Industrials": 19.17,
+          "Consumer Staples": 6.66,
+          "Energy": 0.94,
+          "Materials": 5.76,
+          "Communication Services": 5.19,
+          "Utilities": 2.44
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0552,
+        "sectors": {}
+      },
+      {
+        "name": "France",
+        "value": 0.0352,
+        "sectors": {}
+      },
+      {
+        "name": "China",
+        "value": 0.036699999999999997,
+        "sectors": {
+          "Financials": 39.76,
+          "Information Technology": 14.74,
+          "Consumer Discretionary": 4.81,
+          "Health Care": 2.04,
+          "Industrials": 6.97,
+          "Consumer Staples": 3.91,
+          "Energy": 9.85,
+          "Materials": 2.49,
+          "Communication Services": 11.2,
+          "Utilities": 3.85
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.2675,
+        "sectors": {}
+      }
+    ],
+    "2018-05-31": [
+      {
+        "name": "United States",
+        "value": 0.5327000000000001,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0795,
+        "sectors": {
+          "Financials": 19.57,
+          "Information Technology": 10.58,
+          "Consumer Discretionary": 21.99,
+          "Health Care": 7.21,
+          "Industrials": 19.17,
+          "Consumer Staples": 6.66,
+          "Energy": 0.94,
+          "Materials": 5.76,
+          "Communication Services": 5.19,
+          "Utilities": 2.44
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.057699999999999994,
+        "sectors": {}
+      },
+      {
+        "name": "France",
+        "value": 0.0352,
+        "sectors": {}
+      },
+      {
+        "name": "China",
+        "value": 0.0368,
+        "sectors": {
+          "Financials": 39.76,
+          "Information Technology": 14.74,
+          "Consumer Discretionary": 4.81,
+          "Health Care": 2.04,
+          "Industrials": 6.97,
+          "Consumer Staples": 3.91,
+          "Energy": 9.85,
+          "Materials": 2.49,
+          "Communication Services": 11.2,
+          "Utilities": 3.85
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.2581,
+        "sectors": {}
+      }
+    ],
+    "2018-12-31": [
+      {
+        "name": "United States",
+        "value": 0.5441544154415442,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.07580758075807581,
+        "sectors": {
+          "Financials": 11.91,
+          "Information Technology": 12.16,
+          "Consumer Discretionary": 19.45,
+          "Health Care": 8.15,
+          "Industrials": 20.81,
+          "Consumer Staples": 8.23,
+          "Energy": 1.34,
+          "Materials": 5.95,
+          "Communication Services": 5.53,
+          "Utilities": 1.81,
+          "Real Estate": 3.72
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.05210521052105211,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "France",
+        "value": 0.034203420342034205,
+        "sectors": {}
+      },
+      {
+        "name": "China",
+        "value": 0.036003600360036005,
+        "sectors": {
+          "Financials": 39.76,
+          "Information Technology": 14.74,
+          "Consumer Discretionary": 4.81,
+          "Health Care": 2.04,
+          "Industrials": 6.97,
+          "Consumer Staples": 3.91,
+          "Energy": 9.85,
+          "Materials": 2.49,
+          "Communication Services": 11.2,
+          "Utilities": 3.85
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.25772577257725776,
+        "sectors": {}
+      }
+    ],
+    "2020-08-31": [
+      {
+        "name": "United States",
+        "value": 0.5866586658665867,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.06630663066306632,
+        "sectors": {
+          "Financials": 8.97,
+          "Information Technology": 13.51,
+          "Consumer Discretionary": 18.5,
+          "Health Care": 9.9,
+          "Industrials": 20.84,
+          "Consumer Staples": 7.0,
+          "Energy": 0.63,
+          "Materials": 5.18,
+          "Communication Services": 9.53,
+          "Utilities": 1.28,
+          "Real Estate": 3.57
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.036203620362036205,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "France",
+        "value": 0.028902890289028906,
+        "sectors": {}
+      },
+      {
+        "name": "China",
+        "value": 0.05140514051405141,
+        "sectors": {
+          "Financials": 15.27,
+          "Information Technology": 5.78,
+          "Consumer Discretionary": 30.45,
+          "Health Care": 5.89,
+          "Industrials": 5.53,
+          "Consumer Staples": 5.83,
+          "Energy": 2.27,
+          "Materials": 3.47,
+          "Communication Services": 17.85,
+          "Utilities": 2.64,
+          "Real Estate": 3.97
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.23052305230523054,
+        "sectors": {}
+      }
+    ],
+    "2021-01-29": [
+      {
+        "name": "United States",
+        "value": 0.5707,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0674,
+        "sectors": {
+          "Financials": 8.97,
+          "Information Technology": 13.51,
+          "Consumer Discretionary": 18.5,
+          "Health Care": 9.9,
+          "Industrials": 20.84,
+          "Consumer Staples": 7.0,
+          "Energy": 0.63,
+          "Materials": 5.18,
+          "Communication Services": 9.53,
+          "Utilities": 1.28,
+          "Real Estate": 3.57
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0377,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "France",
+        "value": 0.0286,
+        "sectors": {}
+      },
+      {
+        "name": "China",
+        "value": 0.0548,
+        "sectors": {
+          "Financials": 15.27,
+          "Information Technology": 5.78,
+          "Consumer Discretionary": 30.45,
+          "Health Care": 5.89,
+          "Industrials": 5.53,
+          "Consumer Staples": 5.83,
+          "Energy": 2.27,
+          "Materials": 3.47,
+          "Communication Services": 17.85,
+          "Utilities": 2.64,
+          "Real Estate": 3.97
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.2408,
+        "sectors": {}
+      }
+    ],
+    "2021-07-30": [
+      {
+        "name": "United States",
+        "value": 0.5959,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.057999999999999996,
+        "sectors": {
+          "Financials": 8.97,
+          "Information Technology": 13.51,
+          "Consumer Discretionary": 18.5,
+          "Health Care": 9.9,
+          "Industrials": 20.84,
+          "Consumer Staples": 7.0,
+          "Energy": 0.63,
+          "Materials": 5.18,
+          "Communication Services": 9.53,
+          "Utilities": 1.28,
+          "Real Estate": 3.57
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.037200000000000004,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "France",
+        "value": 0.0296,
+        "sectors": {}
+      },
+      {
+        "name": "China",
+        "value": 0.0414,
+        "sectors": {
+          "Financials": 15.27,
+          "Information Technology": 5.78,
+          "Consumer Discretionary": 30.45,
+          "Health Care": 5.89,
+          "Industrials": 5.53,
+          "Consumer Staples": 5.83,
+          "Energy": 2.27,
+          "Materials": 3.47,
+          "Communication Services": 17.85,
+          "Utilities": 2.64,
+          "Real Estate": 3.97
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.2379,
+        "sectors": {}
+      }
+    ],
+    "2021-11-30": [
+      {
+        "name": "United States",
+        "value": 0.6326677645121449,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.05887196377109922,
+        "sectors": {
+          "Financials": 14.88,
+          "Information Technology": 15.3,
+          "Consumer Discretionary": 18.06,
+          "Health Care": 7.61,
+          "Industrials": 22.87,
+          "Consumer Staples": 5.19,
+          "Energy": 0.91,
+          "Materials": 4.16,
+          "Communication Services": 6.86,
+          "Utilities": 1.15,
+          "Real Estate": 2.47
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.03612597776862907,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "China",
+        "value": 0.03962536023054755,
+        "sectors": {
+          "Financials": 15.27,
+          "Information Technology": 5.78,
+          "Consumer Discretionary": 30.45,
+          "Health Care": 5.89,
+          "Industrials": 5.53,
+          "Consumer Staples": 5.83,
+          "Energy": 2.27,
+          "Materials": 3.47,
+          "Communication Services": 17.85,
+          "Utilities": 2.64,
+          "Real Estate": 3.97
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.23270893371757925,
+        "sectors": {}
+      }
+    ],
+    "2021-12-31": [
+      {
+        "name": "United States",
+        "value": 0.6314109165808445,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.057054582904222446,
+        "sectors": {
+          "Financials": 14.88,
+          "Information Technology": 15.3,
+          "Consumer Discretionary": 18.06,
+          "Health Care": 7.61,
+          "Industrials": 22.87,
+          "Consumer Staples": 5.19,
+          "Energy": 0.91,
+          "Materials": 4.16,
+          "Communication Services": 6.86,
+          "Utilities": 1.15,
+          "Real Estate": 2.47
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.037075180226570546,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "China",
+        "value": 0.037281153450051494,
+        "sectors": {
+          "Financials": 16.51,
+          "Information Technology": 6.07,
+          "Consumer Discretionary": 29.59,
+          "Health Care": 4.55,
+          "Industrials": 5.2,
+          "Consumer Staples": 5.12,
+          "Energy": 3.8,
+          "Materials": 3.47,
+          "Communication Services": 20.72,
+          "Utilities": 2.6,
+          "Real Estate": 2.2
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.237178166838311,
+        "sectors": {}
+      }
+    ],
+    "2022-04-29": [
+      {
+        "name": "United States",
+        "value": 0.6069,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.054000000000000006,
+        "sectors": {
+          "Financials": 14.88,
+          "Information Technology": 15.3,
+          "Consumer Discretionary": 18.06,
+          "Health Care": 7.61,
+          "Industrials": 22.87,
+          "Consumer Staples": 5.19,
+          "Energy": 0.91,
+          "Materials": 4.16,
+          "Communication Services": 6.86,
+          "Utilities": 1.15,
+          "Real Estate": 2.47
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.038900000000000004,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.0322,
+        "sectors": {
+          "Financials": 7.17,
+          "Information Technology": 3.16,
+          "Consumer Discretionary": 0.41,
+          "Health Care": 11.7,
+          "Industrials": 4.16,
+          "Consumer Staples": 16.9,
+          "Energy": 12.32,
+          "Materials": 2.54,
+          "Communication Services": 3.71,
+          "Utilities": 0.59
+        }
+      },
+      {
+        "name": "China",
+        "value": 0.0347,
+        "sectors": {
+          "Financials": 15.27,
+          "Information Technology": 5.78,
+          "Consumer Discretionary": 30.45,
+          "Health Care": 5.89,
+          "Industrials": 5.53,
+          "Consumer Staples": 5.83,
+          "Energy": 2.27,
+          "Materials": 3.47,
+          "Communication Services": 17.85,
+          "Utilities": 2.64,
+          "Real Estate": 3.97
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.23329999999999998,
+        "sectors": {}
+      }
+    ],
+    "2022-11-30": [
+      {
+        "name": "United States",
+        "value": 0.6164999999999999,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.053200000000000004,
+        "sectors": {
+          "Financials": 14.88,
+          "Information Technology": 15.3,
+          "Consumer Discretionary": 18.06,
+          "Health Care": 7.61,
+          "Industrials": 22.87,
+          "Consumer Staples": 5.19,
+          "Energy": 0.91,
+          "Materials": 4.16,
+          "Communication Services": 6.86,
+          "Utilities": 1.15,
+          "Real Estate": 2.47
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.038,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.031,
+        "sectors": {
+          "Information Technology": 35.17,
+          "Consumer Discretionary": 7.39,
+          "Health Care": 3.7,
+          "Consumer Staples": 12.26,
+          "Energy": 4.95,
+          "Materials": 17.48,
+          "Communication Services": 11.71,
+          "Utilities": 2.62,
+          "Real Estate": 3.64
+        }
+      },
+      {
+        "name": "China",
+        "value": 0.033,
+        "sectors": {
+          "Financials": 16.51,
+          "Information Technology": 6.07,
+          "Consumer Discretionary": 29.59,
+          "Health Care": 4.55,
+          "Industrials": 5.2,
+          "Consumer Staples": 5.12,
+          "Energy": 3.8,
+          "Materials": 3.47,
+          "Communication Services": 20.72,
+          "Utilities": 2.6,
+          "Real Estate": 2.2
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.22829999999999998,
+        "sectors": {}
+      }
+    ],
+    "2023-02-28": [
+      {
+        "name": "United States",
+        "value": 0.602960296029603,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.054605460546054606,
+        "sectors": {
+          "Financials": 14.88,
+          "Information Technology": 15.3,
+          "Consumer Discretionary": 18.06,
+          "Health Care": 7.61,
+          "Industrials": 22.87,
+          "Consumer Staples": 5.19,
+          "Energy": 0.91,
+          "Materials": 4.16,
+          "Communication Services": 6.86,
+          "Utilities": 1.15,
+          "Real Estate": 2.47
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.03950395039503951,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "France",
+        "value": 0.0319031903190319,
+        "sectors": {}
+      },
+      {
+        "name": "China",
+        "value": 0.03500350035003501,
+        "sectors": {
+          "Financials": 16.51,
+          "Information Technology": 6.07,
+          "Consumer Discretionary": 29.59,
+          "Health Care": 4.55,
+          "Industrials": 5.2,
+          "Consumer Staples": 5.12,
+          "Energy": 3.8,
+          "Materials": 3.47,
+          "Communication Services": 20.72,
+          "Utilities": 2.6,
+          "Real Estate": 2.2
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.23602360236023606,
+        "sectors": {}
+      }
+    ],
+    "2023-09-29": [
+      {
+        "name": "United States",
+        "value": 0.6224377562243776,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0554944505549445,
+        "sectors": {
+          "Financials": 14.88,
+          "Information Technology": 15.3,
+          "Consumer Discretionary": 18.06,
+          "Health Care": 7.61,
+          "Industrials": 22.87,
+          "Consumer Staples": 5.19,
+          "Energy": 0.91,
+          "Materials": 4.16,
+          "Communication Services": 6.86,
+          "Utilities": 1.15,
+          "Real Estate": 2.47
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0370962903709629,
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
+      },
+      {
+        "name": "France",
+        "value": 0.029197080291970802,
+        "sectors": {}
+      },
+      {
+        "name": "China",
+        "value": 0.0320967903209679,
+        "sectors": {
+          "Financials": 16.51,
+          "Information Technology": 6.07,
+          "Consumer Discretionary": 29.59,
+          "Health Care": 4.55,
+          "Industrials": 5.2,
+          "Consumer Staples": 5.12,
+          "Energy": 3.8,
+          "Materials": 3.47,
+          "Communication Services": 20.72,
+          "Utilities": 2.6,
+          "Real Estate": 2.2
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.2236776322367763,
+        "sectors": {}
+      }
+    ],
+    "2024-02-29": [
+      {
+        "name": "United States",
+        "value": 0.6379,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0555,
+        "sectors": {
+          "Financials": 14.88,
+          "Information Technology": 15.3,
+          "Consumer Discretionary": 18.06,
+          "Health Care": 7.61,
+          "Industrials": 22.87,
+          "Consumer Staples": 5.19,
+          "Energy": 0.91,
+          "Materials": 4.16,
+          "Communication Services": 6.86,
+          "Utilities": 1.15,
+          "Real Estate": 2.47
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0337,
+        "sectors": {
+          "Financials": 18.22,
+          "Information Technology": 1.11,
+          "Consumer Discretionary": 7.18,
+          "Health Care": 12.58,
+          "Industrials": 13.0,
+          "Consumer Staples": 16.53,
+          "Energy": 12.98,
+          "Materials": 10.03,
+          "Communication Services": 2.5,
+          "Utilities": 3.97,
+          "Real Estate": 0.82
+        }
+      },
+      {
+        "name": "France",
+        "value": 0.028399999999999998,
+        "sectors": {
+          "Financials": 10.19,
+          "Information Technology": 4.62,
+          "Consumer Discretionary": 20.38,
+          "Health Care": 9.96,
+          "Industrials": 24.84,
+          "Consumer Staples": 9.78,
+          "Energy": 7.24,
+          "Materials": 6.3,
+          "Communication Services": 2.87,
+          "Utilities": 2.58,
+          "Real Estate": 1.09
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.0273,
+        "sectors": {
+          "Financials": 35.17,
+          "Information Technology": 7.39,
+          "Consumer Discretionary": 3.7,
+          "Industrials": 12.26,
+          "Consumer Staples": 4.95,
+          "Energy": 17.48,
+          "Materials": 11.71,
+          "Communication Services": 2.62,
+          "Utilities": 3.64,
+          "Real Estate": 0.6
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.21719999999999998,
+        "sectors": {}
+      }
+    ],
+    "2024-11-29": [
+      {
+        "name": "United States",
+        "value": 0.6676000000000001,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0473,
+        "sectors": {
+          "Financials": 14.88,
+          "Information Technology": 15.3,
+          "Consumer Discretionary": 18.06,
+          "Health Care": 7.61,
+          "Industrials": 22.87,
+          "Consumer Staples": 5.19,
+          "Energy": 0.91,
+          "Materials": 4.16,
+          "Communication Services": 6.86,
+          "Utilities": 1.15,
+          "Real Estate": 2.47
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0311,
+        "sectors": {
+          "Financials": 18.22,
+          "Information Technology": 1.11,
+          "Consumer Discretionary": 7.18,
+          "Health Care": 12.58,
+          "Industrials": 13.0,
+          "Consumer Staples": 16.53,
+          "Energy": 12.98,
+          "Materials": 10.03,
+          "Communication Services": 2.5,
+          "Utilities": 3.97,
+          "Real Estate": 0.82
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.027999999999999997,
+        "sectors": {
+          "Financials": 35.17,
+          "Information Technology": 7.39,
+          "Consumer Discretionary": 3.7,
+          "Industrials": 12.26,
+          "Consumer Staples": 4.95,
+          "Energy": 17.48,
+          "Materials": 11.71,
+          "Communication Services": 2.62,
+          "Utilities": 3.64,
+          "Real Estate": 0.6
+        }
+      },
+      {
+        "name": "China",
+        "value": 0.026099999999999998,
+        "sectors": {
+          "Financials": 16.51,
+          "Information Technology": 6.07,
+          "Consumer Discretionary": 29.59,
+          "Health Care": 4.55,
+          "Industrials": 5.2,
+          "Consumer Staples": 5.12,
+          "Energy": 3.8,
+          "Materials": 3.47,
+          "Communication Services": 20.72,
+          "Utilities": 2.6,
+          "Real Estate": 2.2
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.1999,
+        "sectors": {}
+      }
+    ],
+    "2024-12-31": [
+      {
+        "name": "United States",
+        "value": 0.6662666266626662,
+        "sectors": {}
+      },
+      {
+        "name": "Japan",
+        "value": 0.0483048304830483,
+        "sectors": {
+          "Financials": 14.88,
+          "Information Technology": 15.3,
+          "Consumer Discretionary": 18.06,
+          "Health Care": 7.61,
+          "Industrials": 22.87,
+          "Consumer Staples": 5.19,
+          "Energy": 0.91,
+          "Materials": 4.16,
+          "Communication Services": 6.86,
+          "Utilities": 1.15,
+          "Real Estate": 2.47
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.0309030903090309,
+        "sectors": {
+          "Financials": 18.22,
+          "Information Technology": 1.11,
+          "Consumer Discretionary": 7.18,
+          "Health Care": 12.58,
+          "Industrials": 13.0,
+          "Consumer Staples": 16.53,
+          "Energy": 12.98,
+          "Materials": 10.03,
+          "Communication Services": 2.5,
+          "Utilities": 3.97,
+          "Real Estate": 0.82
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.027002700270027002,
+        "sectors": {
+          "Financials": 35.17,
+          "Information Technology": 7.39,
+          "Consumer Discretionary": 3.7,
+          "Industrials": 12.26,
+          "Consumer Staples": 4.95,
+          "Energy": 17.48,
+          "Materials": 11.71,
+          "Communication Services": 2.62,
+          "Utilities": 3.64,
+          "Real Estate": 0.6
+        }
+      },
+      {
+        "name": "China",
+        "value": 0.0275027502750275,
+        "sectors": {
+          "Financials": 16.51,
+          "Information Technology": 6.07,
+          "Consumer Discretionary": 29.59,
+          "Health Care": 4.55,
+          "Industrials": 5.2,
+          "Consumer Staples": 5.12,
+          "Energy": 3.8,
+          "Materials": 3.47,
+          "Communication Services": 20.72,
+          "Utilities": 2.6,
+          "Real Estate": 2.2
+        }
+      },
+      {
+        "name": "Other",
+        "value": 0.2000200020002,
+        "sectors": {}
+      }
+    ],
+    "2025-12-31": [
+      {
+        "name": "United States",
+        "value": 0.6407065435568042,
+        "sectors": {
+          "Information Technology": 34.085213032581485,
+          "Consumer Discretionary": 14.95927318295737,
+          "Communication Services": 10.667293233082708,
+          "Financials": 13.189223057644107,
+          "Health Care": 9.68045112781955,
+          "Energy": 2.850877192982459,
+          "Industrials": 8.364661654135329,
+          "Materials": 1.8796992481203023,
+          "Utilities": 2.177318295739351,
+          "Cash und/oder Derivate": 0.2662907268170428,
+          "Real Estate": 1.8796992481203028
+        }
+      },
+      {
+        "name": "Ireland",
+        "value": 0.026896828582898442,
+        "sectors": {
+          "Financials": 91.04477611940298,
+          "Cash und/oder Derivate": 7.08955223880597,
+          "Industrials": 1.4925373134328357,
+          "Consumer Discretionary": 0.3731343283582089
+        }
+      },
+      {
+        "name": "Taiwan",
+        "value": 0.021878763548775604,
+        "sectors": {
+          "Information Technology": 84.40366972477065,
+          "Financials": 10.091743119266056,
+          "Communication Services": 1.3761467889908252,
+          "Consumer Discretionary": 0.9174311926605502,
+          "Materials": 2.752293577981651,
+          "Industrials": 0.4587155963302751
+        }
+      },
+      {
+        "name": "China",
+        "value": 0.025592131674026505,
+        "sectors": {
+          "Communication Services": 25.882352941176475,
+          "Consumer Discretionary": 33.72549019607844,
+          "Financials": 18.43137254901961,
+          "Information Technology": 5.490196078431371,
+          "Materials": 5.098039215686273,
+          "Energy": 2.352941176470588,
+          "Health Care": 4.705882352941175,
+          "Utilities": 1.5686274509803921,
+          "Industrials": 1.5686274509803921,
+          "Real Estate": 1.176470588235294
+        }
+      },
+      {
+        "name": "Germany",
+        "value": 0.02659574468085107,
+        "sectors": {
+          "Financials": 37.35849056603774,
+          "Information Technology": 13.207547169811324,
+          "Industrials": 22.264150943396228,
+          "Communication Services": 5.283018867924529,
+          "Materials": 4.150943396226415,
+          "Consumer Discretionary": 8.679245283018872,
+          "Health Care": 5.283018867924529,
+          "Utilities": 3.018867924528302,
+          "Real Estate": 0.7547169811320755
+        }
+      },
+      {
+        "name": "Netherlands",
+        "value": 0.011039743075070257,
+        "sectors": {
+          "Information Technology": 46.36363636363636,
+          "Financials": 20.0,
+          "Consumer Discretionary": 18.181818181818183,
+          "Communication Services": 4.545454545454546,
+          "Industrials": 7.272727272727271,
+          "Health Care": 1.8181818181818181,
+          "Materials": 1.8181818181818181
+        }
+      },
+      {
+        "name": "South Korea",
+        "value": 0.014753111200321162,
+        "sectors": {
+          "Information Technology": 52.38095238095237,
+          "Consumer Discretionary": 9.523809523809524,
+          "Financials": 10.204081632653061,
+          "Industrials": 17.00680272108844,
+          "Communication Services": 2.721088435374149,
+          "Health Care": 3.401360544217687,
+          "Materials": 2.721088435374149,
+          "Utilities": 0.6802721088435373,
+          "Energy": 1.3605442176870746
+        }
+      },
+      {
+        "name": "Switzerland",
+        "value": 0.02087515054195103,
+        "sectors": {
+          "Health Care": 38.46153846153847,
+          "Consumer Discretionary": 21.634615384615387,
+          "Financials": 20.673076923076923,
+          "Industrials": 11.057692307692308,
+          "Materials": 5.769230769230769,
+          "Communication Services": 0.9615384615384616,
+          "Information Technology": 0.9615384615384616,
+          "Real Estate": 0.4807692307692308
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.03291850662384586,
+        "sectors": {
+          "Health Care": 14.024390243902438,
+          "Financials": 25.914634146341463,
+          "Energy": 10.060975609756095,
+          "Consumer Discretionary": 20.121951219512198,
+          "Industrials": 13.719512195121952,
+          "Materials": 7.317073170731707,
+          "Utilities": 4.573170731707318,
+          "Communication Services": 2.1341463414634148,
+          "Information Technology": 1.2195121951219512,
+          "Real Estate": 0.9146341463414633
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.030610196708149347,
+        "sectors": {
+          "Financials": 39.016393442622956,
+          "Information Technology": 10.819672131147543,
+          "Energy": 14.754098360655737,
+          "Materials": 15.737704918032788,
+          "Industrials": 9.180327868852459,
+          "Consumer Discretionary": 6.557377049180328,
+          "Utilities": 2.622950819672131,
+          "Real Estate": 0.32786885245901637,
+          "Communication Services": 0.6557377049180327,
+          "Cash und/oder Derivate": 0.32786885245901637
+        }
+      },
+      {
+        "name": "Japan",
+        "value": 0.04797270172621441,
+        "sectors": {
+          "Consumer Discretionary": 21.548117154811717,
+          "Financials": 17.573221757322173,
+          "Industrials": 24.476987447698747,
+          "Communication Services": 8.158995815899578,
+          "Information Technology": 14.435146443514643,
+          "Materials": 2.928870292887028,
+          "Health Care": 6.903765690376567,
+          "Real Estate": 1.8828451882845183,
+          "Utilities": 1.2552301255230123,
+          "Energy": 0.836820083682008
+        }
+      },
+      {
+        "name": "France",
+        "value": 0.023685266961059825,
+        "sectors": {
+          "Consumer Discretionary": 24.576271186440675,
+          "Industrials": 30.932203389830516,
+          "Energy": 6.355932203389829,
+          "Health Care": 10.16949152542373,
+          "Materials": 5.508474576271186,
+          "Financials": 13.135593220338984,
+          "Utilities": 2.966101694915254,
+          "Communication Services": 2.11864406779661,
+          "Information Technology": 2.966101694915254,
+          "Real Estate": 1.2711864406779658
+        }
+      },
+      {
+        "name": "Australia",
+        "value": 0.013749498193496593,
+        "sectors": {
+          "Financials": 42.33576642335767,
+          "Materials": 19.708029197080293,
+          "Consumer Discretionary": 10.94890510948905,
+          "Health Care": 7.299270072992699,
+          "Real Estate": 5.109489051094891,
+          "Energy": 2.9197080291970803,
+          "Industrials": 5.839416058394161,
+          "Utilities": 2.1897810218978098,
+          "Information Technology": 1.4598540145985401,
+          "Communication Services": 2.1897810218978098
+        }
+      },
+      {
+        "name": "Spain",
+        "value": 0.00863107185869129,
+        "sectors": {
+          "Financials": 50.0,
+          "Utilities": 19.76744186046512,
+          "Consumer Discretionary": 12.790697674418606,
+          "Industrials": 10.465116279069766,
+          "Energy": 2.3255813953488373,
+          "Communication Services": 4.651162790697675
+        }
+      },
+      {
+        "name": "Denmark",
+        "value": 0.004114813327980732,
+        "sectors": {
+          "Health Care": 48.78048780487805,
+          "Industrials": 21.95121951219512,
+          "Financials": 14.634146341463413,
+          "Materials": 7.317073170731707,
+          "Utilities": 2.4390243902439024,
+          "Consumer Discretionary": 4.878048780487805
+        }
+      },
+      {
+        "name": "Italy",
+        "value": 0.007025291047771982,
+        "sectors": {
+          "Financials": 52.85714285714287,
+          "Utilities": 17.14285714285714,
+          "Energy": 8.571428571428571,
+          "Consumer Discretionary": 11.428571428571429,
+          "Industrials": 5.714285714285714,
+          "Communication Services": 2.857142857142857,
+          "Health Care": 1.4285714285714286
+        }
+      },
+      {
+        "name": "Hong Kong",
+        "value": 0.004114813327980731,
+        "sectors": {
+          "Financials": 56.09756097560975,
+          "Real Estate": 14.634146341463417,
+          "Utilities": 9.75609756097561,
+          "Industrials": 9.75609756097561,
+          "Consumer Discretionary": 7.317073170731707,
+          "Communication Services": 2.4390243902439024
+        }
+      },
+      {
+        "name": "Singapore",
+        "value": 0.0038137294259333616,
+        "sectors": {
+          "Financials": 52.63157894736842,
+          "Consumer Discretionary": 15.789473684210526,
+          "Communication Services": 7.894736842105261,
+          "Real Estate": 10.526315789473681,
+          "Industrials": 13.157894736842104
+        }
+      },
+      {
+        "name": "Sweden",
+        "value": 0.007928542753914095,
+        "sectors": {
+          "Communication Services": 15.189873417721516,
+          "Financials": 21.51898734177215,
+          "Industrials": 46.83544303797469,
+          "Information Technology": 6.329113924050632,
+          "Consumer Discretionary": 5.063291139240506,
+          "Materials": 3.797468354430379,
+          "Health Care": 1.2658227848101264
+        }
+      },
+      {
+        "name": "South Africa",
+        "value": 0.004014452027298275,
+        "sectors": {
+          "Consumer Discretionary": 25.0,
+          "Materials": 34.99999999999999,
+          "Financials": 32.5,
+          "Communication Services": 2.5,
+          "Real Estate": 2.5,
+          "Industrials": 2.5
+        }
+      },
+      {
+        "name": "Belgium",
+        "value": 0.002609393817743879,
+        "sectors": {
+          "Consumer Discretionary": 23.076923076923077,
+          "Health Care": 42.30769230769231,
+          "Financials": 26.923076923076927,
+          "Utilities": 3.8461538461538463,
+          "Materials": 3.8461538461538463
+        }
+      },
+      {
+        "name": "Finland",
+        "value": 0.002609393817743879,
+        "sectors": {
+          "Financials": 30.76923076923077,
+          "Information Technology": 15.384615384615385,
+          "Industrials": 23.076923076923077,
+          "Health Care": 7.6923076923076925,
+          "Materials": 7.6923076923076925,
+          "Consumer Discretionary": 3.8461538461538463,
+          "Energy": 3.8461538461538463,
+          "Utilities": 3.8461538461538463,
+          "Communication Services": 3.8461538461538463
+        }
+      },
+      {
+        "name": "Indonesia",
+        "value": 0.0013046969088719395,
+        "sectors": {
+          "Financials": 53.84615384615385,
+          "Communication Services": 7.6923076923076925,
+          "Industrials": 7.6923076923076925,
+          "Consumer Discretionary": 7.6923076923076925,
+          "Energy": 15.384615384615385,
+          "Materials": 7.6923076923076925
+        }
+      },
+      {
+        "name": "Austria",
+        "value": 0.0007025291047771982,
+        "sectors": {
+          "Financials": 71.42857142857143,
+          "Utilities": 14.285714285714285,
+          "Energy": 14.285714285714285
+        }
+      },
+      {
+        "name": "Poland",
+        "value": 0.0013046969088719395,
+        "sectors": {
+          "Financials": 53.84615384615385,
+          "Materials": 23.076923076923077,
+          "Energy": 7.6923076923076925,
+          "Communication Services": 7.6923076923076925,
+          "Consumer Discretionary": 7.6923076923076925
+        }
+      },
+      {
+        "name": "Israel",
+        "value": 0.002408671216378965,
+        "sectors": {
+          "Health Care": 16.666666666666668,
+          "Financials": 33.33333333333333,
+          "Industrials": 12.5,
+          "Information Technology": 33.333333333333336,
+          "Materials": 4.166666666666667
+        }
+      },
+      {
+        "name": "Hungary",
+        "value": 0.0004014452027298275,
+        "sectors": {
+          "Financials": 100.0
+        }
+      },
+      {
+        "name": "Kuwait",
+        "value": 0.0006021678040947412,
+        "sectors": {
+          "Financials": 100.0
+        }
+      },
+      {
+        "name": "Mexico",
+        "value": 0.0020072260136491374,
+        "sectors": {
+          "Materials": 30.0,
+          "Financials": 15.0,
+          "Consumer Discretionary": 30.0,
+          "Communication Services": 10.0,
+          "Real Estate": 5.0,
+          "Industrials": 10.0
+        }
+      },
+      {
+        "name": "Qatar",
+        "value": 0.0005018065034122843,
+        "sectors": {
+          "Financials": 100.0
+        }
+      },
+      {
+        "name": "Ver. Arabische Emirate",
+        "value": 0.0012043356081894827,
+        "sectors": {
+          "Real Estate": 41.666666666666664,
+          "Financials": 33.33333333333333,
+          "Communication Services": 16.666666666666664,
+          "Energy": 8.333333333333332
+        }
+      },
+      {
+        "name": "Malaysia",
+        "value": 0.0013046969088719395,
+        "sectors": {
+          "Financials": 46.15384615384615,
+          "Utilities": 15.384615384615385,
+          "Materials": 15.384615384615385,
+          "Consumer Discretionary": 15.384615384615385,
+          "Communication Services": 7.6923076923076925
+        }
+      },
+      {
+        "name": "Thailand",
+        "value": 0.00160578081091931,
+        "sectors": {
+          "Communication Services": 18.75,
+          "Information Technology": 12.5,
+          "Energy": 18.75,
+          "Industrials": 12.5,
+          "Consumer Discretionary": 18.75,
+          "Materials": 6.25,
+          "Financials": 6.25,
+          "Health Care": 6.25
+        }
+      },
+      {
+        "name": "Peru",
+        "value": 0.0005018065034122843,
+        "sectors": {
+          "Financials": 60.0,
+          "Materials": 40.0
+        }
+      },
+      {
+        "name": "Norway",
+        "value": 0.0014050582095543964,
+        "sectors": {
+          "Financials": 28.57142857142857,
+          "Energy": 21.428571428571423,
+          "Consumer Discretionary": 21.428571428571423,
+          "Industrials": 7.142857142857142,
+          "Materials": 14.285714285714285,
+          "Communication Services": 7.142857142857142
+        }
+      },
+      {
+        "name": "Chile",
+        "value": 0.0006021678040947412,
+        "sectors": {
+          "Financials": 33.333333333333336,
+          "Materials": 16.666666666666668,
+          "Utilities": 33.333333333333336,
+          "Industrials": 16.666666666666668
+        }
+      },
+      {
+        "name": "Neuseeland",
+        "value": 0.0004014452027298275,
+        "sectors": {
+          "Health Care": 50.0,
+          "Industrials": 25.0,
+          "Financials": 25.0
+        }
+      },
+      {
+        "name": "Philippinen",
+        "value": 0.0005018065034122843,
+        "sectors": {
+          "Real Estate": 40.0,
+          "Financials": 20.0,
+          "Industrials": 40.0
+        }
+      },
+      {
+        "name": "Portugal",
+        "value": 0.0004014452027298275,
+        "sectors": {
+          "Utilities": 25.0,
+          "Energy": 25.0,
+          "Consumer Discretionary": 25.0,
+          "Financials": 25.0
+        }
+      },
+      {
+        "name": "Griechenland",
+        "value": 0.0003010839020473706,
+        "sectors": {
+          "Financials": 100.0
+        }
+      },
+      {
+        "name": "Tschechien",
+        "value": 0.00010036130068245688,
+        "sectors": {
+          "Utilities": 100.0
+        }
+      },
+      {
+        "name": "Türkei",
+        "value": 0.0003010839020473706,
+        "sectors": {
+          "Industrials": 33.333333333333336,
+          "Consumer Discretionary": 33.333333333333336,
+          "Energy": 33.333333333333336
+        }
+      }
+    ],
+    "2026-05-14": [
+      {
+        "name": "United States",
+        "value": 0.6369835539510629,
+        "sectors": {
+          "Information Technology": 37.15365239294715,
+          "Consumer Discretionary": 14.373425692695188,
+          "Communication Services": 10.846977329974807,
+          "Financials": 11.177581863979842,
+          "Health Care": 8.26511335012594,
+          "Energy": 3.321788413098239,
+          "Industrials": 8.800377833753133,
+          "Materials": 1.9049118387909336,
+          "Utilities": 2.0465994962216643,
+          "Cash und/oder Derivate": 0.31486146095717893,
+          "Real Estate": 1.794710327455921
+        }
+      },
+      {
+        "name": "Taiwan",
+        "value": 0.030284797432811837,
+        "sectors": {
+          "Information Technology": 88.07947019867548,
+          "Financials": 7.284768211920543,
+          "Communication Services": 0.99337748344371,
+          "Materials": 1.9867549668874205,
+          "Consumer Discretionary": 0.66225165562914,
+          "Industrials": 0.66225165562914,
+          "Health Care": 0.33112582781457
+        }
+      },
+      {
+        "name": "Ireland",
+        "value": 0.0224628961091055,
+        "sectors": {
+          "Financials": 93.30357142857143,
+          "Cash und/oder Derivate": 4.9107142857142865,
+          "Industrials": 1.3392857142857144,
+          "Consumer Discretionary": 0.4464285714285715
+        }
+      },
+      {
+        "name": "South Korea",
+        "value": 0.027176093060569607,
+        "sectors": {
+          "Information Technology": 66.05166051660517,
+          "Industrials": 15.129151291512915,
+          "Consumer Discretionary": 7.380073800738007,
+          "Financials": 5.904059040590407,
+          "Materials": 1.1070110701107008,
+          "Health Care": 1.4760147601476012,
+          "Communication Services": 1.4760147601476012,
+          "Energy": 0.7380073800738006,
+          "Cash und/oder Derivate": 0.3690036900369003,
+          "Utilities": 0.3690036900369003
+        }
+      },
+      {
+        "name": "Netherlands",
+        "value": 0.012234255916566392,
+        "sectors": {
+          "Information Technology": 58.19672131147541,
+          "Financials": 16.393442622950815,
+          "Consumer Discretionary": 13.114754098360656,
+          "Communication Services": 4.098360655737705,
+          "Industrials": 4.918032786885246,
+          "Health Care": 1.6393442622950818,
+          "Materials": 1.6393442622950818
+        }
+      },
+      {
+        "name": "Germany",
+        "value": 0.024769354191736873,
+        "sectors": {
+          "Financials": 37.651821862348186,
+          "Industrials": 24.696356275303646,
+          "Information Technology": 11.336032388663968,
+          "Communication Services": 5.263157894736842,
+          "Materials": 4.453441295546558,
+          "Health Care": 4.858299595141699,
+          "Utilities": 3.2388663967611335,
+          "Consumer Discretionary": 7.692307692307694,
+          "Real Estate": 0.8097165991902834
+        }
+      },
+      {
+        "name": "China",
+        "value": 0.02196149217809868,
+        "sectors": {
+          "Communication Services": 22.37442922374429,
+          "Consumer Discretionary": 34.24657534246576,
+          "Financials": 18.721461187214615,
+          "Information Technology": 6.849315068493151,
+          "Energy": 3.1963470319634704,
+          "Materials": 3.652968036529681,
+          "Industrials": 3.196347031963471,
+          "Health Care": 4.10958904109589,
+          "Real Estate": 1.8264840182648405,
+          "Utilities": 1.8264840182648405
+        }
+      },
+      {
+        "name": "United Kingdom",
+        "value": 0.030786201363818703,
+        "sectors": {
+          "Financials": 24.755700325732903,
+          "Health Care": 13.680781758957652,
+          "Energy": 11.074918566775244,
+          "Industrials": 12.703583061889253,
+          "Consumer Discretionary": 18.566775244299674,
+          "Materials": 9.77198697068404,
+          "Utilities": 4.88599348534202,
+          "Cash und/oder Derivate": 0.9771986970684038,
+          "Communication Services": 1.9543973941368076,
+          "Information Technology": 0.9771986970684038,
+          "Real Estate": 0.6514657980456026
+        }
+      },
+      {
+        "name": "Switzerland",
+        "value": 0.0191536301644605,
+        "sectors": {
+          "Health Care": 38.7434554973822,
+          "Consumer Discretionary": 20.418848167539263,
+          "Industrials": 13.089005235602091,
+          "Financials": 19.371727748691097,
+          "Materials": 6.282722513089004,
+          "Communication Services": 1.0471204188481675,
+          "Information Technology": 0.5235602094240838,
+          "Real Estate": 0.5235602094240838
+        }
+      },
+      {
+        "name": "Canada",
+        "value": 0.02938227035699961,
+        "sectors": {
+          "Financials": 38.56655290102389,
+          "Energy": 19.112627986348123,
+          "Information Technology": 7.167235494880546,
+          "Materials": 16.382252559726965,
+          "Industrials": 9.215017064846416,
+          "Consumer Discretionary": 5.460750853242321,
+          "Utilities": 2.7303754266211606,
+          "Real Estate": 0.3412969283276451,
+          "Communication Services": 0.6825938566552902,
+          "Cash und/oder Derivate": 0.3412969283276451
+        }
+      },
+      {
+        "name": "Australia",
+        "value": 0.01403931006819094,
+        "sectors": {
+          "Materials": 26.428571428571434,
+          "Financials": 39.285714285714285,
+          "Consumer Discretionary": 9.285714285714285,
+          "Real Estate": 5.714285714285714,
+          "Energy": 4.285714285714285,
+          "Health Care": 3.571428571428571,
+          "Industrials": 5.714285714285714,
+          "Utilities": 2.1428571428571423,
+          "Communication Services": 2.1428571428571423,
+          "Information Technology": 0.7142857142857143,
+          "Cash und/oder Derivate": 0.7142857142857143
+        }
+      },
+      {
+        "name": "Japan",
+        "value": 0.04963898916967512,
+        "sectors": {
+          "Financials": 17.77777777777778,
+          "Consumer Discretionary": 18.585858585858585,
+          "Information Technology": 17.373737373737374,
+          "Communication Services": 6.868686868686866,
+          "Industrials": 25.656565656565654,
+          "Materials": 3.4343434343434334,
+          "Cash und/oder Derivate": 1.01010101010101,
+          "Health Care": 5.656565656565655,
+          "Real Estate": 1.6161616161616155,
+          "Utilities": 1.2121212121212117,
+          "Energy": 0.8080808080808077
+        }
+      },
+      {
+        "name": "France",
+        "value": 0.021359807460890504,
+        "sectors": {
+          "Energy": 8.45070422535211,
+          "Industrials": 30.98591549295775,
+          "Consumer Discretionary": 20.657276995305164,
+          "Materials": 6.572769953051642,
+          "Financials": 13.145539906103284,
+          "Health Care": 7.981220657276994,
+          "Utilities": 4.225352112676055,
+          "Information Technology": 4.225352112676056,
+          "Communication Services": 2.3474178403755865,
+          "Real Estate": 1.4084507042253518
+        }
+      },
+      {
+        "name": "Spain",
+        "value": 0.007922182109907744,
+        "sectors": {
+          "Financials": 46.83544303797469,
+          "Utilities": 22.78481012658228,
+          "Consumer Discretionary": 10.126582278481013,
+          "Industrials": 11.39240506329114,
+          "Energy": 3.797468354430379,
+          "Communication Services": 5.063291139240507
+        }
+      },
+      {
+        "name": "Denmark",
+        "value": 0.0036101083032490985,
+        "sectors": {
+          "Health Care": 47.22222222222223,
+          "Industrials": 25.0,
+          "Financials": 13.88888888888889,
+          "Materials": 5.555555555555556,
+          "Utilities": 2.777777777777778,
+          "Consumer Discretionary": 5.555555555555556
+        }
+      },
+      {
+        "name": "Hong Kong",
+        "value": 0.004211793020457282,
+        "sectors": {
+          "Financials": 47.61904761904761,
+          "Industrials": 11.904761904761905,
+          "Consumer Discretionary": 9.523809523809526,
+          "Real Estate": 16.666666666666664,
+          "Utilities": 9.523809523809526,
+          "Communication Services": 2.3809523809523814,
+          "Cash und/oder Derivate": 2.3809523809523814
+        }
+      },
+      {
+        "name": "Italy",
+        "value": 0.007119935820296834,
+        "sectors": {
+          "Financials": 49.29577464788733,
+          "Utilities": 18.309859154929576,
+          "Energy": 11.267605633802816,
+          "Industrials": 8.45070422535211,
+          "Consumer Discretionary": 9.859154929577462,
+          "Communication Services": 1.408450704225352,
+          "Health Care": 1.408450704225352
+        }
+      },
+      {
+        "name": "Singapore",
+        "value": 0.003409546730846371,
+        "sectors": {
+          "Financials": 52.94117647058824,
+          "Consumer Discretionary": 11.76470588235294,
+          "Communication Services": 8.823529411764705,
+          "Real Estate": 8.823529411764705,
+          "Industrials": 14.705882352941178,
+          "Cash und/oder Derivate": 2.941176470588235
+        }
+      },
+      {
+        "name": "Finland",
+        "value": 0.002807862013638188,
+        "sectors": {
+          "Information Technology": 28.57142857142857,
+          "Financials": 25.0,
+          "Industrials": 17.857142857142858,
+          "Health Care": 7.142857142857142,
+          "Materials": 7.142857142857142,
+          "Energy": 3.571428571428571,
+          "Consumer Discretionary": 3.571428571428571,
+          "Utilities": 3.571428571428571,
+          "Communication Services": 3.571428571428571
+        }
+      },
+      {
+        "name": "Belgium",
+        "value": 0.0024067388688327326,
+        "sectors": {
+          "Consumer Discretionary": 29.166666666666668,
+          "Health Care": 33.33333333333333,
+          "Financials": 25.0,
+          "Utilities": 8.333333333333332,
+          "Materials": 4.166666666666666
+        }
+      },
+      {
+        "name": "Sweden",
+        "value": 0.007320497392699562,
+        "sectors": {
+          "Financials": 24.657534246575338,
+          "Communication Services": 12.328767123287669,
+          "Industrials": 47.94520547945206,
+          "Information Technology": 6.8493150684931505,
+          "Materials": 2.73972602739726,
+          "Consumer Discretionary": 4.109589041095889,
+          "Health Care": 1.36986301369863
+        }
+      },
+      {
+        "name": "European Union",
+        "value": 0.0005014039310068193,
+        "sectors": {
+          "Cash und/oder Derivate": 100.0
+        }
+      },
+      {
+        "name": "South Africa",
+        "value": 0.00391095066185319,
+        "sectors": {
+          "Materials": 38.46153846153847,
+          "Consumer Discretionary": 20.51282051282051,
+          "Financials": 28.205128205128204,
+          "Communication Services": 7.692307692307692,
+          "Industrials": 2.564102564102564,
+          "Real Estate": 2.564102564102564
+        }
+      },
+      {
+        "name": "Hungary",
+        "value": 0.0004011231448054554,
+        "sectors": {
+          "Financials": 100.0
+        }
+      },
+      {
+        "name": "Poland",
+        "value": 0.0012033694344163663,
+        "sectors": {
+          "Financials": 50.0,
+          "Materials": 24.999999999999996,
+          "Energy": 16.666666666666664,
+          "Communication Services": 8.333333333333332
+        }
+      },
+      {
+        "name": "Israel",
+        "value": 0.0023064580826313683,
+        "sectors": {
+          "Health Care": 17.39130434782609,
+          "Industrials": 13.043478260869565,
+          "Financials": 39.13043478260869,
+          "Information Technology": 26.086956521739136,
+          "Materials": 4.347826086956522
+        }
+      },
+      {
+        "name": "Mexico",
+        "value": 0.002206177296430005,
+        "sectors": {
+          "Materials": 36.36363636363637,
+          "Financials": 13.636363636363635,
+          "Consumer Discretionary": 27.272727272727277,
+          "Communication Services": 9.090909090909092,
+          "Real Estate": 4.545454545454546,
+          "Industrials": 9.090909090909092
+        }
+      },
+      {
+        "name": "Austria",
+        "value": 0.000701965503409547,
+        "sectors": {
+          "Financials": 71.42857142857143,
+          "Utilities": 14.285714285714285,
+          "Energy": 14.285714285714285
+        }
+      },
+      {
+        "name": "Thailand",
+        "value": 0.0015042117930204578,
+        "sectors": {
+          "Information Technology": 20.0,
+          "Communication Services": 20.0,
+          "Energy": 20.0,
+          "Consumer Discretionary": 13.333333333333334,
+          "Industrials": 6.666666666666667,
+          "Materials": 6.666666666666667,
+          "Financials": 6.666666666666667,
+          "Health Care": 6.666666666666667
+        }
+      },
+      {
+        "name": "Norway",
+        "value": 0.0015042117930204578,
+        "sectors": {
+          "Energy": 26.666666666666668,
+          "Financials": 26.666666666666668,
+          "Materials": 13.333333333333334,
+          "Industrials": 6.666666666666667,
+          "Consumer Discretionary": 13.333333333333334,
+          "Communication Services": 6.666666666666667,
+          "Cash und/oder Derivate": 6.666666666666667
+        }
+      },
+      {
+        "name": "Kuwait",
+        "value": 0.0005014039310068193,
+        "sectors": {
+          "Financials": 100.0
+        }
+      },
+      {
+        "name": "Peru",
+        "value": 0.0005014039310068193,
+        "sectors": {
+          "Financials": 60.0,
+          "Materials": 40.0
+        }
+      },
+      {
+        "name": "Indonesia",
+        "value": 0.000601684717208183,
+        "sectors": {
+          "Financials": 66.66666666666667,
+          "Communication Services": 16.666666666666668,
+          "Industrials": 16.666666666666668
+        }
+      },
+      {
+        "name": "Qatar",
+        "value": 0.0004011231448054554,
+        "sectors": {
+          "Financials": 100.0
+        }
+      },
+      {
+        "name": "Malaysia",
+        "value": 0.001203369434416366,
+        "sectors": {
+          "Financials": 33.333333333333336,
+          "Materials": 25.0,
+          "Utilities": 16.666666666666668,
+          "Consumer Discretionary": 16.666666666666668,
+          "Communication Services": 8.333333333333334
+        }
+      },
+      {
+        "name": "Ver. Arabische Emirate",
+        "value": 0.0011030886482150024,
+        "sectors": {
+          "Real Estate": 36.36363636363637,
+          "Financials": 36.36363636363637,
+          "Communication Services": 18.181818181818183,
+          "Energy": 9.090909090909092
+        }
+      },
+      {
+        "name": "Türkei",
+        "value": 0.0005014039310068193,
+        "sectors": {
+          "Industrials": 40.0,
+          "Consumer Discretionary": 20.0,
+          "Energy": 20.0,
+          "Materials": 20.0
+        }
+      },
+      {
+        "name": "Portugal",
+        "value": 0.0004011231448054554,
+        "sectors": {
+          "Utilities": 25.0,
+          "Energy": 25.0,
+          "Consumer Discretionary": 25.0,
+          "Financials": 25.0
+        }
+      },
+      {
+        "name": "Chile",
+        "value": 0.0003008423586040915,
+        "sectors": {
+          "Financials": 33.333333333333336,
+          "Materials": 33.333333333333336,
+          "Utilities": 33.333333333333336
+        }
+      },
+      {
+        "name": "Griechenland",
+        "value": 0.0004011231448054554,
+        "sectors": {
+          "Financials": 100.0
+        }
+      },
+      {
+        "name": "Neuseeland",
+        "value": 0.0003008423586040915,
+        "sectors": {
+          "Health Care": 33.333333333333336,
+          "Industrials": 33.333333333333336,
+          "Financials": 33.333333333333336
+        }
+      },
+      {
+        "name": "Philippinen",
+        "value": 0.0004011231448054554,
+        "sectors": {
+          "Industrials": 50.0,
+          "Real Estate": 25.0,
+          "Financials": 25.0
+        }
+      },
+      {
+        "name": "Tschechien",
+        "value": 0.00010028078620136385,
+        "sectors": {
+          "Utilities": 100.0
+        }
+      }
+    ]
+  }
+}
