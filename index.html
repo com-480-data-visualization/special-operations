@@ -10,8 +10,8 @@
       rel="stylesheet"
     />
     <title>Is Europe Falling Behind?</title>
-    <script type="module" crossorigin src="/special-operations/assets/index-CaL8YY3l.js"></script>
-    <link rel="stylesheet" crossorigin href="/special-operations/assets/index-Bej3qfd0.css">
+    <script type="module" crossorigin src="/special-operations/assets/index-BSFlwbtL.js"></script>
+    <link rel="stylesheet" crossorigin href="/special-operations/assets/index-DjWyYv3B.css">
   </head>
   <body>
     <div id="app">
@@ -98,8 +98,8 @@
           <section class="treemap-panel" aria-label="Country / sector treemap">
             <div class="treemap-panel__heading">
               <div>
-                <p class="eyebrow">Market structure</p>
-                <h2 id="treemap-title">Country → Sector treemap</h2>
+                <p class="eyebrow">Market composition</p>
+                <h2 id="treemap-title">ACWI weights by country and sector</h2>
               </div>
               <label class="control-field control-field--treemap-time">
                 <span class="control-label">
@@ -108,7 +108,21 @@
                 <input id="treemap-slider" type="range" min="0" max="0" value="0" step="1" />
               </label>
             </div>
-            <div id="treemap-chart" class="chart"></div>
+            <div class="treemap-grid">
+              <section class="treemap-card" aria-label="Country treemap">
+                <div class="treemap-card__heading">
+                  <h3>MSCI ACWI Countries</h3>
+                  <p>Hover for sector breakdowns</p>
+                </div>
+                <div id="treemap-chart" class="chart"></div>
+              </section>
+              <section class="treemap-card" aria-label="MSCI ACWI sector capitalization treemap">
+                <div class="treemap-card__heading">
+                  <h3>MSCI ACWI sectors</h3>
+                </div>
+                <div id="sector-treemap-chart" class="chart"></div>
+              </section>
+            </div>
           </section>
         </section>
       </main>
