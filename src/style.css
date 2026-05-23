@@ -218,7 +218,49 @@ input:focus-visible {
   align-items: end;
   justify-content: space-between;
   gap: 18px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.treemap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.treemap-card {
+  min-width: 0;
+}
+
+.treemap-card__heading {
+  display: grid;
+  align-content: start;
+  gap: 3px;
+  min-height: 38px;
+  margin: 0 0 8px;
+  padding-left: 10px;
+}
+
+.treemap-card h3 {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.treemap-card__heading p {
+  margin: 0;
+  color: var(--text-tertiary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.treemap-card .chart {
+  aspect-ratio: 1 / 0.86;
+  min-height: 330px;
 }
 
 .control-field--treemap-time {
@@ -247,6 +289,12 @@ input:focus-visible {
   display: inline-block;
   margin-top: 6px;
   font-weight: 700;
+}
+
+@media (max-width: 860px) {
+  .treemap-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .control-group {

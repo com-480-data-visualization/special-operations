@@ -16,7 +16,7 @@ import {
 import { createEvolutionChart } from "./evolution-chart.js";
 import { createIndicatorMap } from "./regional-map.js";
 import { createSpiderChart } from "./spider.js";
-import { createTreemap } from "./treemap.js";
+import { createSectorTreemap, createTreemap } from "./treemap.js";
 
 const ANIMATION_MS = 650;
 const DEFAULT_REGIONS = [...REGION_ORDER];
@@ -75,12 +75,15 @@ async function main() {
   // Load treemap data (preprocessed JSON) and initialize treemap component.
   // Treemap: load data and initialize, but keep it fully independent (no selection, no axis, just year)
   let treemap = null;
+  let sectorTreemap = null;
   let treemapData = null;
   let treemapSnapshots = [];
   try {
     treemapData = await d3.json("./treemap_data.json");
     const treemapContainer = getRequiredElement("treemap-chart");
+    const sectorTreemapContainer = getRequiredElement("sector-treemap-chart");
     treemap = createTreemap(treemapContainer, treemapData);
+    sectorTreemap = createSectorTreemap(sectorTreemapContainer, treemapData);
     treemapSnapshots = (treemapData.snapshots || [])
       .slice()
       .sort((a, b) => a.key.localeCompare(b.key));
@@ -203,6 +206,7 @@ async function main() {
     const snapshot = treemapSnapshots[Math.min(snapshotIndex, treemapSnapshots.length - 1)];
     treemapDateLabel.textContent = snapshot.label;
     treemap.renderKey(snapshot.key);
+    sectorTreemap?.renderKey(snapshot.key);
   }
 
   /**
@@ -242,6 +246,10 @@ async function main() {
   treemapSlider.addEventListener("input", () => {
     updateRangeProgress(treemapSlider);
     renderTreemap();
+  });
+  window.addEventListener("resize", () => {
+    treemap?.resize();
+    sectorTreemap?.resize();
   });
   playButton.addEventListener("click", toggleAnimation);
   mapModeButton.addEventListener("click", () => {

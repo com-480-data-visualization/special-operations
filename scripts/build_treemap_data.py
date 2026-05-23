@@ -8,8 +8,9 @@ Produces `public/treemap_data.json` with structure:
 }
 
 For 2015-2024, the country percentage columns in `msci_acwi_with_country_sectors.csv`
-define the treemap areas. Per-country sector columns are kept only for tooltips.
-The global `acwi_sector_*` columns are intentionally ignored.
+define the country treemap areas. Per-country sector columns are kept only for
+country tooltips. The global `acwi_sector_*` columns define a second sector
+treemap for the same snapshots.
 """
 import csv
 import json
@@ -231,6 +232,8 @@ def process_msci_acwi(path):
         if not cols:
             return results
         country_pct_cols = [c for c in COUNTRY_PCT_COLS if c in cols]
+        global_sector_col_re = re.compile(r'^acwi_sector_(?P<sector>.+)$')
+        global_sector_cols = [c for c in cols if global_sector_col_re.match(c)]
         sector_cols = [
             c for c in cols
             if sector_col_re.match(c) and not c.startswith("acwi_sector_")
@@ -258,6 +261,19 @@ def process_msci_acwi(path):
                 except Exception:
                     country_pct[country] = parse_number_eu(v)
 
+            global_sectors = {}
+            for col in global_sector_cols:
+                raw = (row.get(col) or '').strip()
+                if raw == '':
+                    continue
+                try:
+                    val = float(raw)
+                except Exception:
+                    val = parse_number_eu(raw)
+                sector_match = global_sector_col_re.match(col)
+                if sector_match and val > 0:
+                    global_sectors[normalize_sector_name(sector_match.group('sector'))] = val
+
             # build country->sector as dict for tooltip
             country_sector = defaultdict(dict)
             for col, (country, sector) in mapping.items():
@@ -281,12 +297,21 @@ def process_msci_acwi(path):
                         "value": pct,
                         "sectors": dict(country_sector.get(country, {})),
                     })
-            results[key] = {"label": label, "year": year, "items": out}
+            results[key] = {
+                "label": label,
+                "year": year,
+                "items": out,
+                "sectorItems": [
+                    {"name": sector, "value": value}
+                    for sector, value in global_sectors.items()
+                ],
+            }
     return results
 
 def process_acwi_snapshot(path):
     """Aggregate holdings CSV snapshot into country -> sector sums. Returns dict for that snapshot year."""
     agg = defaultdict(lambda: defaultdict(float))
+    sector_totals = defaultdict(float)
     with open(path, newline='', encoding='utf-8-sig') as fh:
         lines = fh.readlines()
 
@@ -310,6 +335,7 @@ def process_acwi_snapshot(path):
             if country == '':
                 continue
             agg[country][sector] += mv
+            sector_totals[sector] += mv
 
     if not re.search(r'20\d{2}', year or ""):
         m = re.search(r'(20\d{2})', os.path.basename(path))
@@ -330,12 +356,21 @@ def process_acwi_snapshot(path):
                     if val > 0
                 },
             })
-    return key, {"label": label, "year": year, "items": out}
+    return key, {
+        "label": label,
+        "year": year,
+        "items": out,
+        "sectorItems": [
+            {"name": sector, "value": value}
+            for sector, value in sector_totals.items()
+            if value > 0
+        ],
+    }
 
 def normalize_and_write(all_data, out_path):
     # all_data: dict snapshot key -> {label, year, items}
     years = sorted(all_data.keys())
-    payload = {"years": years, "snapshots": [], "data": {}}
+    payload = {"years": years, "snapshots": [], "data": {}, "sectorData": {}}
     # Normalize country areas within each snapshot. Sector values remain tooltip percentages.
     for key in years:
         snapshot = all_data[key]
@@ -353,6 +388,16 @@ def normalize_and_write(all_data, out_path):
                 "sectors": c.get("sectors", {}),
             })
         payload['data'][key] = normalized
+        sector_items = snapshot.get("sectorItems", [])
+        sector_total = sum(s.get("value", 0.0) for s in sector_items)
+        payload["sectorData"][key] = [
+            {
+                "name": s["name"],
+                "value": s.get("value", 0.0) / sector_total,
+            }
+            for s in sector_items
+            if sector_total > 0 and s.get("value", 0.0) > 0
+        ]
         payload["snapshots"].append({
             "key": key,
             "label": snapshot.get("label", key),

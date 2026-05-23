@@ -2,15 +2,60 @@ import * as d3 from "d3";
 
 
 const COUNTRY_COLOR = d3.scaleOrdinal(d3.schemeTableau10.concat(d3.schemeCategory10));
+const SECTOR_COLOR = d3.scaleOrdinal()
+  .domain([
+    "Financials",
+    "Information Technology",
+    "Consumer Discretionary",
+    "Health Care",
+    "Industrials",
+    "Consumer Staples",
+    "Energy",
+    "Materials",
+    "Communication Services",
+    "Utilities",
+    "Real Estate",
+  ])
+  .range([
+    "#2a9d8f",
+    "#e76f51",
+    "#118ab2",
+    "#8ab17d",
+    "#6d597a",
+    "#e9c46a",
+    "#d62828",
+    "#5e6472",
+    "#b56576",
+    "#f4a261",
+    "#6c757d",
+  ])
+  .unknown("#64748b");
 const OTHER_COLOR = "#6f7684";
+const SHORT_LABELS = new Map([
+  ["United States", "US"],
+  ["United Kingdom", "UK"],
+  ["Switzerland", "CH"],
+  ["Information Technology", "Info Tech"],
+  ["Consumer Discretionary", "Cons. Disc."],
+  ["Consumer Staples", "Staples"],
+  ["Communication Services", "Comms"],
+  ["Cash und/oder Derivate", "Cash"],
+]);
 
-export function createTreemap(container, data) {
+export function createTreemap(container, data, options = {}) {
   const el = typeof container === "string" ? document.querySelector(container) : container;
   if (!el) throw new Error("Missing treemap container");
+  const {
+    dataKey = "data",
+    emptyText = "No treemap data for this snapshot.",
+    color = (name) => isOther(name) ? OTHER_COLOR : COUNTRY_COLOR(name),
+    tooltipTitle = "ACWI share",
+    tooltipSections = countryTooltipSections,
+  } = options;
 
   const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-  let width = el.clientWidth - margin.left - margin.right;
-  let height = 360 - margin.top - margin.bottom;
+  let width = getInnerWidth();
+  let height = getInnerHeight();
   let currentKey = (data?.snapshots?.at(-1)?.key || data?.years?.at(-1) || "");
 
   const svg = d3
@@ -40,8 +85,8 @@ export function createTreemap(container, data) {
 
   function renderKey(key) {
     currentKey = String(key);
-    const nodesForSnapshot = (data.data && data.data[currentKey]) || [];
-    emptyLabel.text(nodesForSnapshot.length ? "" : "No treemap data for this snapshot.");
+    const nodesForSnapshot = (data[dataKey] && data[dataKey][currentKey]) || [];
+    emptyLabel.text(nodesForSnapshot.length ? "" : emptyText);
 
     const root = d3
       .hierarchy({ name: "root", children: nodesForSnapshot })
@@ -52,7 +97,11 @@ export function createTreemap(container, data) {
         return b.value - a.value;
       });
 
-    d3.treemap().size([width, height]).paddingInner(1.5).paddingOuter(2)(root);
+    d3.treemap()
+      .size([width, height])
+      .tile(d3.treemapSquarify.ratio(1))
+      .paddingInner(1.5)
+      .paddingOuter(2)(root);
 
     const leaves = root.leaves();
 
@@ -82,7 +131,7 @@ export function createTreemap(container, data) {
       .attr("y", (d) => d.y0)
       .attr("width", (d) => Math.max(0, d.x1 - d.x0))
       .attr("height", (d) => Math.max(0, d.y1 - d.y0))
-      .attr("fill", (d) => isOther(d.data.name) ? OTHER_COLOR : COUNTRY_COLOR(d.data.name));
+      .attr("fill", (d) => color(d.data.name, d));
 
     merged
       .select("text")
@@ -90,35 +139,33 @@ export function createTreemap(container, data) {
       .attr("y", (d) => d.y0 + 16)
       .attr("font-size", (d) => labelSize(d))
       .attr("font-weight", 700)
-      .attr("paint-order", "stroke")
-      .attr("stroke", "rgba(5, 10, 18, 0.34)")
-      .attr("stroke-width", 2)
-      .attr("stroke-linejoin", "round")
+      .attr("paint-order", null)
+      .attr("stroke", "none")
+      .attr("stroke-width", 0)
       .each(function updateLabel(d) {
         const text = d3.select(this);
         const w = d.x1 - d.x0, h = d.y1 - d.y0;
-        const name = fitName(d.data.name, w, labelSize(d));
+        const fontSize = labelSize(d);
+        const lines = labelLines(d.data.name, w, h, fontSize);
         text.text("");
-        if (name && w > 140 && h > 58) {
-          text.append("tspan").attr("x", d.x0 + 8).attr("dy", 0).text(d.data.name);
-          text
-            .append("tspan")
-            .attr("x", d.x0 + 8)
-            .attr("dy", 17)
-            .attr("font-size", 12)
-            .attr("font-weight", 650)
-            .text(formatPercent(d.value));
-          return;
-        }
-        if (name && w > 76 && h > 38) {
-          text.append("tspan").attr("x", d.x0 + 6).attr("dy", 0).text(name);
-          text
-            .append("tspan")
-            .attr("x", d.x0 + 6)
-            .attr("dy", 14)
-            .attr("font-size", 10.5)
-            .attr("font-weight", 650)
-            .text(formatPercent(d.value));
+        if (lines.length) {
+          const x = d.x0 + (w > 86 ? 8 : 5);
+          lines.forEach((line, index) => {
+            text
+              .append("tspan")
+              .attr("x", x)
+              .attr("dy", index === 0 ? 0 : fontSize + 2)
+              .text(line);
+          });
+          if (h >= lines.length * (fontSize + 2) + 26 && w > 42) {
+            text
+              .append("tspan")
+              .attr("x", x)
+              .attr("dy", fontSize + 3)
+              .attr("font-size", Math.max(9.5, fontSize - 2))
+              .attr("font-weight", 650)
+              .text(formatPercent(d.value));
+          }
           return;
         }
         if (w > 50 && h > 24) {
@@ -128,17 +175,8 @@ export function createTreemap(container, data) {
 
     merged
       .on("mousemove", (event, d) => {
-        let html = `<strong>${d.data.name}</strong><br/>ACWI share: ${formatPercent(d.value)}`;
-        const sectors = Object.entries(d.data.sectors || {})
-          .filter(([, value]) => Number(value) > 0)
-          .sort((a, b) => b[1] - a[1]);
-        if (sectors.length) {
-          html += '<br/><span class="treemap-tooltip__section">Sectors</span><ul>';
-          for (const [sector, value] of sectors) {
-            html += `<li>${sector}: ${formatNumber(value)}%</li>`;
-          }
-          html += "</ul>";
-        }
+        let html = `<strong>${d.data.name}</strong><br/>${tooltipTitle}: ${formatPercent(d.value)}`;
+        html += tooltipSections(d.data);
         tooltip
           .style("left", `${event.pageX + 10}px`)
           .style("top", `${event.pageY + 10}px`)
@@ -164,11 +202,6 @@ export function createTreemap(container, data) {
     return d3.format(".2%")(v);
   }
 
-  function formatNumber(v) {
-    if (v == null) return "—";
-    return d3.format(".2f")(v);
-  }
-
   function isOther(name) {
     return String(name || "").trim().toLowerCase() === "other";
   }
@@ -181,28 +214,108 @@ export function createTreemap(container, data) {
     return 10.5;
   }
 
-  function fitName(name, width, fontSize) {
-    const label = String(name || "");
+  function labelLines(name, width, height, fontSize) {
+    const label = String(name || "").trim();
     const available = width - 12;
-    const estimated = label.length * fontSize * 0.58;
-    if (estimated <= available) return label;
+    const maxLines = Math.max(1, Math.floor((height - 22) / (fontSize + 2)));
+    if (available <= 24 || maxLines < 1) return [];
+    if (estimatedTextWidth(label, fontSize) <= available) return [label];
+
     const words = label.split(/\s+/).filter(Boolean);
-    if (words.length > 1) {
-      const initials = words.map((word) => word[0]).join("");
-      if (initials.length * fontSize * 0.7 <= available) return initials;
+    if (
+      words.length > 1
+      && words.length <= maxLines
+      && words.every((word) => estimatedTextWidth(word, fontSize) <= available)
+    ) {
+      return words;
     }
-    return "";
+
+    const shortLabel = SHORT_LABELS.get(label);
+    if (shortLabel && estimatedTextWidth(shortLabel, fontSize) <= available) {
+      return [shortLabel];
+    }
+
+    if (words.length > 1 && maxLines >= 2) {
+      const wrapped = wrapWords(words, available, fontSize, maxLines);
+      if (wrapped.length > 0) return wrapped;
+    }
+    return [];
+  }
+
+  function wrapWords(words, available, fontSize, maxLines) {
+    const lines = [];
+    let current = "";
+    for (const word of words) {
+      const candidate = current ? `${current} ${word}` : word;
+      if (estimatedTextWidth(candidate, fontSize) <= available) {
+        current = candidate;
+      } else {
+        if (!current || lines.length >= maxLines - 1) return [];
+        lines.push(current);
+        current = word;
+      }
+    }
+    if (current && estimatedTextWidth(current, fontSize) <= available) {
+      lines.push(current);
+    }
+    return lines.length <= maxLines ? lines : [];
+  }
+
+  function estimatedTextWidth(label, fontSize) {
+    return label.length * fontSize * 0.56;
+  }
+
+  function getInnerWidth() {
+    return Math.max(260, el.clientWidth - margin.left - margin.right);
+  }
+
+  function getInnerHeight() {
+    const outerWidth = getInnerWidth() + margin.left + margin.right;
+    const outerHeight = Math.min(520, Math.max(330, outerWidth * 0.86));
+    return outerHeight - margin.top - margin.bottom;
   }
 
   return {
     renderKey,
     renderYear,
     resize() {
-      width = el.clientWidth - margin.left - margin.right;
-      svg.attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`);
+      width = getInnerWidth();
+      height = getInnerHeight();
+      svg
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .attr("viewBox", `0 0 ${width + margin.left + margin.right} ${height + margin.top + margin.bottom}`);
       renderKey(currentKey);
     },
   };
+}
+
+export function createSectorTreemap(container, data) {
+  return createTreemap(container, data, {
+    dataKey: "sectorData",
+    emptyText: "No sector data for this snapshot.",
+    color: (name) => SECTOR_COLOR(name),
+    tooltipTitle: "MSCI ACWI sector cap",
+    tooltipSections: () => "",
+  });
+}
+
+function countryTooltipSections(data) {
+  const sectors = Object.entries(data.sectors || {})
+    .filter(([, value]) => Number(value) > 0)
+    .sort((a, b) => b[1] - a[1]);
+  if (!sectors.length) return "";
+  let html = '<br/><span class="treemap-tooltip__section">Country sector mix</span><ul>';
+  for (const [sector, value] of sectors) {
+    html += `<li>${sector}: ${formatNumber(value)}%</li>`;
+  }
+  html += "</ul>";
+  return html;
+}
+
+function formatNumber(v) {
+  if (v == null) return "—";
+  return d3.format(".2f")(v);
 }
 
 export function mapSectorName(raw) {

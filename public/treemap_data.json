@@ -152,7 +152,19 @@
       {
         "name": "United States",
         "value": 0.5295000000000001,
-        "sectors": {}
+        "sectors": {
+          "Financials": 16.14,
+          "Information Technology": 19.95,
+          "Consumer Discretionary": 12.47,
+          "Health Care": 14.6,
+          "Industrials": 10.27,
+          "Consumer Staples": 9.51,
+          "Energy": 8.49,
+          "Materials": 3.22,
+          "commsrvcs": 2.34,
+          "Utilities": 3.0,
+          "Real Estate": 0.0
+        }
       },
       {
         "name": "Japan",
@@ -173,7 +185,19 @@
       {
         "name": "United Kingdom",
         "value": 0.0695,
-        "sectors": {}
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
       },
       {
         "name": "France",
@@ -195,7 +219,19 @@
       {
         "name": "United States",
         "value": 0.5241475852414759,
-        "sectors": {}
+        "sectors": {
+          "Financials": 16.65,
+          "Information Technology": 19.98,
+          "Consumer Discretionary": 12.9,
+          "Health Care": 15.24,
+          "Industrials": 9.93,
+          "Consumer Staples": 9.67,
+          "Energy": 7.25,
+          "Materials": 2.95,
+          "commsrvcs": 2.45,
+          "Utilities": 2.97,
+          "Real Estate": 0.0
+        }
       },
       {
         "name": "Japan",
@@ -216,7 +252,19 @@
       {
         "name": "United Kingdom",
         "value": 0.0701929807019298,
-        "sectors": {}
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
       },
       {
         "name": "France",
@@ -238,7 +286,19 @@
       {
         "name": "United States",
         "value": 0.5342534253425343,
-        "sectors": {}
+        "sectors": {
+          "Financials": 16.02,
+          "Information Technology": 20.66,
+          "Consumer Discretionary": 12.87,
+          "Health Care": 14.76,
+          "Industrials": 9.78,
+          "Consumer Staples": 10.66,
+          "Energy": 6.64,
+          "Materials": 2.6,
+          "commsrvcs": 2.7,
+          "Utilities": 3.3,
+          "Real Estate": 0.0
+        }
       },
       {
         "name": "Japan",
@@ -259,7 +319,19 @@
       {
         "name": "United Kingdom",
         "value": 0.0668066806680668,
-        "sectors": {}
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
       },
       {
         "name": "France",
@@ -281,7 +353,19 @@
       {
         "name": "United States",
         "value": 0.5355,
-        "sectors": {}
+        "sectors": {
+          "Financials": 16.3,
+          "Information Technology": 20.37,
+          "Consumer Discretionary": 12.55,
+          "Health Care": 14.7,
+          "Industrials": 10.02,
+          "Consumer Staples": 10.08,
+          "Energy": 7.13,
+          "Materials": 2.84,
+          "commsrvcs": 2.65,
+          "Utilities": 3.34,
+          "Real Estate": 0.0
+        }
       },
       {
         "name": "Japan",
@@ -302,28 +386,40 @@
       {
         "name": "United Kingdom",
         "value": 0.0654,
-        "sectors": {}
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
       },
       {
         "name": "France",
         "value": 0.0332,
         "sectors": {
-          "Consumer Discretionary": 37.32,
-          "Health Care": 2.14,
-          "Industrials": 6.02,
-          "Consumer Staples": 6.08,
-          "Energy": 8.06,
-          "Materials": 4.14,
-          "Communication Services": 22.26,
-          "Utilities": 10.28,
-          "Real Estate": 2.01
+          "Health Care": 37.32,
+          "Industrials": 2.14,
+          "Consumer Staples": 6.02,
+          "Energy": 6.08,
+          "Materials": 8.06,
+          "Communication Services": 4.14,
+          "Utilities": 22.26,
+          "Real Estate": 10.28
         }
       },
       {
         "name": "Canada",
         "value": 0.031400000000000004,
         "sectors": {
-          "Financials": 1.41
+          "Financials": 2.01,
+          "Information Technology": 1.41
         }
       },
       {
@@ -336,7 +432,19 @@
       {
         "name": "United States",
         "value": 0.5265,
-        "sectors": {}
+        "sectors": {
+          "Financials": 13.31,
+          "Information Technology": 21.63,
+          "Consumer Discretionary": 12.46,
+          "Health Care": 13.98,
+          "Industrials": 9.7,
+          "Consumer Staples": 10.04,
+          "Energy": 7.2,
+          "Materials": 2.88,
+          "commsrvcs": 2.49,
+          "Utilities": 3.38,
+          "Real Estate": 2.95
+        }
       },
       {
         "name": "Japan",
@@ -357,28 +465,40 @@
       {
         "name": "United Kingdom",
         "value": 0.058899999999999994,
-        "sectors": {}
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
       },
       {
         "name": "France",
         "value": 0.0326,
         "sectors": {
-          "Consumer Discretionary": 37.32,
-          "Health Care": 2.14,
-          "Industrials": 6.02,
-          "Consumer Staples": 6.08,
-          "Energy": 8.06,
-          "Materials": 4.14,
-          "Communication Services": 22.26,
-          "Utilities": 10.28,
-          "Real Estate": 2.01
+          "Health Care": 37.32,
+          "Industrials": 2.14,
+          "Consumer Staples": 6.02,
+          "Energy": 6.08,
+          "Materials": 8.06,
+          "Communication Services": 4.14,
+          "Utilities": 22.26,
+          "Real Estate": 10.28
         }
       },
       {
         "name": "Canada",
         "value": 0.0321,
         "sectors": {
-          "Financials": 1.41
+          "Financials": 2.01,
+          "Information Technology": 1.41
         }
       },
       {
@@ -391,7 +511,19 @@
       {
         "name": "United States",
         "value": 0.5344534453445344,
-        "sectors": {}
+        "sectors": {
+          "Financials": 14.56,
+          "Information Technology": 21.27,
+          "Consumer Discretionary": 12.31,
+          "Health Care": 13.65,
+          "Industrials": 10.23,
+          "Consumer Staples": 9.34,
+          "Energy": 7.21,
+          "Materials": 2.92,
+          "commsrvcs": 2.52,
+          "Utilities": 3.15,
+          "Real Estate": 2.83
+        }
       },
       {
         "name": "Japan",
@@ -412,28 +544,40 @@
       {
         "name": "United Kingdom",
         "value": 0.058605860586058614,
-        "sectors": {}
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
       },
       {
         "name": "France",
         "value": 0.032203220322032204,
         "sectors": {
-          "Consumer Discretionary": 37.32,
-          "Health Care": 2.14,
-          "Industrials": 6.02,
-          "Consumer Staples": 6.08,
-          "Energy": 8.06,
-          "Materials": 4.14,
-          "Communication Services": 22.26,
-          "Utilities": 10.28,
-          "Real Estate": 2.01
+          "Health Care": 37.32,
+          "Industrials": 2.14,
+          "Consumer Staples": 6.02,
+          "Energy": 6.08,
+          "Materials": 8.06,
+          "Communication Services": 4.14,
+          "Utilities": 22.26,
+          "Real Estate": 10.28
         }
       },
       {
         "name": "Canada",
         "value": 0.03290329032903291,
         "sectors": {
-          "Financials": 1.41
+          "Financials": 2.01,
+          "Information Technology": 1.41
         }
       },
       {
@@ -446,7 +590,19 @@
       {
         "name": "United States",
         "value": 0.521,
-        "sectors": {}
+        "sectors": {
+          "Financials": 14.23,
+          "Information Technology": 23.51,
+          "Consumer Discretionary": 12.06,
+          "Health Care": 14.66,
+          "Industrials": 10.1,
+          "Consumer Staples": 8.48,
+          "Energy": 5.67,
+          "Materials": 2.9,
+          "commsrvcs": 2.14,
+          "Utilities": 3.26,
+          "Real Estate": 2.98
+        }
       },
       {
         "name": "Japan",
@@ -467,7 +623,19 @@
       {
         "name": "United Kingdom",
         "value": 0.0579,
-        "sectors": {}
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
       },
       {
         "name": "France",
@@ -500,28 +668,53 @@
       {
         "name": "United States",
         "value": 0.525,
-        "sectors": {}
+        "sectors": {
+          "Financials": 15.03,
+          "Information Technology": 25.15,
+          "Consumer Discretionary": 12.68,
+          "Health Care": 13.78,
+          "Industrials": 10.23,
+          "Consumer Staples": 7.55,
+          "Energy": 5.51,
+          "Materials": 2.9,
+          "commsrvcs": 1.88,
+          "Utilities": 2.68,
+          "Real Estate": 2.6
+        }
       },
       {
         "name": "Japan",
         "value": 0.08039999999999999,
         "sectors": {
-          "Financials": 19.57,
-          "Information Technology": 10.58,
-          "Consumer Discretionary": 21.99,
-          "Health Care": 7.21,
-          "Industrials": 19.17,
-          "Consumer Staples": 6.66,
-          "Energy": 0.94,
-          "Materials": 5.76,
-          "Communication Services": 5.19,
-          "Utilities": 2.44
+          "Financials": 11.91,
+          "Information Technology": 12.16,
+          "Consumer Discretionary": 19.45,
+          "Health Care": 8.15,
+          "Industrials": 20.81,
+          "Consumer Staples": 8.23,
+          "Energy": 1.34,
+          "Materials": 5.95,
+          "Communication Services": 5.53,
+          "Utilities": 1.81,
+          "Real Estate": 3.72
         }
       },
       {
         "name": "United Kingdom",
         "value": 0.0552,
-        "sectors": {}
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
       },
       {
         "name": "France",
@@ -554,28 +747,53 @@
       {
         "name": "United States",
         "value": 0.5327000000000001,
-        "sectors": {}
+        "sectors": {
+          "Financials": 14.2,
+          "Information Technology": 25.98,
+          "Consumer Discretionary": 12.87,
+          "Health Care": 13.92,
+          "Industrials": 9.91,
+          "Consumer Staples": 6.69,
+          "Energy": 6.26,
+          "Materials": 2.84,
+          "commsrvcs": 1.79,
+          "Utilities": 2.8,
+          "Real Estate": 2.74
+        }
       },
       {
         "name": "Japan",
         "value": 0.0795,
         "sectors": {
-          "Financials": 19.57,
-          "Information Technology": 10.58,
-          "Consumer Discretionary": 21.99,
-          "Health Care": 7.21,
-          "Industrials": 19.17,
-          "Consumer Staples": 6.66,
-          "Energy": 0.94,
-          "Materials": 5.76,
-          "Communication Services": 5.19,
-          "Utilities": 2.44
+          "Financials": 11.91,
+          "Information Technology": 12.16,
+          "Consumer Discretionary": 19.45,
+          "Health Care": 8.15,
+          "Industrials": 20.81,
+          "Consumer Staples": 8.23,
+          "Energy": 1.34,
+          "Materials": 5.95,
+          "Communication Services": 5.53,
+          "Utilities": 1.81,
+          "Real Estate": 3.72
         }
       },
       {
         "name": "United Kingdom",
         "value": 0.057699999999999994,
-        "sectors": {}
+        "sectors": {
+          "Financials": 20.37,
+          "Information Technology": 0.75,
+          "Consumer Discretionary": 6.01,
+          "Health Care": 9.93,
+          "Industrials": 8.86,
+          "Consumer Staples": 16.53,
+          "Energy": 17.74,
+          "Materials": 9.15,
+          "Communication Services": 5.73,
+          "Utilities": 3.23,
+          "Real Estate": 1.16
+        }
       },
       {
         "name": "France",
@@ -608,7 +826,19 @@
       {
         "name": "United States",
         "value": 0.5441544154415442,
-        "sectors": {}
+        "sectors": {
+          "Financials": 13.31,
+          "Information Technology": 20.12,
+          "Consumer Discretionary": 9.94,
+          "Health Care": 15.54,
+          "Industrials": 9.2,
+          "Consumer Staples": 7.41,
+          "Energy": 5.32,
+          "Materials": 2.73,
+          "commsrvcs": 10.12,
+          "Utilities": 3.34,
+          "Real Estate": 2.96
+        }
       },
       {
         "name": "Japan",
@@ -675,7 +905,19 @@
       {
         "name": "United States",
         "value": 0.5866586658665867,
-        "sectors": {}
+        "sectors": {
+          "Financials": 9.62,
+          "Information Technology": 28.71,
+          "Consumer Discretionary": 11.44,
+          "Health Care": 13.98,
+          "Industrials": 7.99,
+          "Consumer Staples": 6.89,
+          "Energy": 2.32,
+          "Materials": 2.49,
+          "commsrvcs": 11.1,
+          "Utilities": 2.83,
+          "Real Estate": 2.61
+        }
       },
       {
         "name": "Japan",
@@ -743,7 +985,19 @@
       {
         "name": "United States",
         "value": 0.5707,
-        "sectors": {}
+        "sectors": {
+          "Financials": 10.34,
+          "Information Technology": 27.76,
+          "Consumer Discretionary": 12.85,
+          "Health Care": 13.77,
+          "Industrials": 8.11,
+          "Consumer Staples": 6.23,
+          "Energy": 2.41,
+          "Materials": 2.59,
+          "commsrvcs": 10.71,
+          "Utilities": 2.76,
+          "Real Estate": 2.46
+        }
       },
       {
         "name": "Japan",
@@ -811,7 +1065,19 @@
       {
         "name": "United States",
         "value": 0.5959,
-        "sectors": {}
+        "sectors": {
+          "Financials": 10.95,
+          "Information Technology": 27.82,
+          "Consumer Discretionary": 12.05,
+          "Health Care": 13.42,
+          "Industrials": 8.41,
+          "Consumer Staples": 5.85,
+          "Energy": 2.55,
+          "Materials": 2.59,
+          "commsrvcs": 11.24,
+          "Utilities": 2.48,
+          "Real Estate": 2.63
+        }
       },
       {
         "name": "Japan",
@@ -879,7 +1145,19 @@
       {
         "name": "United States",
         "value": 0.6326677645121449,
-        "sectors": {}
+        "sectors": {
+          "Financials": 10.84,
+          "Information Technology": 29.35,
+          "Consumer Discretionary": 13.17,
+          "Health Care": 12.72,
+          "Industrials": 7.8,
+          "Consumer Staples": 5.58,
+          "Energy": 2.71,
+          "Materials": 2.5,
+          "commsrvcs": 10.36,
+          "Utilities": 2.37,
+          "Real Estate": 2.62
+        }
       },
       {
         "name": "Japan",
@@ -942,7 +1220,19 @@
       {
         "name": "United States",
         "value": 0.6314109165808445,
-        "sectors": {}
+        "sectors": {
+          "Financials": 10.69,
+          "Information Technology": 29.17,
+          "Consumer Discretionary": 12.54,
+          "Health Care": 13.29,
+          "Industrials": 7.78,
+          "Consumer Staples": 5.88,
+          "Energy": 2.67,
+          "Materials": 2.56,
+          "commsrvcs": 10.16,
+          "Utilities": 2.5,
+          "Real Estate": 2.77
+        }
       },
       {
         "name": "Japan",
@@ -1005,7 +1295,19 @@
       {
         "name": "United States",
         "value": 0.6069,
-        "sectors": {}
+        "sectors": {
+          "Financials": 10.96,
+          "Information Technology": 27.37,
+          "Consumer Discretionary": 11.45,
+          "Health Care": 14.2,
+          "Industrials": 7.82,
+          "Consumer Staples": 6.82,
+          "Energy": 4.17,
+          "Materials": 2.77,
+          "commsrvcs": 8.64,
+          "Utilities": 2.87,
+          "Real Estate": 2.92
+        }
       },
       {
         "name": "Japan",
@@ -1045,16 +1347,16 @@
         "name": "Canada",
         "value": 0.0322,
         "sectors": {
-          "Financials": 7.17,
-          "Information Technology": 3.16,
-          "Consumer Discretionary": 0.41,
-          "Health Care": 11.7,
-          "Industrials": 4.16,
-          "Consumer Staples": 16.9,
-          "Energy": 12.32,
-          "Materials": 2.54,
-          "Communication Services": 3.71,
-          "Utilities": 0.59
+          "Information Technology": 36.9,
+          "Consumer Discretionary": 7.17,
+          "Health Care": 3.16,
+          "Industrials": 0.41,
+          "Consumer Staples": 11.7,
+          "Energy": 4.16,
+          "Materials": 16.9,
+          "Communication Services": 12.32,
+          "Utilities": 2.54,
+          "Real Estate": 3.71
         }
       },
       {
@@ -1084,7 +1386,19 @@
       {
         "name": "United States",
         "value": 0.6164999999999999,
-        "sectors": {}
+        "sectors": {
+          "Financials": 11.61,
+          "Information Technology": 26.4,
+          "Consumer Discretionary": 10.4,
+          "Health Care": 15.22,
+          "Industrials": 8.44,
+          "Consumer Staples": 6.99,
+          "Energy": 5.12,
+          "Materials": 2.68,
+          "commsrvcs": 7.46,
+          "Utilities": 2.99,
+          "Real Estate": 2.68
+        }
       },
       {
         "name": "Japan",
@@ -1162,7 +1476,19 @@
       {
         "name": "United States",
         "value": 0.602960296029603,
-        "sectors": {}
+        "sectors": {
+          "Financials": 11.74,
+          "Information Technology": 27.28,
+          "Consumer Discretionary": 10.65,
+          "Health Care": 14.34,
+          "Industrials": 8.51,
+          "Consumer Staples": 6.72,
+          "Energy": 4.8,
+          "Materials": 2.78,
+          "commsrvcs": 7.67,
+          "Utilities": 2.82,
+          "Real Estate": 2.69
+        }
       },
       {
         "name": "Japan",
@@ -1230,7 +1556,19 @@
       {
         "name": "United States",
         "value": 0.6224377562243776,
-        "sectors": {}
+        "sectors": {
+          "Financials": 12.81,
+          "Information Technology": 27.46,
+          "Consumer Discretionary": 10.67,
+          "Health Care": 13.36,
+          "Industrials": 8.3,
+          "Consumer Staples": 6.57,
+          "Energy": 4.72,
+          "Materials": 2.45,
+          "commsrvcs": 8.87,
+          "Utilities": 2.41,
+          "Real Estate": 2.37
+        }
       },
       {
         "name": "Japan",
@@ -1298,7 +1636,19 @@
       {
         "name": "United States",
         "value": 0.6379,
-        "sectors": {}
+        "sectors": {
+          "Financials": 12.99,
+          "Information Technology": 29.8,
+          "Consumer Discretionary": 10.63,
+          "Health Care": 12.52,
+          "Industrials": 8.74,
+          "Consumer Staples": 5.96,
+          "Energy": 3.71,
+          "Materials": 2.3,
+          "commsrvcs": 8.89,
+          "Utilities": 2.13,
+          "Real Estate": 2.31
+        }
       },
       {
         "name": "Japan",
@@ -1377,7 +1727,19 @@
       {
         "name": "United States",
         "value": 0.6676000000000001,
-        "sectors": {}
+        "sectors": {
+          "Financials": 13.92,
+          "Information Technology": 31.32,
+          "Consumer Discretionary": 10.74,
+          "Health Care": 10.56,
+          "Industrials": 8.64,
+          "Consumer Staples": 5.71,
+          "Energy": 3.44,
+          "Materials": 2.08,
+          "commsrvcs": 8.88,
+          "Utilities": 2.46,
+          "Real Estate": 2.24
+        }
       },
       {
         "name": "Japan",
@@ -1456,7 +1818,19 @@
       {
         "name": "United States",
         "value": 0.6662666266626662,
-        "sectors": {}
+        "sectors": {
+          "Financials": 13.62,
+          "Information Technology": 32.49,
+          "Consumer Discretionary": 11.26,
+          "Health Care": 10.09,
+          "Industrials": 8.16,
+          "Consumer Staples": 5.53,
+          "Energy": 3.16,
+          "Materials": 1.89,
+          "commsrvcs": 9.37,
+          "Utilities": 2.33,
+          "Real Estate": 2.1
+        }
       },
       {
         "name": "Japan",
@@ -2534,6 +2908,1096 @@
         "sectors": {
           "Utilities": 100.0
         }
+      }
+    ]
+  },
+  "sectorData": {
+    "2015-04-01": [
+      {
+        "name": "Financials",
+        "value": 0.21342134213421343
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.14541454145414542
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.13061306130613062
+      },
+      {
+        "name": "Health Care",
+        "value": 0.12121212121212122
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10381038103810382
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.10091009100910091
+      },
+      {
+        "name": "Energy",
+        "value": 0.06800680068006801
+      },
+      {
+        "name": "Materials",
+        "value": 0.0477047704770477
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0373037303730373
+      },
+      {
+        "name": "Utilities",
+        "value": 0.03160316031603161
+      }
+    ],
+    "2015-08-31": [
+      {
+        "name": "Financials",
+        "value": 0.2164
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.13849999999999998
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.1277
+      },
+      {
+        "name": "Health Care",
+        "value": 0.1266
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10369999999999999
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.0987
+      },
+      {
+        "name": "Energy",
+        "value": 0.0689
+      },
+      {
+        "name": "Materials",
+        "value": 0.049100000000000005
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0387
+      },
+      {
+        "name": "Utilities",
+        "value": 0.0317
+      }
+    ],
+    "2016-01-29": [
+      {
+        "name": "Financials",
+        "value": 0.2065
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.1491
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.129
+      },
+      {
+        "name": "Health Care",
+        "value": 0.12300000000000001
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10279999999999999
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.1085
+      },
+      {
+        "name": "Energy",
+        "value": 0.0641
+      },
+      {
+        "name": "Materials",
+        "value": 0.0436
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0394
+      },
+      {
+        "name": "Utilities",
+        "value": 0.034
+      }
+    ],
+    "2016-05-31": [
+      {
+        "name": "Financials",
+        "value": 0.2065206520652065
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.1484148414841484
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.12551255125512553
+      },
+      {
+        "name": "Health Care",
+        "value": 0.12101210121012101
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10471047104710472
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.10541054105410541
+      },
+      {
+        "name": "Energy",
+        "value": 0.0672067206720672
+      },
+      {
+        "name": "Materials",
+        "value": 0.0484048404840484
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.039003900390039
+      },
+      {
+        "name": "Utilities",
+        "value": 0.0338033803380338
+      }
+    ],
+    "2016-10-31": [
+      {
+        "name": "Financials",
+        "value": 0.1758175817581758
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.16051605160516053
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.12331233123312332
+      },
+      {
+        "name": "Health Care",
+        "value": 0.11141114111411142
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10391039103910392
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.10101010101010101
+      },
+      {
+        "name": "Energy",
+        "value": 0.06900690069006901
+      },
+      {
+        "name": "Materials",
+        "value": 0.052205220522052204
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.03660366036603661
+      },
+      {
+        "name": "Utilities",
+        "value": 0.0337033703370337
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.032503250325032505
+      }
+    ],
+    "2017-01-31": [
+      {
+        "name": "Financials",
+        "value": 0.18638136186381363
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.158984101589841
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.1218878112188781
+      },
+      {
+        "name": "Health Care",
+        "value": 0.10958904109589042
+      },
+      {
+        "name": "Industrials",
+        "value": 0.1064893510648935
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.0938906109389061
+      },
+      {
+        "name": "Energy",
+        "value": 0.06999300069993
+      },
+      {
+        "name": "Materials",
+        "value": 0.054994500549945
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.035596440355964404
+      },
+      {
+        "name": "Utilities",
+        "value": 0.031096890310968902
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.031096890310968902
+      }
+    ],
+    "2017-08-31": [
+      {
+        "name": "Financials",
+        "value": 0.18551855185518554
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.17621762176217623
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.11921192119211922
+      },
+      {
+        "name": "Health Care",
+        "value": 0.11201120112011201
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10711071107110713
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.09030903090309031
+      },
+      {
+        "name": "Energy",
+        "value": 0.05980598059805981
+      },
+      {
+        "name": "Materials",
+        "value": 0.0539053905390539
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.032203220322032204
+      },
+      {
+        "name": "Utilities",
+        "value": 0.0319031903190319
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.03180318031803181
+      }
+    ],
+    "2018-02-28": [
+      {
+        "name": "Financials",
+        "value": 0.19048095190480951
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.1898810118988101
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.1234876512348765
+      },
+      {
+        "name": "Health Care",
+        "value": 0.10638936106389361
+      },
+      {
+        "name": "Industrials",
+        "value": 0.1085891410858914
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.0821917808219178
+      },
+      {
+        "name": "Energy",
+        "value": 0.0600939906009399
+      },
+      {
+        "name": "Materials",
+        "value": 0.0544945505449455
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0285971402859714
+      },
+      {
+        "name": "Utilities",
+        "value": 0.027197280271972803
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.0285971402859714
+      }
+    ],
+    "2018-05-31": [
+      {
+        "name": "Financials",
+        "value": 0.17801780178017804
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.19651965196519652
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.12401240124012403
+      },
+      {
+        "name": "Health Care",
+        "value": 0.10851085108510851
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10731073107310732
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.07870787078707871
+      },
+      {
+        "name": "Energy",
+        "value": 0.0672067206720672
+      },
+      {
+        "name": "Materials",
+        "value": 0.054205420542054204
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.027102710271027102
+      },
+      {
+        "name": "Utilities",
+        "value": 0.028602860286028604
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.029802980298029805
+      }
+    ],
+    "2018-12-31": [
+      {
+        "name": "Financials",
+        "value": 0.17216556688662268
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.14847030593881225
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.10437912417516497
+      },
+      {
+        "name": "Health Care",
+        "value": 0.12107578484303139
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10287942411517696
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.08428314337132574
+      },
+      {
+        "name": "Energy",
+        "value": 0.0617876424715057
+      },
+      {
+        "name": "Materials",
+        "value": 0.04979004199160168
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.08978204359128175
+      },
+      {
+        "name": "Utilities",
+        "value": 0.033593281343731254
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.03179364127174565
+      }
+    ],
+    "2020-08-31": [
+      {
+        "name": "Financials",
+        "value": 0.1285
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.2173
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.128
+      },
+      {
+        "name": "Health Care",
+        "value": 0.12300000000000001
+      },
+      {
+        "name": "Industrials",
+        "value": 0.0944
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.0784
+      },
+      {
+        "name": "Energy",
+        "value": 0.0313
+      },
+      {
+        "name": "Materials",
+        "value": 0.046900000000000004
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0949
+      },
+      {
+        "name": "Utilities",
+        "value": 0.03
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.0273
+      }
+    ],
+    "2021-01-29": [
+      {
+        "name": "Financials",
+        "value": 0.133
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.22
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.1317
+      },
+      {
+        "name": "Health Care",
+        "value": 0.1206
+      },
+      {
+        "name": "Industrials",
+        "value": 0.0934
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.07139999999999999
+      },
+      {
+        "name": "Energy",
+        "value": 0.030899999999999997
+      },
+      {
+        "name": "Materials",
+        "value": 0.049
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.09480000000000001
+      },
+      {
+        "name": "Utilities",
+        "value": 0.0296
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.0256
+      }
+    ],
+    "2021-07-30": [
+      {
+        "name": "Financials",
+        "value": 0.13891389138913893
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.22342234223422344
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.12401240124012403
+      },
+      {
+        "name": "Health Care",
+        "value": 0.11821182118211822
+      },
+      {
+        "name": "Industrials",
+        "value": 0.09870987098709871
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.06840684068406841
+      },
+      {
+        "name": "Energy",
+        "value": 0.0317031703170317
+      },
+      {
+        "name": "Materials",
+        "value": 0.0502050205020502
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.09320932093209322
+      },
+      {
+        "name": "Utilities",
+        "value": 0.026802680268026804
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.026402640264026406
+      }
+    ],
+    "2021-11-30": [
+      {
+        "name": "Financials",
+        "value": 0.1388
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.2382
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.1285
+      },
+      {
+        "name": "Health Care",
+        "value": 0.11410000000000001
+      },
+      {
+        "name": "Industrials",
+        "value": 0.0947
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.0662
+      },
+      {
+        "name": "Energy",
+        "value": 0.0338
+      },
+      {
+        "name": "Materials",
+        "value": 0.0458
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0874
+      },
+      {
+        "name": "Utilities",
+        "value": 0.0262
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.0263
+      }
+    ],
+    "2021-12-31": [
+      {
+        "name": "Financials",
+        "value": 0.13857228554289142
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.23575284943011396
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.12397520495900821
+      },
+      {
+        "name": "Health Care",
+        "value": 0.11687662467506499
+      },
+      {
+        "name": "Industrials",
+        "value": 0.09638072385522896
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.06798640271945611
+      },
+      {
+        "name": "Energy",
+        "value": 0.033993201359728054
+      },
+      {
+        "name": "Materials",
+        "value": 0.04669066186762648
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.08578284343131375
+      },
+      {
+        "name": "Utilities",
+        "value": 0.026994601079784047
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.026994601079784047
+      }
+    ],
+    "2022-04-29": [
+      {
+        "name": "Financials",
+        "value": 0.14532906581316263
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.21484296859371874
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.11302260452090418
+      },
+      {
+        "name": "Health Care",
+        "value": 0.12282456491298259
+      },
+      {
+        "name": "Industrials",
+        "value": 0.09501900380076014
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.07511502300460092
+      },
+      {
+        "name": "Energy",
+        "value": 0.04640928185637127
+      },
+      {
+        "name": "Materials",
+        "value": 0.05141028205641128
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.07731546309261852
+      },
+      {
+        "name": "Utilities",
+        "value": 0.030206041208241646
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.028505701140228046
+      }
+    ],
+    "2022-11-30": [
+      {
+        "name": "Financials",
+        "value": 0.1492
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.2082
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.1079
+      },
+      {
+        "name": "Health Care",
+        "value": 0.13019999999999998
+      },
+      {
+        "name": "Industrials",
+        "value": 0.09960000000000001
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.0754
+      },
+      {
+        "name": "Energy",
+        "value": 0.0556
+      },
+      {
+        "name": "Materials",
+        "value": 0.049100000000000005
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0687
+      },
+      {
+        "name": "Utilities",
+        "value": 0.030299999999999997
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.0258
+      }
+    ],
+    "2023-02-28": [
+      {
+        "name": "Financials",
+        "value": 0.15378462153784622
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.21137886211378862
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.1103889611038896
+      },
+      {
+        "name": "Health Care",
+        "value": 0.1227877212278772
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10168983101689831
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.0735926407359264
+      },
+      {
+        "name": "Energy",
+        "value": 0.052394760523947606
+      },
+      {
+        "name": "Materials",
+        "value": 0.0495950404959504
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0700929907009299
+      },
+      {
+        "name": "Utilities",
+        "value": 0.028697130286971302
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.0255974402559744
+      }
+    ],
+    "2023-09-29": [
+      {
+        "name": "Financials",
+        "value": 0.1575
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.21559999999999999
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.1118
+      },
+      {
+        "name": "Health Care",
+        "value": 0.11869999999999999
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10369999999999999
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.071
+      },
+      {
+        "name": "Energy",
+        "value": 0.052199999999999996
+      },
+      {
+        "name": "Materials",
+        "value": 0.045
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0756
+      },
+      {
+        "name": "Utilities",
+        "value": 0.0262
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.0227
+      }
+    ],
+    "2024-02-29": [
+      {
+        "name": "Financials",
+        "value": 0.1589
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.2396
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.11109999999999999
+      },
+      {
+        "name": "Health Care",
+        "value": 0.11220000000000001
+      },
+      {
+        "name": "Industrials",
+        "value": 0.107
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.0647
+      },
+      {
+        "name": "Energy",
+        "value": 0.0437
+      },
+      {
+        "name": "Materials",
+        "value": 0.0414
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.07519999999999999
+      },
+      {
+        "name": "Utilities",
+        "value": 0.0241
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.022099999999999998
+      }
+    ],
+    "2024-11-29": [
+      {
+        "name": "Financials",
+        "value": 0.17031703170317034
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.25102510251025106
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.10861086108610861
+      },
+      {
+        "name": "Health Care",
+        "value": 0.1004100410041004
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10601060106010601
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.06050605060506051
+      },
+      {
+        "name": "Energy",
+        "value": 0.0402040204020402
+      },
+      {
+        "name": "Materials",
+        "value": 0.03660366036603661
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.07880788078807881
+      },
+      {
+        "name": "Utilities",
+        "value": 0.026002600260026005
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.0215021502150215
+      }
+    ],
+    "2024-12-31": [
+      {
+        "name": "Financials",
+        "value": 0.168
+      },
+      {
+        "name": "Information Technology",
+        "value": 0.25980000000000003
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.1134
+      },
+      {
+        "name": "Health Care",
+        "value": 0.0967
+      },
+      {
+        "name": "Industrials",
+        "value": 0.1023
+      },
+      {
+        "name": "Consumer Staples",
+        "value": 0.0592
+      },
+      {
+        "name": "Energy",
+        "value": 0.0382
+      },
+      {
+        "name": "Materials",
+        "value": 0.0346
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.0824
+      },
+      {
+        "name": "Utilities",
+        "value": 0.025
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.0204
+      }
+    ],
+    "2025-12-31": [
+      {
+        "name": "Information Technology",
+        "value": 0.2683196145352345
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.14826340092350868
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.08693033527404118
+      },
+      {
+        "name": "Financials",
+        "value": 0.1963461152379053
+      },
+      {
+        "name": "Health Care",
+        "value": 0.08893796426420375
+      },
+      {
+        "name": "Energy",
+        "value": 0.0314193936960449
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10218831559927677
+      },
+      {
+        "name": "Materials",
+        "value": 0.03372816703473183
+      },
+      {
+        "name": "Cash und/oder Derivate",
+        "value": 0.0035133507327845797
+      },
+      {
+        "name": "Utilities",
+        "value": 0.023489259184902564
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.016864083517365992
+      }
+    ],
+    "2026-05-14": [
+      {
+        "name": "Information Technology",
+        "value": 0.3071521717323711
+      },
+      {
+        "name": "Consumer Discretionary",
+        "value": 0.13692446584411624
+      },
+      {
+        "name": "Communication Services",
+        "value": 0.08506369746213249
+      },
+      {
+        "name": "Financials",
+        "value": 0.17343765673588202
+      },
+      {
+        "name": "Health Care",
+        "value": 0.07563446684722627
+      },
+      {
+        "name": "Energy",
+        "value": 0.03641287992777607
+      },
+      {
+        "name": "Industrials",
+        "value": 0.10622931086367686
+      },
+      {
+        "name": "Materials",
+        "value": 0.035409770287892356
+      },
+      {
+        "name": "Utilities",
+        "value": 0.022971210753335292
+      },
+      {
+        "name": "Cash und/oder Derivate",
+        "value": 0.004714615307453106
+      },
+      {
+        "name": "Real Estate",
+        "value": 0.016049754238138245
       }
     ]
   }
