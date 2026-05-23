@@ -115,8 +115,8 @@ export function createTreemap(container, data, options = {}) {
       .append("rect")
       .attr("rx", 3)
       .attr("ry", 3)
-      .attr("stroke", "rgba(255,255,255,0.78)")
-      .attr("stroke-width", 0.8);
+      .attr("stroke", "none")
+      .attr("stroke-width", 0);
 
     entered
       .append("text")
