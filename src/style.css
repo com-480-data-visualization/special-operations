@@ -789,6 +789,18 @@ button:active {
   transition: opacity 200ms var(--ease-emphasized);
 }
 
+.spider-segment {
+  transition: opacity 200ms var(--ease-emphasized);
+}
+
+.spider-segment--dotted {
+  opacity: 0.88;
+}
+
+.spider-dot--extrapolated {
+  opacity: 0.88;
+}
+
 .spider-country-label {
   font-size: 12px;
   font-weight: 700;

@@ -5,3 +5,14 @@ dist
 .DS_Store
 npm-debug.log*
 coverage
+.venv
+__pycache__
+.pytest_cache
+data
+milestone1
+milestone2
+scripts
+Milestone 3.pdf
+README.md
+NOTES.md
+dataset-sources.md

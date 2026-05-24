@@ -1,5 +1,5 @@
 anyio==4.12.1
-appnope==0.1.4
+appnope==0.1.4; platform_system == "Darwin"
 argon2-cffi==25.1.0
 argon2-cffi-bindings==25.1.0
 arrow==1.4.0
@@ -104,3 +104,4 @@ webcolors==25.10.0
 webencodings==0.5.1
 websocket-client==1.9.0
 widgetsnbextension==4.0.15
+yfinance==0.2.66

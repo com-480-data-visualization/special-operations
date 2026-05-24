@@ -69,7 +69,10 @@ async function main() {
   yearSlider.addEventListener("input", () => updateRangeProgress(yearSlider));
 
   const updateMap = createIndicatorMap(mapContainer, data, toggleCountry, toggleRegion);
-  const updateSpider = createSpiderChart(spiderContainer, data);
+  const spiderAxes = [...data.axes];
+  const spiderChart = createSpiderChart(spiderContainer, data, {
+    axes: spiderAxes,
+  });
   const updateEvolution = createEvolutionChart(evolutionContainer, data);
 
   // Load treemap data (preprocessed JSON) and initialize treemap component.
@@ -173,13 +176,14 @@ async function main() {
       selectionMode,
       valueMode,
     });
-    updateSpider(
+    spiderChart.update(
       buildComparisonProfiles(
         data,
         yearIndex,
         selectedIso3,
         selectedRegions,
         selectionMode,
+        spiderAxes,
       ),
     );
     updateEvolution({

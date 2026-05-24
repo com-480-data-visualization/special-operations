@@ -140,19 +140,47 @@ export function getCountryValue(country, axis, yearIndex) {
  * @returns {number | null} Metric value.
  */
 export function getCountryMetricValue(country, axis, yearIndex, valueMode) {
+  return getCountryMetricPoint(country, axis, yearIndex, valueMode).value;
+}
+
+/**
+ * Returns one country metric point with extrapolation metadata.
+ *
+ * @param {object} country Country data loaded from spider_data.json.
+ * @param {string} axis Indicator name.
+ * @param {number} yearIndex Zero-based index into each time series.
+ * @param {"growth" | "absolute"} valueMode Value mode.
+ * @returns {{ value: number | null, extrapolated: boolean, fitModel: string | null }}
+ */
+export function getCountryMetricPoint(country, axis, yearIndex, valueMode = "growth") {
   const series = normalizeMetricSeries(country.timeseries[axis]);
-  if (!series || yearIndex < 0) return null;
+  if (!series || yearIndex < 0) {
+    return { value: null, extrapolated: false, fitModel: null };
+  }
+
   const values =
     valueMode === "absolute" && series.absolute ? series.absolute : series.normalized;
-  if (!values || yearIndex >= values.length) return null;
-  return values[yearIndex] ?? null;
+  const flags =
+    valueMode === "absolute" && series.absolute
+      ? series.absoluteExtrapolated
+      : series.normalizedExtrapolated;
+
+  if (!values || yearIndex >= values.length) {
+    return { value: null, extrapolated: false, fitModel: series.fitModel };
+  }
+
+  return {
+    value: values[yearIndex] ?? null,
+    extrapolated: Boolean(flags?.[yearIndex]),
+    fitModel: series.fitModel,
+  };
 }
 
 /**
  * Normalizes old array-based and new object-based metric series.
  *
  * @param {object | number[] | null} series Raw series.
- * @returns {{ normalized: number[], absolute: number[] | null, unit: string | null, absoluteComparable: boolean } | null}
+ * @returns {{ normalized: number[], absolute: number[] | null, normalizedExtrapolated: boolean[], absoluteExtrapolated: boolean[], fitModel: string | null, unit: string | null, absoluteComparable: boolean } | null}
  */
 export function normalizeMetricSeries(series) {
   if (!series) return null;
@@ -160,6 +188,9 @@ export function normalizeMetricSeries(series) {
     return {
       normalized: series,
       absolute: null,
+      normalizedExtrapolated: series.map(() => false),
+      absoluteExtrapolated: series.map(() => false),
+      fitModel: null,
       unit: null,
       absoluteComparable: false,
     };
@@ -167,6 +198,11 @@ export function normalizeMetricSeries(series) {
   return {
     normalized: series.normalized ?? [],
     absolute: series.absolute ?? null,
+    normalizedExtrapolated:
+      series.normalizedExtrapolated ?? (series.normalized ?? []).map(() => false),
+    absoluteExtrapolated:
+      series.absoluteExtrapolated ?? (series.absolute ?? []).map(() => false),
+    fitModel: series.fitModel ?? null,
     unit: series.unit ?? null,
     absoluteComparable: Boolean(series.absoluteComparable),
   };
@@ -243,6 +279,9 @@ export function calculateRegionAxisValue(data, region, axis, yearIndex) {
  * @returns {number | null} Regional aggregate.
  */
 export function calculateRegionMetricValue(data, region, axis, yearIndex, valueMode) {
+  const regionPoint = getRegionMetricPoint(data, region, axis, yearIndex, valueMode);
+  if (regionPoint.fromPrecomputed) return regionPoint.value;
+
   const values = Object.entries(data.countries)
     .filter(([iso3]) => COUNTRY_METADATA[iso3]?.region === region)
     .map(([, country]) => getCountryMetricValue(country, axis, yearIndex, valueMode))
@@ -256,6 +295,63 @@ export function calculateRegionMetricValue(data, region, axis, yearIndex, valueM
 }
 
 /**
+ * Returns one regional metric point with extrapolation metadata.
+ *
+ * @param {object} data Loaded spider data.
+ * @param {string} region Region name.
+ * @param {string} axis Indicator name.
+ * @param {number} yearIndex Zero-based year index.
+ * @param {"growth" | "absolute"} valueMode Value mode.
+ * @returns {{ value: number | null, extrapolated: boolean, fitModel: string | null, fromPrecomputed: boolean }}
+ */
+export function getRegionMetricPoint(data, region, axis, yearIndex, valueMode = "growth") {
+  const regionSeries = data.regionsData?.[region]?.timeseries?.[axis];
+  if (regionSeries) {
+    const series = normalizeMetricSeries(regionSeries);
+    const values =
+      valueMode === "absolute" && series.absolute ? series.absolute : series.normalized;
+    const flags =
+      valueMode === "absolute" && series.absolute
+        ? series.absoluteExtrapolated
+        : series.normalizedExtrapolated;
+
+    return {
+      value: values?.[yearIndex] ?? null,
+      extrapolated: Boolean(flags?.[yearIndex]),
+      fitModel: series.fitModel,
+      fromPrecomputed: true,
+    };
+  }
+
+  const points = Object.entries(data.countries)
+    .filter(([iso3]) => COUNTRY_METADATA[iso3]?.region === region)
+    .map(([, country]) => getCountryMetricPoint(country, axis, yearIndex, valueMode))
+    .filter((point) => point.value !== null);
+
+  if (points.length === 0) {
+    return {
+      value: null,
+      extrapolated: false,
+      fitModel: "aggregate",
+      fromPrecomputed: false,
+    };
+  }
+
+  const aggregate = getMetricMetadata(data, axis).aggregate;
+  const total = points.reduce((sum, point) => sum + point.value, 0);
+
+  return {
+    value:
+      valueMode === "absolute" && aggregate === "sum"
+        ? total
+        : total / points.length,
+    extrapolated: points.some((point) => point.extrapolated),
+    fitModel: "aggregate",
+    fromPrecomputed: false,
+  };
+}
+
+/**
  * Builds spider-chart profiles for either selected countries or selected regions.
  *
  * @param {object} data Loaded spider data.
@@ -263,7 +359,8 @@ export function calculateRegionMetricValue(data, region, axis, yearIndex, valueM
  * @param {string[]} selectedIso3 Selected country codes.
  * @param {string[]} selectedRegions Selected region names.
  * @param {"countries" | "regions"} selectionMode Active selection mode.
- * @returns {{ id: string, label: string, color: string, values: (number | null)[] }[]} Profiles.
+ * @param {string[]} [axes=data.axes] Axes to include in plot order.
+ * @returns {{ id: string, label: string, color: string, points: { axis: string, value: number | null, extrapolated: boolean, fitModel: string | null }[] }[]} Profiles.
  */
 export function buildComparisonProfiles(
   data,
@@ -271,15 +368,17 @@ export function buildComparisonProfiles(
   selectedIso3,
   selectedRegions,
   selectionMode,
+  axes = data.axes,
 ) {
   if (selectionMode === "regions") {
     return selectedRegions.map((region) => ({
       id: region,
       label: region,
       color: REGION_COLORS[region],
-      values: data.axes.map((axis) =>
-        calculateRegionAxisValue(data, region, axis, yearIndex),
-      ),
+      points: axes.map((axis) => ({
+        axis,
+        ...getRegionMetricPoint(data, region, axis, yearIndex, "growth"),
+      })),
     }));
   }
 
@@ -291,9 +390,10 @@ export function buildComparisonProfiles(
       id: iso3,
       label: iso3,
       color: COUNTRY_COLORS[iso3],
-      values: data.axes.map((axis) =>
-        getCountryMetricValue(country, axis, yearIndex, "growth"),
-      ),
+      points: axes.map((axis) => ({
+        axis,
+        ...getCountryMetricPoint(country, axis, yearIndex, "growth"),
+      })),
     };
   });
 }

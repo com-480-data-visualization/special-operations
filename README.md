@@ -10,6 +10,35 @@
 
 [Webpage (WIP)](https://com-480-data-visualization.github.io/special-operations/)
 
+## Docker setup
+
+Use Docker Compose to run both the frontend and the Python project environment:
+
+```bash
+docker compose up --build
+```
+
+Services:
+
+- `web`: Vite dev server on `http://localhost:5173`
+- `notebook`: JupyterLab on `http://localhost:8888`
+
+Useful commands:
+
+```bash
+# Start only the frontend
+docker compose up --build web
+
+# Start only JupyterLab / Python environment
+docker compose up --build notebook
+
+# Run the preprocessing script inside Docker
+docker compose run --rm notebook python milestone2/preprocess.py
+
+# Rebuild treemap data inside Docker
+docker compose run --rm notebook python scripts/build_treemap_data.py
+```
+
 ## Milestone 1 (20th March, 5pm)
 
 **10% of the final grade**
@@ -58,4 +87,3 @@ Please, fill the following sections about your project.
 
 - < 24h: 80% of the grade for the milestone
 - < 48h: 70% of the grade for the milestone
-

@@ -1,10 +1,11 @@
-# Runs the local Vite development server in Docker while keeping dependencies
-# inside an isolated container volume.
+# Runs the frontend dev server and a separate Python/Jupyter workspace in Docker
+# so the project can be developed without installing Node or Python locally.
 services:
   web:
     build:
       context: .
-    command: sh -c "npm install --no-audit --no-fund && npm run dev -- --host 0.0.0.0"
+      dockerfile: Dockerfile
+    command: npm run dev -- --host 0.0.0.0
     user: node
     ports:
       - "5173:5173"
@@ -12,5 +13,17 @@ services:
       - .:/app
       - node_modules:/app/node_modules
 
+  notebook:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    command: jupyter lab --ip 0.0.0.0 --port 8888 --no-browser --IdentityProvider.token=
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/workspace
+      - pip_cache:/home/appuser/.cache/pip
+
 volumes:
   node_modules:
+  pip_cache:
