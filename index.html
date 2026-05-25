@@ -10,8 +10,8 @@
       rel="stylesheet"
     />
     <title>Is Europe Falling Behind?</title>
-    <script type="module" crossorigin src="/special-operations/assets/index-DaC9dkmI.js"></script>
-    <link rel="stylesheet" crossorigin href="/special-operations/assets/index-BheuV3h4.css">
+    <script type="module" crossorigin src="/special-operations/assets/index-CwahgbZA.js"></script>
+    <link rel="stylesheet" crossorigin href="/special-operations/assets/index-Do4rh7yP.css">
   </head>
   <body>
     <div id="app">
@@ -21,13 +21,172 @@
           Is Europe <em>really</em> falling behind?
         </h1>
         <p class="lede">
-          Choose an economic indicator, animate it through time, and compare a
-          handful of countries across the metrics that matter.
+          Not in the simple way the headline suggests. Since 2000, European
+          economies kept growing, but public markets compounded much more
+          aggressively in the United States and selected Asian markets.
+        </p>
+        <p class="story-cue">
+          Read the charts from left to right: first the real economy, then the
+          investable market proxy, then the global index weight that investors
+          actually experience.
         </p>
       </header>
 
+      <section class="findings-panel" aria-labelledby="findings-title">
+        <div class="section-kicker">
+          <p class="eyebrow">Key findings</p>
+          <h2 id="findings-title">Europe grew. Markets repriced the world elsewhere.</h2>
+        </div>
+        <div class="finding-grid">
+          <article class="finding-card">
+            <span class="finding-card__label">Real economy</span>
+            <strong>2.48x</strong>
+            <p>Average European GDP growth by 2023, with GDP per capita also more than doubling.</p>
+          </article>
+          <article class="finding-card">
+            <span class="finding-card__label">Market proxy</span>
+            <strong>1.15x</strong>
+            <p>Average European country-ETF growth, versus 2.28x for North America.</p>
+          </article>
+          <article class="finding-card">
+            <span class="finding-card__label">Clearest split</span>
+            <strong>0.90x vs 2.51x</strong>
+            <p>Germany's ETF ended below its 2000 level, while the US ETF more than doubled.</p>
+          </article>
+          <article class="finding-card">
+            <span class="finding-card__label">Global weight</span>
+            <strong>63.7%</strong>
+            <p>The US share of MSCI ACWI in May 2026, up from 53.0% in April 2015.</p>
+          </article>
+        </div>
+      </section>
+
       <main class="mvp-layout">
-        <section class="map-panel" aria-label="Interactive map">
+        <section class="guided-story" aria-label="Guided data story">
+          <div class="story-scroll">
+            <div class="scroll-hint" aria-hidden="true">
+              <span>Scroll</span>
+              <i class="scroll-hint__arrow"></i>
+            </div>
+
+            <article class="story-step" data-story-preset="real-economy">
+              <p class="eyebrow">Act 1 &middot; Real economy</p>
+              <h2>Europe did not stop growing.</h2>
+              <p>
+                Start with GDP in regional mode. By 2023, Europe is around
+                2.48x its 2000 GDP baseline, and GDP per capita also more than
+                doubled. The first lesson is that the story is not collapse.
+              </p>
+              <div class="story-stat-row">
+                <span><strong>2.48x</strong> Europe GDP</span>
+                <span><strong>2.18x</strong> Europe GDP per capita</span>
+              </div>
+              <button class="story-preset-button" type="button" data-story-action="real-economy">
+                Show GDP view
+              </button>
+            </article>
+
+            <article class="story-step" data-story-preset="market-gap">
+              <p class="eyebrow">Act 2 &middot; Market proxy</p>
+              <h2>The market line tells a harsher story.</h2>
+              <p>
+                Switch to country ETF prices and the gap opens. Germany and the
+                UK sit below their 2000 ETF baselines, while the US ETF more
+                than doubles and Korea becomes the key counterexample.
+              </p>
+              <div class="story-stat-row">
+                <span><strong>0.90x</strong> Germany ETF</span>
+                <span><strong>0.62x</strong> UK ETF</span>
+                <span><strong>2.51x</strong> US ETF</span>
+              </div>
+              <button class="story-preset-button" type="button" data-story-action="market-gap">
+                Show ETF view
+              </button>
+            </article>
+
+            <article class="story-step" data-story-preset="scatter-gap">
+              <p class="eyebrow">Act 3 &middot; Uneven gap</p>
+              <h2>Prosperity and markets separate.</h2>
+              <p>
+                The scatter view fixes the comparison: GDP per capita growth on
+                one axis, ETF growth on the other. Countries to the upper right
+                turned prosperity into investable market returns; Europe is more
+                mixed.
+              </p>
+              <div class="story-stat-row">
+                <span><strong>Korea</strong> high market response</span>
+                <span><strong>Germany</strong> GDP without ETF lift</span>
+              </div>
+              <button class="story-preset-button" type="button" data-story-action="scatter-gap">
+                Show scatter view
+              </button>
+            </article>
+
+            <article class="story-step" data-story-preset="market-cap">
+              <p class="eyebrow">Act 4 &middot; Market cap</p>
+              <h2>Listed-company value compounds elsewhere.</h2>
+              <p>
+                Market capitalization makes the asymmetry harder to miss. The
+                US compounds strongly, Korea is exceptional, and several major
+                European markets trail despite real-economy growth.
+              </p>
+              <div class="story-stat-row">
+                <span><strong>11.49x</strong> Korea market cap</span>
+                <span><strong>3.24x</strong> US market cap</span>
+                <span><strong>1.14x</strong> UK market cap</span>
+              </div>
+              <button class="story-preset-button" type="button" data-story-action="market-cap">
+                Show market-cap view
+              </button>
+            </article>
+
+            <article class="story-step" data-story-preset="acwi-latest">
+              <p class="eyebrow">Act 5 &middot; Global index</p>
+              <h2>The index investors buy became more concentrated.</h2>
+              <p>
+                The ACWI snapshots translate the country story into portfolio
+                exposure. From 2015 to 2026, US weight grows and technology
+                becomes the dominant sector block.
+              </p>
+              <div class="story-stat-row">
+                <span><strong>63.7%</strong> US ACWI weight</span>
+                <span><strong>30.7%</strong> information technology</span>
+              </div>
+              <div class="story-button-row">
+                <button class="story-preset-button" type="button" data-story-action="acwi-first">
+                  Show 2015 ACWI
+                </button>
+                <button class="story-preset-button" type="button" data-story-action="acwi-latest">
+                  Show latest ACWI
+                </button>
+              </div>
+            </article>
+
+            <article class="story-step story-step--explore" data-story-preset="explore">
+              <p class="eyebrow">Explore yourself</p>
+              <h2>Now test the thesis.</h2>
+              <p>
+                Use the controls to change the indicator, year, geography, and
+                scale. The guided sections set the argument; the explorer lets
+                you look for exceptions.
+              </p>
+              <button class="story-preset-button" type="button" data-story-action="explore">
+                Reset explorer
+              </button>
+            </article>
+          </div>
+
+          <section class="map-panel story-stage" aria-label="Interactive story stage">
+          <div class="section-kicker section-kicker--panel">
+            <p class="eyebrow">Evidence explorer</p>
+            <h2>Compare the growth story from four angles</h2>
+            <p>
+              Start with GDP to see that Europe is not standing still, then
+              switch to ETF Price and Market Cap to see where the gap opens.
+              Use countries for concrete examples, or regions for the broader pattern.
+            </p>
+          </div>
+
           <div class="control-bar">
             <div class="control-group control-group--inputs">
               <label class="control-field">
@@ -74,6 +233,12 @@
           </div>
 
           <div id="map-chart" class="map-chart"></div>
+          <p class="chart-note">
+            Map mode shows where each indicator has grown since 2000. Scatter
+            mode fixes the question to prosperity growth versus investable
+            market growth, making outliers like the US, Korea, Germany, and the
+            UK easier to compare.
+          </p>
 
           <aside id="spider-panel" class="spider-overlay" aria-label="Spider comparison" hidden>
             <div class="spider-heading">
@@ -91,6 +256,11 @@
             <div>
               <p class="eyebrow">Evolution</p>
               <h2 id="evolution-title">Indicator trajectory</h2>
+              <p class="panel-copy">
+                The line chart turns the selected year into a trajectory. Look
+                for whether the gap appears gradually, after shocks, or only in
+                the latest period.
+              </p>
             </div>
             <div id="evolution-chart" class="chart"></div>
           </section>
@@ -98,8 +268,13 @@
           <section class="treemap-panel" aria-label="Country / sector treemap">
             <div class="treemap-panel__heading">
               <div>
-                <p class="eyebrow">Market composition</p>
-                <h2 id="treemap-title">ACWI weights by country and sector</h2>
+                <p class="eyebrow">Final act</p>
+                <h2 id="treemap-title">Where global equity weight moved</h2>
+                <p class="panel-copy">
+                  The ACWI snapshots show why the market gap matters: global
+                  equity exposure became more concentrated in the US and in
+                  technology-heavy sectors.
+                </p>
               </div>
               <label class="control-field control-field--treemap-time">
                 <span class="control-label">
@@ -112,7 +287,7 @@
               <section class="treemap-card" aria-label="Country treemap">
                 <div class="treemap-card__heading">
                   <h3>MSCI ACWI Countries</h3>
-                  <p>Hover for sector breakdowns</p>
+                  <p>Hover for sector breakdowns. Watch the US tile expand over time.</p>
                 </div>
                 <div id="treemap-chart" class="chart"></div>
               </section>
@@ -124,14 +299,23 @@
               </section>
             </div>
           </section>
+          </section>
         </section>
       </main>
 
       <footer>
         <p>
-          Growth mode normalizes every country to its year-2000 baseline.
-          Absolute mode reveals economic scale where the underlying units are
-          comparable; ETF prices remain a normalized public-market proxy.
+          Methodology: the main comparison covers 20 countries with comparable
+          country ETF histories from 2000 to 2023. Growth mode normalizes each
+          country to its year-2000 baseline. Absolute mode is shown only where
+          units are comparable; ETF prices remain a normalized investable-market
+          proxy.
+        </p>
+        <p>
+          Market capitalization comes from World Bank listed-company market cap
+          data where reliable. Recent gaps are filled with the matching iShares
+          MSCI country ETF price as a proxy; Russia, China, India, and Sweden
+          are excluded from the market-cap comparison because of spotty data.
         </p>
       </footer>
     </div>
