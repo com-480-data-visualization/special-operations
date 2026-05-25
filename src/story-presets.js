@@ -1,0 +1,86 @@
+/**
+ * Preset chart states for the guided story sections. Each preset describes the
+ * evidence view readers should see when a section becomes active.
+ */
+
+export const DEFAULT_STORY_PRESET_ID = "real-economy";
+
+export const STORY_PRESETS = {
+  "real-economy": {
+    axis: "GDP",
+    year: 2023,
+    viewMode: "map",
+    selectionMode: "regions",
+    valueMode: "growth",
+    selectedRegions: ["Europe", "North America", "Asia-Pacific", "Latin America"],
+    selectedIso3: ["DEU", "FRA", "GBR", "USA", "JPN"],
+    treemapSnapshot: "latest",
+    stageFocus: "top",
+  },
+  "market-gap": {
+    axis: "ETF Price",
+    year: 2023,
+    viewMode: "map",
+    selectionMode: "countries",
+    valueMode: "growth",
+    selectedRegions: ["Europe", "North America", "Asia-Pacific"],
+    selectedIso3: ["DEU", "GBR", "USA", "KOR", "JPN"],
+    treemapSnapshot: "latest",
+    stageFocus: "top",
+  },
+  "scatter-gap": {
+    axis: "ETF Price",
+    year: 2023,
+    viewMode: "scatter",
+    selectionMode: "countries",
+    valueMode: "growth",
+    selectedRegions: ["Europe", "North America", "Asia-Pacific"],
+    selectedIso3: ["DEU", "GBR", "USA", "KOR", "CHE"],
+    treemapSnapshot: "latest",
+    stageFocus: "top",
+  },
+  "market-cap": {
+    axis: "Market Cap",
+    year: 2023,
+    viewMode: "map",
+    selectionMode: "countries",
+    valueMode: "growth",
+    selectedRegions: ["Europe", "North America", "Asia-Pacific"],
+    selectedIso3: ["KOR", "USA", "DEU", "GBR", "ITA"],
+    treemapSnapshot: "latest",
+    stageFocus: "top",
+  },
+  "acwi-latest": {
+    axis: "Market Cap",
+    year: 2023,
+    viewMode: "map",
+    selectionMode: "countries",
+    valueMode: "growth",
+    selectedRegions: ["Europe", "North America", "Asia-Pacific"],
+    selectedIso3: ["USA", "JPN", "GBR", "KOR", "DEU"],
+    treemapSnapshot: "latest",
+    stageFocus: "treemap",
+  },
+  "acwi-first": {
+    axis: "Market Cap",
+    year: 2023,
+    viewMode: "map",
+    selectionMode: "countries",
+    valueMode: "growth",
+    selectedRegions: ["Europe", "North America", "Asia-Pacific"],
+    selectedIso3: ["USA", "JPN", "GBR", "KOR", "DEU"],
+    treemapSnapshot: "first",
+    stageFocus: "treemap",
+  },
+  explore: {
+    axis: "GDP",
+    year: 2023,
+    viewMode: "map",
+    selectionMode: "countries",
+    valueMode: "growth",
+    selectedRegions: ["Europe", "North America", "Asia-Pacific", "Latin America"],
+    selectedIso3: ["DEU", "FRA", "GBR", "USA", "JPN"],
+    treemapSnapshot: "latest",
+    stageFocus: "top",
+  },
+};
