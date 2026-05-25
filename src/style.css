@@ -762,6 +762,7 @@ button:active {
 
 .chart {
   overflow: hidden;
+  position: relative;
 }
 
 .chart svg {
@@ -786,19 +787,49 @@ button:active {
 
 .spider-area {
   stroke-linejoin: round;
-  transition: opacity 200ms var(--ease-emphasized);
+  transition:
+    opacity 200ms var(--ease-emphasized),
+    fill-opacity 200ms var(--ease-emphasized);
 }
 
 .spider-segment {
-  transition: opacity 200ms var(--ease-emphasized);
+  transition:
+    opacity 200ms var(--ease-emphasized),
+    stroke-width 200ms var(--ease-emphasized);
 }
 
 .spider-segment--dotted {
   opacity: 0.88;
 }
 
+.spider-dot {
+  transition:
+    opacity 200ms var(--ease-emphasized),
+    r 200ms var(--ease-emphasized),
+    stroke-width 200ms var(--ease-emphasized);
+}
+
 .spider-dot--extrapolated {
   opacity: 0.88;
+}
+
+.spider-profile.is-muted .spider-area,
+.spider-profile.is-muted .spider-segment,
+.spider-profile.is-muted .spider-dot {
+  opacity: 0.18;
+}
+
+.spider-profile.is-active .spider-area {
+  fill-opacity: 0.28;
+}
+
+.spider-profile.is-active .spider-segment {
+  stroke-width: 3.1;
+}
+
+.spider-profile.is-active .spider-dot {
+  r: 5.6;
+  stroke-width: 1.6;
 }
 
 .spider-country-label {
@@ -807,10 +838,50 @@ button:active {
   letter-spacing: -0.005em;
 }
 
+.spider-profile-legend__item {
+  transition: opacity 200ms var(--ease-emphasized);
+}
+
+.spider-profile-legend__item.is-muted {
+  opacity: 0.36;
+}
+
 .spider-profile-legend text {
   font-size: 12.5px;
   font-weight: 700;
   letter-spacing: -0.005em;
+}
+
+.spider-tooltip {
+  position: absolute;
+  z-index: 20;
+  max-width: 240px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(8, 12, 20, 0.94);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  color: var(--text-primary);
+}
+
+.spider-tooltip__title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.spider-tooltip__metric,
+.spider-tooltip__meta {
+  margin-top: 4px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.spider-tooltip__value {
+  margin-top: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 /* ── Evolution chart styling ─────────────────────────────────────────── */

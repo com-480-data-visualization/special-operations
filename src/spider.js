@@ -1,4 +1,4 @@
-import { formatMultiple } from "./data-model.js";
+import { formatMultiple, getProfileFlag } from "./data-model.js";
 import { createSpiderPlot } from "./spider-plot.js";
 
 const MAX_VALUE = 8;
@@ -17,9 +17,26 @@ export function createSpiderChart(container, data, options = {}) {
     axes,
     maxValue: MAX_VALUE,
     ariaLabel: "Spider chart comparing selected profiles",
+    getProfileBadge(profile) {
+      const flag = getProfileFlag(profile.id);
+      return flag ? `${flag} ${profile.label}` : profile.label;
+    },
     pointTooltipFormatter(profile, point) {
-      const suffix = point.extrapolated ? " (estimated)" : "";
-      return `${profile.label} ${point.label}: ${formatMultiple(point.value)}${suffix}`;
+      const suffix = point.extrapolated ? '<div class="spider-tooltip__meta">Estimated</div>' : "";
+      return `
+        <div class="spider-tooltip__title">${getProfileTooltipLabel(profile)}</div>
+        <div class="spider-tooltip__metric">${point.label}</div>
+        <div class="spider-tooltip__value">${formatMultiple(point.value)}</div>
+        ${suffix}
+      `;
+    },
+    segmentTooltipFormatter(profile, segment) {
+      const suffix = segment.dotted ? '<div class="spider-tooltip__meta">Contains estimated point</div>' : "";
+      return `
+        <div class="spider-tooltip__title">${getProfileTooltipLabel(profile)}</div>
+        <div class="spider-tooltip__metric">${segment.fromLabel} -> ${segment.toLabel}</div>
+        ${suffix}
+      `;
     },
   });
 
@@ -29,4 +46,9 @@ export function createSpiderChart(container, data, options = {}) {
       plot.setAxes(nextAxes);
     },
   };
+}
+
+function getProfileTooltipLabel(profile) {
+  const flag = getProfileFlag(profile.id);
+  return flag ? `${flag} ${profile.label}` : profile.label;
 }

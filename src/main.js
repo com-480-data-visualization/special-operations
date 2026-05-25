@@ -8,6 +8,7 @@ import * as d3 from "d3";
 import {
   DEFAULT_SELECTION,
   REGION_ORDER,
+  SPIDER_AXIS_ORDER,
   buildComparisonProfiles,
   getCountryLabel,
   getYearIndex,
@@ -69,7 +70,7 @@ async function main() {
   yearSlider.addEventListener("input", () => updateRangeProgress(yearSlider));
 
   const updateMap = createIndicatorMap(mapContainer, data, toggleCountry, toggleRegion);
-  const spiderAxes = [...data.axes];
+  const spiderAxes = SPIDER_AXIS_ORDER.filter((axis) => data.axes.includes(axis));
   const spiderChart = createSpiderChart(spiderContainer, data, {
     axes: spiderAxes,
   });

@@ -49,6 +49,13 @@ export const AXIS_DESCRIPTIONS = {
   "Market Cap": "Domestic listed-company market cap, normalized to 2000 where reliable.",
 };
 
+export const SPIDER_AXIS_ORDER = [
+  "GDP",
+  "Market Cap",
+  "ETF Price",
+  "GDP per Capita",
+];
+
 export const FALLBACK_METRIC_METADATA = {
   GDP: {
     unit: "current US$",
@@ -229,6 +236,16 @@ export function getCountryLabel(iso3) {
   const metadata = COUNTRY_METADATA[iso3];
   if (!metadata) throw new Error(`Missing country metadata for ${iso3}`);
   return metadata.shortName;
+}
+
+/**
+ * Returns country flag or empty string for non-country profiles.
+ *
+ * @param {string} id Country ISO-3 or region id.
+ * @returns {string} Flag emoji when available.
+ */
+export function getProfileFlag(id) {
+  return COUNTRY_METADATA[id]?.flag ?? "";
 }
 
 /**
