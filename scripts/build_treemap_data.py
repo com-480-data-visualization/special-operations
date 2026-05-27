@@ -162,14 +162,16 @@ def normalize_sector_name(raw):
     key = s.lower().replace(" ", "_")
     if key in SECTOR_LABELS:
         return SECTOR_LABELS[key]
+    if "cash" in key or "derivate" in key or "derivative" in key:
+        return "Cash and/or Derivatives"
     if "it" == key or "information" in key:
         return "Information Technology"
     if "finanz" in key or "financial" in key or "bank" in key:
         return "Financials"
-    if "zyklische" in s.lower() or "discretionary" in key:
-        return "Consumer Discretionary"
     if "nichtzyklische" in s.lower() or "staples" in key:
         return "Consumer Staples"
+    if "zyklische" in s.lower() or "discretionary" in key:
+        return "Consumer Discretionary"
     if "gesundheit" in key or "health" in key:
         return "Health Care"
     if "industrie" in key or "industrial" in key:

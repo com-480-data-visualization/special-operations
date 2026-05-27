@@ -291,6 +291,48 @@ input:focus-visible {
   font-weight: 700;
 }
 
+.definition-term {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  color: #f4f7fb;
+  border-bottom: 1px dotted rgba(244, 247, 251, 0.72);
+  cursor: help;
+  outline: none;
+}
+
+.definition-term:focus-visible {
+  border-bottom-color: var(--accent);
+  box-shadow: 0 2px 0 var(--accent);
+}
+
+.definition-popover {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 10px);
+  z-index: 40;
+  width: min(280px, calc(100vw - 40px));
+  padding: 9px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  background: rgba(12, 18, 32, 0.97);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+  color: var(--text);
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.45;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.definition-term:hover .definition-popover,
+.definition-term:focus-visible .definition-popover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (max-width: 860px) {
   .treemap-grid {
     grid-template-columns: 1fr;

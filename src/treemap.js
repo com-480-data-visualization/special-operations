@@ -15,6 +15,7 @@ const SECTOR_COLOR = d3.scaleOrdinal()
     "Communication Services",
     "Utilities",
     "Real Estate",
+    "Cash and/or Derivatives",
   ])
   .range([
     "#2a9d8f",
@@ -28,6 +29,7 @@ const SECTOR_COLOR = d3.scaleOrdinal()
     "#b56576",
     "#f4a261",
     "#6c757d",
+    "#64748b",
   ])
   .unknown("#64748b");
 const OTHER_COLOR = "#6f7684";
@@ -39,7 +41,7 @@ const SHORT_LABELS = new Map([
   ["Consumer Discretionary", "Cons. Disc."],
   ["Consumer Staples", "Staples"],
   ["Communication Services", "Comms"],
-  ["Cash und/oder Derivate", "Cash"],
+  ["Cash and/or Derivatives", "Cash"],
 ]);
 
 export function createTreemap(container, data, options = {}) {
@@ -178,10 +180,9 @@ export function createTreemap(container, data, options = {}) {
         let html = `<strong>${d.data.name}</strong><br/>${tooltipTitle}: ${formatPercent(d.value)}`;
         html += tooltipSections(d.data);
         tooltip
-          .style("left", `${event.pageX + 10}px`)
-          .style("top", `${event.pageY + 10}px`)
           .style("display", "block")
           .html(html);
+        positionTooltip(event);
       })
       .on("mouseleave", () => tooltip.style("display", "none"));
 
@@ -195,6 +196,29 @@ export function createTreemap(container, data, options = {}) {
       .reverse()
       .find((candidate) => String(candidate.year) === yearStr);
     renderKey(snapshot?.key || yearStr);
+  }
+
+  function positionTooltip(event) {
+    const gap = 12;
+    const node = tooltip.node();
+    if (!node) return;
+
+    const tooltipBox = node.getBoundingClientRect();
+    const viewportRight = window.scrollX + window.innerWidth;
+    const viewportBottom = window.scrollY + window.innerHeight;
+    let left = event.pageX + gap;
+    let top = event.pageY + gap;
+
+    if (left + tooltipBox.width + gap > viewportRight) {
+      left = event.pageX - tooltipBox.width - gap;
+    }
+    if (top + tooltipBox.height + gap > viewportBottom) {
+      top = event.pageY - tooltipBox.height - gap;
+    }
+
+    tooltip
+      .style("left", `${Math.max(window.scrollX + gap, left)}px`)
+      .style("top", `${Math.max(window.scrollY + gap, top)}px`);
   }
 
   function formatPercent(v) {
@@ -321,10 +345,11 @@ function formatNumber(v) {
 export function mapSectorName(raw) {
   if (!raw) return "Other";
   const s = raw.trim().toLowerCase();
+  if (s.includes("cash") || s.includes("derivate") || s.includes("derivative")) return "Cash and/or Derivatives";
   if (s.includes("it") || s.includes("information")) return "Information Technology";
   if (s.includes("financial") || s.includes("bank")) return "Financials";
-  if (s.includes("zykl") || s.includes("consum") && s.includes("zykl")) return "Consumer Discretionary";
   if (s.includes("nichtzykl") || s.includes("staples") || s.includes("staples")) return "Consumer Staples";
+  if (s.includes("zykl") || s.includes("consum") && s.includes("zykl")) return "Consumer Discretionary";
   if (s.includes("gesundheit") || s.includes("health")) return "Health Care";
   if (s.includes("industrie") || s.includes("industr")) return "Industrials";
   if (s.includes("energie") || s.includes("energy")) return "Energy";
