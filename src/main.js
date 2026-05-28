@@ -48,6 +48,7 @@ import {
   setVisibleStageSteps,
 } from "./story-state.js";
 import { createSectorTreemap, createTreemap } from "./treemap.js";
+import { renderTreemapDominanceSummary } from "./treemap-dominance.js";
 
 const ANIMATION_MS = 650;
 const DEFAULT_REGIONS = [...REGION_ORDER];
@@ -71,6 +72,8 @@ async function main() {
   const regionModeButton = getRequiredElement("region-mode");
   const growthModeButton = getRequiredElement("growth-mode");
   const absoluteModeButton = getRequiredElement("absolute-mode");
+  const scatterSelectedScopeButton = getRequiredElement("scatter-selected-scope");
+  const scatterAllScopeButton = getRequiredElement("scatter-all-scope");
   const toggleSpiderButton = getRequiredElement("toggle-spider");
   const closeSpiderButton = getRequiredElement("close-spider");
   const resetSelectionButton = getRequiredElement("reset-selection");
@@ -84,6 +87,7 @@ async function main() {
   const evolutionContainer = getRequiredElement("evolution-chart");
   const treemapSlider = getRequiredElement("treemap-slider");
   const treemapDateLabel = getRequiredElement("treemap-date-label");
+  const treemapDominanceSummary = getRequiredElement("treemap-dominance-summary");
   const storyStage = document.querySelector(".story-stage");
   const treemapPanel = document.querySelector(".treemap-panel");
 
@@ -92,6 +96,7 @@ async function main() {
   let viewMode = "map";
   let selectionMode = "countries";
   let valueMode = "growth";
+  let scatterScope = "selected";
   let mapFocus = "world";
   let isPlaying = false;
   let animationId = 0;
@@ -202,6 +207,8 @@ async function main() {
     setModeButtonState(regionModeButton, selectionMode === "regions");
     setModeButtonState(growthModeButton, valueMode === "growth");
     setModeButtonState(absoluteModeButton, valueMode === "absolute");
+    setModeButtonState(scatterSelectedScopeButton, scatterScope === "selected");
+    setModeButtonState(scatterAllScopeButton, scatterScope === "all");
     absoluteModeButton.disabled = !hasAbsolute;
     absoluteModeButton.title = hasAbsolute
       ? "Show absolute scale where it is meaningful."
@@ -228,6 +235,7 @@ async function main() {
       selectedRegions,
       selectionMode,
       valueMode,
+      scatterScope,
       mapFocus,
     });
     spiderChart.update(
@@ -258,6 +266,7 @@ async function main() {
   function renderTreemap() {
     if (!treemap || !treemapSnapshots.length) {
       treemapDateLabel.textContent = "No data";
+      treemapDominanceSummary.hidden = true;
       return;
     }
     const snapshotIndex = Number.parseInt(treemapSlider.value, 10);
@@ -265,6 +274,7 @@ async function main() {
     treemapDateLabel.textContent = snapshot.label;
     treemap.renderKey(snapshot.key);
     sectorTreemap?.renderKey(snapshot.key);
+    renderTreemapDominanceSummary(treemapDominanceSummary, treemapData, snapshot.key);
   }
 
   /**
@@ -285,6 +295,7 @@ async function main() {
     viewMode = preset.viewMode ?? viewMode;
     selectionMode = preset.selectionMode ?? selectionMode;
     valueMode = preset.valueMode ?? valueMode;
+    scatterScope = preset.scatterScope ?? "selected";
     mapFocus = preset.mapFocus ?? "world";
     selectedIso3 = getValidCountries(preset.selectedIso3, data, DEFAULT_SELECTION);
     selectedRegions = getValidRegions(preset.selectedRegions, DEFAULT_REGIONS);
@@ -387,6 +398,14 @@ async function main() {
   absoluteModeButton.addEventListener("click", () => {
     if (!hasAbsoluteMetric(data, indicatorSelect.value)) return;
     valueMode = "absolute";
+    render();
+  });
+  scatterSelectedScopeButton.addEventListener("click", () => {
+    scatterScope = "selected";
+    render();
+  });
+  scatterAllScopeButton.addEventListener("click", () => {
+    scatterScope = "all";
     render();
   });
   toggleSpiderButton.addEventListener("click", () => {

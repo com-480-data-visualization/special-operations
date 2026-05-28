@@ -427,7 +427,7 @@ function renderScatter(layer, points, scales, options, data, onSelectCountry, on
  */
 function buildScatterPoints(data, countries, options) {
   if (options.selectionMode !== "regions") {
-    return countries.map((country) => ({
+    return getScopedCountries(countries, options).map((country) => ({
       ...country,
       id: country.iso3,
       kind: "country",
@@ -436,7 +436,7 @@ function buildScatterPoints(data, countries, options) {
     }));
   }
 
-  return REGION_ORDER.map((region) => ({
+  return getScopedRegions(options).map((region) => ({
     id: region,
     kind: "region",
     region,
@@ -458,6 +458,30 @@ function buildScatterPoints(data, countries, options) {
       "growth",
     ),
   }));
+}
+
+/**
+ * Applies the scatter scope control to country-mode points.
+ *
+ * @param {object[]} countries Renderable countries with metric values.
+ * @param {object} options Active state.
+ * @returns {object[]} Countries visible in the scatter view.
+ */
+function getScopedCountries(countries, options) {
+  if (options.scatterScope !== "selected") return countries;
+  const selected = countries.filter((country) => options.selectedIso3.includes(country.iso3));
+  return selected.length > 0 ? selected : countries;
+}
+
+/**
+ * Applies the scatter scope control to region-mode points.
+ *
+ * @param {object} options Active state.
+ * @returns {string[]} Regions visible in the scatter view.
+ */
+function getScopedRegions(options) {
+  if (options.scatterScope !== "selected") return REGION_ORDER;
+  return options.selectedRegions.length > 0 ? options.selectedRegions : REGION_ORDER;
 }
 
 /**

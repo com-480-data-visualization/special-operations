@@ -1128,6 +1128,122 @@ input:focus-visible {
   margin-bottom: 16px;
 }
 
+.treemap-dominance {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.85fr) minmax(0, 2.15fr);
+  gap: 16px;
+  margin: 0 0 18px;
+  padding: 16px;
+  border: 1px solid rgba(111, 161, 255, 0.18);
+  border-radius: var(--radius-md);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(111, 161, 255, 0.12), transparent 38%),
+    rgba(255, 255, 255, 0.026);
+}
+
+.treemap-dominance[hidden] {
+  display: none;
+}
+
+.treemap-dominance__heading {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.treemap-dominance__label {
+  width: fit-content;
+  margin: 0;
+  padding: 5px 9px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.treemap-dominance h3 {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.treemap-dominance p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.treemap-dominance__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.treemap-dominance-card {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  background: rgba(5, 8, 16, 0.48);
+}
+
+.treemap-dominance-card__label {
+  color: var(--text-tertiary);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.treemap-dominance-card__metric {
+  color: var(--text-primary);
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.treemap-dominance-card__meter {
+  height: 7px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.treemap-dominance-card__meter span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6fa1ff, #b9c9ff);
+}
+
+.treemap-dominance-card__facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 5px 10px;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.72rem;
+}
+
+.treemap-dominance-card__facts dt {
+  color: var(--text-tertiary);
+}
+
+.treemap-dominance-card__facts dd {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: 750;
+  text-align: right;
+}
+
 .treemap-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1241,6 +1357,11 @@ input:focus-visible {
 }
 
 @media (max-width: 860px) {
+  .treemap-dominance,
+  .treemap-dominance__cards {
+    grid-template-columns: 1fr;
+  }
+
   .treemap-grid {
     grid-template-columns: 1fr;
   }

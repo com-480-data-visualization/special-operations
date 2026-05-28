@@ -129,16 +129,22 @@
               <p class="eyebrow">Act 4 &middot; Inside Europe</p>
               <h2>Europe is not one datapoint.</h2>
               <p>
-                The European average hides national variation. Some countries
-                convert growth into stronger market proxies; others show GDP
-                progress without comparable listed-market lift. This matters
-                because "Europe" is a political label, not a single balance sheet.
+                The European average hides national variation, but the selected
+                country scatter gives a sharper read: the US remains above the
+                European cluster on the market proxy, while Switzerland is the
+                main European exception rather than proof that Europe moves as
+                one block.
               </p>
               <div class="story-stat-row">
-                <span><strong>Germany</strong> weak ETF lift</span>
-                <span><strong>Switzerland</strong> different profile</span>
-                <span><strong>Netherlands</strong> different profile</span>
+                <span><strong>0.43x-1.15x</strong> Europe ETF range</span>
+                <span><strong>1.52x</strong> US ETF</span>
+                <span><strong>Switzerland</strong> main exception</span>
               </div>
+              <p class="story-analysis-note">
+                Read: Europe is heterogeneous, but no selected European country
+                carries the market story the way the US does. The gap is not only
+                a single weak country dragging down the average.
+              </p>
               <button class="story-preset-button" type="button" data-story-action="europe-dispersion">
                 Show Europe spread
               </button>
@@ -169,20 +175,33 @@
 
             <article class="story-step story-step--explore" data-story-preset="wrap-up">
               <p class="eyebrow">Conclusion &middot; What falling behind means</p>
-              <h2>The verdict depends on the indicator.</h2>
+              <h2>Europe is not collapsing. Listed-market power moved elsewhere.</h2>
               <p>
-                Europe looks less weak through real-output measures than through
-                public-market measures. That distinction matters: market indexes
-                track listed capital and sector mix, not the full well-being of
-                the population. Use the explorer to test the claim and its limits.
+                The final scatter keeps the comparison narrow: selected Europe
+                versus the US. Output per person is not wildly different, but the
+                market proxy is. Europe did not stop growing; the listed-market
+                upside concentrated elsewhere.
               </p>
               <div class="story-stat-row">
-                <span><strong>Output</strong> still grew</span>
-                <span><strong>Markets</strong> concentrated</span>
-                <span><strong>Well-being</strong> needs more data</span>
+                <span><strong>1.18x-1.26x</strong> Europe GDP/person</span>
+                <span><strong>0.43x-1.15x</strong> Europe ETF</span>
+                <span><strong>1.52x</strong> US ETF</span>
               </div>
-              <button class="story-preset-button" type="button" data-story-action="explore">
-                Reset explorer
+              <div class="story-verdict-panel" aria-label="Conclusion verdict">
+                <strong>Final read</strong>
+                <p>
+                  The evidence does not support a simple European collapse story.
+                  It supports a more specific claim: Europe kept growing, but the
+                  investable market story shifted toward the US, especially through
+                  listed equity concentration and technology-heavy sectors.
+                </p>
+                <p>
+                  The limitation is equally important: these charts measure output
+                  and listed capital, not the full well-being of households.
+                </p>
+              </div>
+              <button class="story-preset-button" type="button" data-story-action="wrap-up">
+                Show final comparison
               </button>
             </article>
           </div>
@@ -259,6 +278,11 @@
                   <button id="absolute-mode" type="button">Absolute</button>
                 </div>
 
+                <div class="segmented-control" aria-label="Scatter scope">
+                  <button id="scatter-selected-scope" type="button" data-active="true">Selected set</button>
+                  <button id="scatter-all-scope" type="button">All countries</button>
+                </div>
+
                 <button id="toggle-spider" class="ghost-button" type="button" aria-pressed="false">Show spider</button>
               </div>
             </div>
@@ -272,7 +296,8 @@
               value of 1.38x means the indicator is 38% above its 2000 level. In
               Regions mode, every country is colored by its regional compounded
               aggregate; in Countries mode, each country uses its own compounded
-              value.
+              value. In scatter mode, use the scope toggle to switch between only
+              the selected comparison set and every country in the dataset.
             </p>
 
             <aside id="spider-panel" class="spider-overlay" aria-label="Spider comparison" hidden>
@@ -355,6 +380,7 @@
                 <input id="treemap-slider" type="range" min="0" max="0" value="0" step="1" />
               </label>
             </div>
+            <div id="treemap-dominance-summary" class="treemap-dominance" aria-live="polite"></div>
             <div class="treemap-grid">
               <section class="treemap-card" aria-label="Country treemap">
                 <div class="treemap-card__heading">
