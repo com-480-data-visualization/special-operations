@@ -31,10 +31,7 @@ import { createNormalizationExplorer } from "./normalization-explorer.js";
 import { renderPost2008Analysis } from "./post-2008-analysis.js";
  */
 import { createNormalizationExplorer } from "./normalization-explorer.js";
-import {
-  renderBreakFinderAnalysis,
-  renderMarketDivergenceAnalysis,
-} from "./post-2008-analysis.js";
+import { renderBreakFinderAnalysis } from "./post-2008-analysis.js";
 import { createIndicatorMap } from "./regional-map.js";
 import { createSpiderChart } from "./spider.js";
 /*
@@ -121,11 +118,6 @@ async function main() {
     );
   }
   createNormalizationExplorer(getRequiredElement("normalization-explorer"), data);
-  renderMarketDivergenceAnalysis(
-    data,
-    getRequiredElement("analysis-market-chart"),
-    getRequiredElement("analysis-market-note"),
-  );
   /*
    * Previous candidate analysis views are commented out in index.html and kept
    * here for easy restoration if the team wants a longer appendix after the

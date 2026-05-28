@@ -52,7 +52,7 @@ export const STORY_PRESETS = {
     selectedRegions: ["Europe", "North America", "Asia-Pacific"],
     selectedIso3: ["DEU", "GBR", "USA", "KOR", "JPN"],
     treemapSnapshot: "latest",
-    stageSteps: ["stage-map", "stage-evolution", "stage-trajectory"],
+    stageSteps: ["stage-map", "stage-evolution"],
     stageFocus: "stage-evolution",
     callout: {
       label: "Act 3 evidence",
