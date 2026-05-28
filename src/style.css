@@ -1710,7 +1710,8 @@ button:active {
 
 .spider-overlay .chart {
   margin-top: 14px;
-  max-height: 620px;
+  max-height: none;
+  overflow: visible;
 }
 
 /* ── Evolution panel ─────────────────────────────────────────────────── */
