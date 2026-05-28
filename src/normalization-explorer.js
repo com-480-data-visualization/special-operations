@@ -2,11 +2,10 @@ import * as d3 from "d3";
 import { COUNTRY_COLORS, REGION_COLORS } from "./data-model.js";
 
 const SERIES = [
-  { id: "us-gdp-capita", label: "US GDP / capita", source: "country", key: "USA", metric: "GDP per Capita", color: COUNTRY_COLORS.USA },
-  { id: "eu-gdp-capita", label: "Europe GDP / capita", source: "region", key: "Europe", metric: "GDP per Capita", color: REGION_COLORS.Europe },
-  { id: "na-gdp-capita", label: "North America GDP / capita", source: "region", key: "North America", metric: "GDP per Capita", color: "#c7d2fe" },
-  { id: "asia-gdp-capita", label: "Asia-Pacific GDP / capita", source: "region", key: "Asia-Pacific", metric: "GDP per Capita", color: REGION_COLORS["Asia-Pacific"] },
-  { id: "la-gdp-capita", label: "Latin America GDP / capita", source: "region", key: "Latin America", metric: "GDP per Capita", color: REGION_COLORS["Latin America"] },
+  { id: "us-gdp-current", label: "US GDP (current USD)", source: "custom", color: COUNTRY_COLORS.USA },
+  { id: "eu-gdp-current", label: "Europe GDP (current USD)", source: "custom", color: REGION_COLORS.Europe },
+  { id: "us-gdp-ppp", label: "US GDP (PPP)", source: "country", key: "USA", metric: "GDP", color: "#ffb0aa", dash: "6 4" },
+  { id: "eu-gdp-ppp", label: "Europe GDP (PPP)", source: "region", key: "Europe", metric: "GDP", color: "#9bd2ff", dash: "6 4" },
   { id: "us-etf", label: "US ETF", source: "country", key: "USA", metric: "ETF Price", color: "#ffcf9f" },
   { id: "eu-etf", label: "Europe ETF", source: "region", key: "Europe", metric: "ETF Price", color: "#8bd7ff" },
   { id: "us-market-cap", label: "US Market Cap", source: "country", key: "USA", metric: "Market Cap", color: "#ff8f86" },
@@ -14,10 +13,29 @@ const SERIES = [
 ];
 
 const DEFAULT_SELECTED = new Set([
-  "us-gdp-capita",
-  "eu-gdp-capita",
-  "asia-gdp-capita",
+  "us-gdp-current",
+  "eu-gdp-current",
+  "us-gdp-ppp",
+  "eu-gdp-ppp",
 ]);
+
+const QUICK_SELECTS = [
+  {
+    id: "gdp",
+    label: "GDP lenses",
+    series: ["us-gdp-current", "eu-gdp-current", "us-gdp-ppp", "eu-gdp-ppp"],
+  },
+  {
+    id: "etf",
+    label: "ETF only",
+    series: ["us-etf", "eu-etf"],
+  },
+  {
+    id: "market-cap",
+    label: "Market cap only",
+    series: ["us-market-cap", "eu-market-cap"],
+  },
+];
 
 export function createNormalizationExplorer(container, data) {
   if (!container) return null;
@@ -32,10 +50,13 @@ export function createNormalizationExplorer(container, data) {
       <p>Hover over a line to see details.</p>
       <p>
         Normalized to <button type="button" class="normalization-year-jump" data-year="2000">2000</button>,
-        the US, Europe, and Asia-Pacific show broadly comparable real GDP/cap trajectories before the crisis.
+        US and European GDP both grow before the crisis, but current-dollar GDP already embeds exchange-rate and price-level swings.
         Normalized to <button type="button" class="normalization-year-jump" data-year="2008">2008</button>,
-        the view changes: Europe’s real GDP/cap growth lags the US and Asia-Pacific, while the strongest decoupling is in valuation proxies, especially ETF and market-cap trends.
+        current-USD GDP shows a sharp US/Europe divergence around the crisis.
+        Normalized to <button type="button" class="normalization-year-jump" data-year="2010">2010</button>,
+        the PPP-adjusted view makes the split milder and later: Europe still trails, but less like a sudden collapse and more like slower post-crisis compounding.
       </p>
+      <div class="normalization-quick-select" id="normalization-quick-select" aria-label="Quick series selection"></div>
     </div>
     <div class="normalization-explorer__controls">
       <label class="control-field normalization-explorer__slider">
@@ -52,9 +73,26 @@ export function createNormalizationExplorer(container, data) {
 
   const yearLabel = container.querySelector("#normalization-year-label");
   const slider = container.querySelector("#normalization-year-slider");
+  const quickSelectContainer = container.querySelector("#normalization-quick-select");
   const seriesContainer = container.querySelector("#normalization-series");
   const chartContainer = container.querySelector("#normalization-chart");
   const unitNoteElement = container.querySelector("#normalization-unit-note");
+  const seriesButtons = new Map();
+
+  QUICK_SELECTS.forEach((preset) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "normalization-quick-button";
+    button.dataset.presetId = preset.id;
+    button.textContent = preset.label;
+    button.addEventListener("click", () => {
+      selected = new Set(preset.series);
+      syncSeriesButtons();
+      syncQuickButtons();
+      render();
+    });
+    quickSelectContainer.append(button);
+  });
 
   SERIES.forEach((series) => {
     const button = document.createElement("button");
@@ -71,10 +109,13 @@ export function createNormalizationExplorer(container, data) {
         selected.add(series.id);
       }
       button.dataset.active = String(selected.has(series.id));
+      syncQuickButtons();
       render();
     });
+    seriesButtons.set(series.id, button);
     seriesContainer.append(button);
   });
+  syncQuickButtons();
 
   slider.addEventListener("input", () => {
     baseYear = Number.parseInt(slider.value, 10);
@@ -118,6 +159,20 @@ export function createNormalizationExplorer(container, data) {
   }
 
   return { render };
+
+  function syncSeriesButtons() {
+    seriesButtons.forEach((button, seriesId) => {
+      button.dataset.active = String(selected.has(seriesId));
+    });
+  }
+
+  function syncQuickButtons() {
+    quickSelectContainer.querySelectorAll(".normalization-quick-button").forEach((button) => {
+      const preset = QUICK_SELECTS.find((entry) => entry.id === button.dataset.presetId);
+      const active = preset?.series.length === selected.size && preset.series.every((seriesId) => selected.has(seriesId));
+      button.dataset.active = String(Boolean(active));
+    });
+  }
 }
 
 function drawExplorerChart(container, years, series, baseYear) {
@@ -192,6 +247,7 @@ function drawExplorerChart(container, years, series, baseYear) {
     .attr("fill", "none")
     .attr("stroke", (entry) => entry.color)
     .attr("stroke-width", 2.8)
+    .attr("stroke-dasharray", (entry) => entry.dash ?? null)
     .attr("d", (entry) => line(entry.points));
 
   svg
@@ -215,7 +271,14 @@ function drawExplorerChart(container, years, series, baseYear) {
     .join("g")
     .attr("transform", (_, index) => `translate(0, ${index * 20})`);
 
-  rows.append("rect").attr("width", 10).attr("height", 10).attr("rx", 2).attr("fill", (entry) => entry.color);
+  rows
+    .append("rect")
+    .attr("width", 10)
+    .attr("height", 10)
+    .attr("rx", 2)
+    .attr("fill", (entry) => (entry.dash ? "transparent" : entry.color))
+    .attr("stroke", (entry) => entry.color)
+    .attr("stroke-width", (entry) => (entry.dash ? 2 : 0));
   rows.append("text").attr("x", 16).attr("y", 9).text((entry) => entry.label);
 
   const hover = svg.append("g").attr("class", "normalization-hover-callout").style("display", "none");
@@ -276,6 +339,7 @@ function nearestPoint(lineRows, years, x, y, mouseX, mouseY) {
 }
 
 function getSeriesValues(data, series) {
+  if (series.source === "custom") return [];
   if (series.source === "country") {
     return data.countries[series.key]?.timeseries?.[series.metric]?.normalized ?? [];
   }

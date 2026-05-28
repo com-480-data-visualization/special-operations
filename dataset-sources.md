@@ -225,6 +225,50 @@ Display rule in UI:
 - panel remains separate from the core post-2008 market/fundamentals analysis
   so it can be removed cleanly later if the final story changes
 
+## OECD living-cost and pay add-on
+
+This is a separate narrative module for testing whether post-2008 growth showed
+up as wage gains, broad living-cost pressure, or asset-price pressure.
+
+Current local file:
+
+- `public/living_cost_pay_data.json`
+
+Refresh command:
+
+```bash
+python scripts/fetch_living_cost_pay.py
+```
+
+Current sources:
+
+- OECD annual average wages:
+  https://sdmx.oecd.org/public/rest/data/OECD.ELS.SAE,DSD_EARNINGS@AV_AN_WAGE,1.0/all?startPeriod=2000&dimensionAtObservation=AllDimensions
+- OECD residential property prices and housing CPI:
+  https://sdmx.oecd.org/public/rest/data/OECD.SDD.TPS,DSD_RHPI@DF_RHPI_ALL,1.0/all?startPeriod=2000&dimensionAtObservation=AllDimensions
+
+Current derived series:
+
+- Real average annual wages: OECD `WG`, `USD_PPP`, constant 2024 prices,
+  indexed to 2008.
+- Housing CPI / wage: broad housing CPI index divided by nominal average-wage
+  index, then indexed to 2008.
+- House price / wage: residential house-price index divided by nominal
+  average-wage index, then indexed to 2008.
+- Headline lens check: World Bank GDP per capita in current USD versus GDP per
+  capita in constant-PPP international dollars, both indexed to 2008.
+
+Caveats:
+
+- Europe is a simple average of available countries from the project sample, not
+  an official EU aggregate.
+- OECD broad housing CPI coverage is narrower than wage coverage for this
+  comparison; the Europe housing CPI / wage series currently uses Germany, the
+  United Kingdom, the Netherlands, Sweden, and Switzerland.
+- Actual-rent CPI has no comparable US annual series in the fetched OECD slice,
+  so the visualization uses broad housing CPI and residential house-price
+  indexes instead.
+
 ## Inequality add-on
 
 This is a second separate narrative module focused on the question:
@@ -318,9 +362,16 @@ Current interpretation rule:
   separate sector-level analysis with output, market, employment, and export
   exposure data
 
+Normalization explorer and break-fit fields:
+
+- PPP GDP: World Bank `NY.GDP.MKTP.PP.KD`, constant 2021 international dollars
+- current-USD GDP: World Bank `NY.GDP.MKTP.CD`, current US dollars
+- ETF and market cap: processed project valuation proxies
+- `breakFinder`: piecewise-linear break-year fit for US/Europe gaps, including
+  PPP GDP, current-USD GDP, ETF, and market capitalization
+
 Other generated story fields:
 
-- `breakFinder`: piecewise-linear break-year fit for US/Europe gaps
 - `counterfactual`: actual post-2008 path versus extrapolated 2000-2008 trend
 - `scorecard`: post-2008 market, macro, labour-share, life-expectancy, and
   happiness comparison

@@ -13,6 +13,7 @@ export async function renderThreePartStory(container) {
   const data = await d3.json("./analysis_lab_data.json");
   if (!data) return;
   const inequality = await d3.json("./inequality_addon.json").catch(() => null);
+  const livingCostPay = await d3.json("./living_cost_pay_data.json").catch(() => null);
   const labourShareTrends = data.labourShareTrends?.length
     ? data.labourShareTrends
     : buildLabourShareTrends(inequality?.labourShare ?? []);
@@ -23,12 +24,14 @@ export async function renderThreePartStory(container) {
     ["2000 -> 2008", "", (node) => renderPreGrowth(node, data.preStory)],
     ["Industrial structure near the break", "", (node) => renderIndustrialStructure(node, data.preStory?.industrialStructure ?? [])],
   ]);
-  addPart(root, "2", "2008 as the statistical break", "The best-fit break years cluster around the financial crisis. The useful point is not that 2008 is magic; it is that several independent series change slope around the same window.", [
+  addPart(root, "2", "2008 as the statistical break", "The best-fit break years cluster around the financial crisis. The useful point is not that 2008 is magic; it is that several independent series change slope around the same window, and the answer changes depending on whether we use headline current-dollar values or PPP values closer to lived purchasing power.", [
     ["Best break-year fit", "Piecewise-linear fit on the log US/Europe gap. Bars show relative BIC score across candidate break years, not statistical probability.", (node) => renderBreakFinder(node, data.breakFinder ?? [])],
     ["Post-break path vs old trend", "GDP/cap only: actual post-2008 GDP per capita path compared with a log-linear 2000-2008 GDP/cap trend projected forward.", (node) => renderCounterfactual(node, data.counterfactual ?? [])],
+    ["Headline lens vs lived-output lens", "Current-USD GDP/cap makes the US-Europe split look much sharper after 2008. PPP GDP/cap narrows the split by correcting for price levels and purchasing power.", (node) => renderLensComparison(node, livingCostPay?.headlineLenses ?? [])],
   ]);
-  addPart(root, "3", "After 2008: markets decouple more than output", `On a constant-PPP basis, US GDP/cap grows faster than Europe after 2008, but the bigger split is financial: US valuation proxies rebound while Europe’s ETF proxy remains below its 2008 level. Capital gains/income is household financial-asset revaluation as a share of disposable income; labour share is the share of output paid to labour.`, [
+  addPart(root, "3", "After 2008: markets decouple more than output", `On a constant-PPP basis, US GDP/cap grows faster than Europe after 2008, but the bigger split is financial: US valuation proxies rebound while Europe’s ETF proxy remains below its 2008 level. The household question is narrower than “all living costs”: broad housing CPI does not clearly beat wages, but house prices and financial assets do, which matters most for non-capital owners.`, [
     [`2008-${latestYear}: output gap, larger market gap`, "GDP/cap is inflation- and purchasing-power-adjusted. Market and capital-gain figures are valuation measures placed on the same broad real/PPP scale, so read them as proxies rather than living-standard measures.", (node) => renderMarketGrowth(node, data.scorecard ?? [])],
+    ["Pay vs housing pressure", "OECD average wages and housing indexes, rebased to 2008. Broad housing CPI does not outrun wages; house prices relative to wages rise on both sides, slightly more in the US sample.", (node) => renderPayCost(node, livingCostPay?.payCost ?? [])],
     ["Labour share before and after 2008", "ILO labour share measures the share of output paid to labour. Slopes compare pre-break trend with post-break trend.", (node) => renderLabourShareTrends(node, labourShareTrends)],
     ["Where it shows up for people", "Life expectancy and life satisfaction proxy welfare; labour share tests whether workers captured more of output. Together they make the US rebound look less like a clean population-level win.", (node) => renderOutcomeMatrix(node, data.scorecard ?? [])],
   ]);
@@ -146,6 +149,40 @@ function renderCounterfactual(container, rows) {
       { label: `${row.label.replace(" GDP/cap", "")} old trend`, color: row.color, values: row.trend, dash: "5 5" },
     ]),
   });
+}
+
+function renderLensComparison(container, rows) {
+  const byId = new Map(rows.map((row) => [row.id, row]));
+  renderLineChart(container, {
+    label: "GDP per capita lenses normalized to 2008",
+    series: [
+      { label: "US current USD", color: COLORS.us, values: byId.get("us-current")?.values ?? [] },
+      { label: "Europe current USD", color: COLORS.eu, values: byId.get("eu-current")?.values ?? [] },
+      { label: "US PPP", color: COLORS.us, values: byId.get("us-ppp")?.values ?? [], dash: "5 5" },
+      { label: "Europe PPP", color: COLORS.eu, values: byId.get("eu-ppp")?.values ?? [], dash: "5 5" },
+    ],
+  });
+  d3.select(container)
+    .append("p")
+    .attr("class", "story-footnote")
+    .text("Solid = current USD headline lens; dashed = constant-PPP GDP/cap lens. Both are indexed to 2008 = 1.");
+}
+
+function renderPayCost(container, rows) {
+  const byId = new Map(rows.map((row) => [row.id, row]));
+  renderLineChart(container, {
+    label: "Pay and housing pressure normalized to 2008",
+    series: [
+      { label: "US real wage", color: COLORS.us, values: byId.get("us-real-wage")?.values ?? [] },
+      { label: "Europe real wage", color: COLORS.eu, values: byId.get("eu-real-wage")?.values ?? [] },
+      { label: "US home price/wage", color: "#ffcf9f", values: byId.get("us-house-price-wage")?.values ?? [], dash: "5 4" },
+      { label: "Europe home price/wage", color: "#8bd7ff", values: byId.get("eu-house-price-wage")?.values ?? [], dash: "5 4" },
+    ],
+  });
+  d3.select(container)
+    .append("p")
+    .attr("class", "story-footnote")
+    .text("Real wages are CPI-adjusted average annual wages. Home price/wage divides residential house-price indexes by nominal average-wage indexes.");
 }
 
 function renderMarketGrowth(container, rows) {
@@ -267,7 +304,7 @@ function renderGroupedBars(container, config) {
 function renderLineChart(container, config) {
   const width = 560;
   const height = 270;
-  const margin = { top: 18, right: 126, bottom: 38, left: 52 };
+  const margin = { top: 18, right: 150, bottom: 38, left: 52 };
   const svg = d3.select(container).append("svg").attr("viewBox", `0 0 ${width} ${height}`).attr("role", "img").attr("aria-label", config.label);
   const allPoints = config.series.flatMap((entry) => entry.values).filter((point) => point.value !== null);
   if (!allPoints.length) {
@@ -277,7 +314,9 @@ function renderLineChart(container, config) {
   const x = d3.scaleLinear().domain(d3.extent(allPoints, (point) => point.year)).range([margin.left, width - margin.right]);
   const y = d3.scaleLinear().domain([0, d3.max(allPoints, (point) => point.value) * 1.08]).nice().range([height - margin.bottom, margin.top]);
   const line = d3.line().defined((point) => point.value !== null).x((point) => x(point.year)).y((point) => y(point.value));
-  svg.append("g").attr("class", "analysis-axis").attr("transform", `translate(0,${height - margin.bottom})`).call(d3.axisBottom(x).tickValues([2008, 2012, 2016, 2020, 2023]).tickFormat(String));
+  const maxYear = d3.max(allPoints, (point) => point.year);
+  const tickYears = [2008, 2012, 2016, 2020, maxYear].filter((year, index, all) => year && all.indexOf(year) === index);
+  svg.append("g").attr("class", "analysis-axis").attr("transform", `translate(0,${height - margin.bottom})`).call(d3.axisBottom(x).tickValues(tickYears).tickFormat(String));
   svg.append("g").attr("class", "analysis-axis").attr("transform", `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5).tickFormat((value) => `${value.toFixed(1)}x`));
   svg.append("line").attr("class", "analysis-baseline-line").attr("x1", margin.left).attr("x2", width - margin.right).attr("y1", y(1)).attr("y2", y(1));
   svg.append("line").attr("class", "analysis-break-line").attr("x1", x(2008)).attr("x2", x(2008)).attr("y1", margin.top).attr("y2", height - margin.bottom);

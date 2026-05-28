@@ -452,6 +452,31 @@ input:focus-visible {
   background: rgba(247, 198, 107, 0.18);
 }
 
+.normalization-quick-select {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 2px;
+}
+
+.normalization-quick-button {
+  min-height: 32px;
+  padding: 6px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.normalization-quick-button:hover,
+.normalization-quick-button[data-active="true"] {
+  border-color: rgba(247, 198, 107, 0.42);
+  background: rgba(247, 198, 107, 0.12);
+  color: #ffe0a3;
+}
+
 .normalization-explorer__controls {
   display: grid;
   grid-template-columns: minmax(260px, 0.45fr) minmax(0, 1fr);

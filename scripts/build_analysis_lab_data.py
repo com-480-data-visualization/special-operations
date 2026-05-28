@@ -131,15 +131,15 @@ def solve_3x3(matrix: list[list[float]], vector: list[float]) -> list[float]:
 
 def build_break_finder(spider: dict) -> list[dict]:
     years = spider["years"]
+    current_gdp = build_current_gdp_series(spider)
     output = []
     configs = [
-        ("GDP/cap gap", "GDP per Capita"),
-        ("ETF gap", "ETF Price"),
-        ("Market-cap gap", "Market Cap"),
+        ("PPP GDP gap", series(spider, "country", "USA", "GDP"), series(spider, "region", "Europe", "GDP")),
+        ("Current-USD GDP gap", current_gdp["us-gdp-current"], current_gdp["eu-gdp-current"]),
+        ("ETF gap", series(spider, "country", "USA", "ETF Price"), series(spider, "region", "Europe", "ETF Price")),
+        ("Market-cap gap", series(spider, "country", "USA", "Market Cap"), series(spider, "region", "Europe", "Market Cap")),
     ]
-    for label, metric in configs:
-        us = series(spider, "country", "USA", metric)
-        eu = series(spider, "region", "Europe", metric)
+    for label, us, eu in configs:
         valid = [
             (year, math.log(u) - math.log(e))
             for year, u, e in zip(years, us, eu)
@@ -224,12 +224,10 @@ def build_pre_story(spider: dict) -> dict:
 
 def build_real_adjusted_explorer(spider: dict) -> dict:
     years = spider["years"]
+    current_gdp = build_current_gdp_series(spider)
     configs = [
-        ("us-gdp-capita", "country", "USA", "GDP per Capita"),
-        ("eu-gdp-capita", "region", "Europe", "GDP per Capita"),
-        ("na-gdp-capita", "region", "North America", "GDP per Capita"),
-        ("asia-gdp-capita", "region", "Asia-Pacific", "GDP per Capita"),
-        ("la-gdp-capita", "region", "Latin America", "GDP per Capita"),
+        ("us-gdp-ppp", "country", "USA", "GDP"),
+        ("eu-gdp-ppp", "region", "Europe", "GDP"),
         ("us-etf", "country", "USA", "ETF Price"),
         ("eu-etf", "region", "Europe", "ETF Price"),
         ("us-market-cap", "country", "USA", "Market Cap"),
@@ -243,9 +241,31 @@ def build_real_adjusted_explorer(spider: dict) -> dict:
                 "values": values,
                 "method": adjustment_method(metric),
             }
+    for series_id, values in current_gdp.items():
+        out[series_id] = {
+            "values": values,
+            "method": "World Bank GDP, current US dollars. Shown as a headline/common-currency lens, not a PPP living-standard measure.",
+        }
     return {
         "series": out,
-        "unitNote": "All explorer series use the same preprocessing basis: GDP/GDP-cap are World Bank constant 2021 PPP international-dollar series; ETF and market-cap proxies are nominal USD valuation series scaled by each economy's PPP-constant-GDP/current-GDP conversion factor.",
+        "unitNote": "PPP GDP uses World Bank constant 2021 international dollars. Current-USD GDP uses World Bank nominal US dollars as the headline/common-currency lens. ETF and market-cap proxies are nominal USD valuation series scaled by each economy's PPP-constant-GDP/current-GDP conversion factor.",
+    }
+
+
+def build_current_gdp_series(spider: dict) -> dict[str, list[float | None]]:
+    years = spider["years"]
+    current_gdp = load_world_bank_file("gdp-current-usd-2026.csv", years)
+    europe_codes = [
+        code
+        for code, country in spider["countries"].items()
+        if country.get("region") == "Europe"
+    ]
+    return {
+        "us-gdp-current": [current_gdp.get("USA", {}).get(year) for year in years],
+        "eu-gdp-current": [
+            sum_available([current_gdp.get(code, {}).get(year) for code in europe_codes])
+            for year in years
+        ],
     }
 
 
