@@ -359,6 +359,10 @@
   color: var(--text-primary);
 }
 
+.stage-guide button[hidden] {
+  display: none;
+}
+
 .evidence-step {
   position: relative;
   margin: 18px;
@@ -374,6 +378,10 @@
     transform 240ms var(--ease-emphasized),
     border-color 240ms var(--ease-emphasized),
     background 240ms var(--ease-emphasized);
+}
+
+.evidence-step[hidden] {
+  display: none;
 }
 
 .evidence-step::before {
@@ -402,6 +410,38 @@
 
 .evidence-step--map {
   padding-bottom: 1px;
+}
+
+.story-break-panel {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+}
+
+.story-break-panel .story-breaks {
+  padding: 4px 0 2px;
+}
+
+.story-break-panel .story-methodology {
+  margin: 0 0 4px;
+  color: var(--text-tertiary);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.story-break-panel h2 {
+  margin: 0 0 10px;
+  color: var(--text-primary);
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.story-break-panel p:not(.eyebrow) {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.6;
 }
 
 .story-stage .map-chart {

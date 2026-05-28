@@ -30,6 +30,10 @@ import { renderInequalityAddon } from "./inequality-addon.js";
 import { createNormalizationExplorer } from "./normalization-explorer.js";
 import { renderPost2008Analysis } from "./post-2008-analysis.js";
  */
+import {
+  renderBreakFinderAnalysis,
+  renderMarketDivergenceAnalysis,
+} from "./post-2008-analysis.js";
 import { createIndicatorMap } from "./regional-map.js";
 import { createSpiderChart } from "./spider.js";
 /*
@@ -43,6 +47,7 @@ import {
   getValidCountries,
   getValidRegions,
   setStageFocus,
+  setVisibleStageSteps,
 } from "./story-state.js";
 import { createSectorTreemap, createTreemap } from "./treemap.js";
 
@@ -107,6 +112,18 @@ async function main() {
     axes: spiderAxes,
   });
   const updateEvolution = createEvolutionChart(evolutionContainer, data);
+  const analysisData = await d3.json("./analysis_lab_data.json");
+  if (analysisData?.breakFinder) {
+    renderBreakFinderAnalysis(
+      analysisData.breakFinder,
+      getRequiredElement("analysis-break-finder"),
+    );
+  }
+  renderMarketDivergenceAnalysis(
+    data,
+    getRequiredElement("analysis-market-chart"),
+    getRequiredElement("analysis-market-note"),
+  );
   /*
    * Previous candidate analysis views are commented out in index.html and kept
    * here for easy restoration if the team wants a longer appendix after the
@@ -278,6 +295,7 @@ async function main() {
     selectedIso3 = getValidCountries(preset.selectedIso3, data, DEFAULT_SELECTION);
     selectedRegions = getValidRegions(preset.selectedRegions, DEFAULT_REGIONS);
     setTreemapSnapshot(preset.treemapSnapshot);
+    setVisibleStageSteps(storyStage, preset.stageSteps);
     renderStoryEvidenceCallout(storyEvidenceCallout, preset.callout);
     render();
     setStageFocus(storyStage, treemapPanel, preset.stageFocus);

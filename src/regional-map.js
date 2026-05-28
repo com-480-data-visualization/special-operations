@@ -21,6 +21,12 @@ const WIDTH = 960;
 const HEIGHT = 560;
 const SCATTER_X_AXIS = "GDP per Capita";
 const SCATTER_Y_AXIS = "ETF Price";
+const SCATTER_PLOT_BOUNDS = {
+  left: 82,
+  right: WIDTH - 48,
+  top: 40,
+  bottom: HEIGHT - 70,
+};
 const TOOLTIP_AXIS_ORDER = ["GDP", "GDP per Capita", "ETF Price", "Market Cap"];
 const WORLD_FEATURES = feature(
   worldCountries,
@@ -505,8 +511,16 @@ function getScatterScales(points) {
   const xMax = Math.max(2, d3.max(points, (point) => point.scatterX ?? 0) ?? 2);
   const yMax = Math.max(2, d3.max(points, (point) => point.scatterY ?? 0) ?? 2);
   return {
-    x: d3.scaleLinear().domain([0, xMax]).nice().range([82, WIDTH - 48]),
-    y: d3.scaleLinear().domain([0, yMax]).nice().range([HEIGHT - 70, 40]),
+    x: d3
+      .scaleLinear()
+      .domain([0, xMax])
+      .nice()
+      .range([SCATTER_PLOT_BOUNDS.left, SCATTER_PLOT_BOUNDS.right]),
+    y: d3
+      .scaleLinear()
+      .domain([0, yMax])
+      .nice()
+      .range([SCATTER_PLOT_BOUNDS.bottom, SCATTER_PLOT_BOUNDS.top]),
   };
 }
 
@@ -566,13 +580,20 @@ function applyMapFocus(layer, focus, viewMode) {
 function renderScatterAxes(layer, scales) {
   const xAxis = d3.axisBottom(scales.x).ticks(5).tickFormat(formatTick);
   const yAxis = d3.axisLeft(scales.y).ticks(5).tickFormat(formatTick);
+  const xLabelX =
+    SCATTER_PLOT_BOUNDS.left +
+    (SCATTER_PLOT_BOUNDS.right - SCATTER_PLOT_BOUNDS.left) / 2;
+  const yLabelY =
+    SCATTER_PLOT_BOUNDS.top +
+    (SCATTER_PLOT_BOUNDS.bottom - SCATTER_PLOT_BOUNDS.top) / 2;
+  const yLabelX = SCATTER_PLOT_BOUNDS.left - 58;
 
   layer
     .selectAll("g.scatter-x")
     .data(["x"])
     .join("g")
     .attr("class", "scatter-axis scatter-x")
-    .attr("transform", `translate(0,${HEIGHT - 70})`)
+    .attr("transform", `translate(0,${SCATTER_PLOT_BOUNDS.bottom})`)
     .call(xAxis);
 
   layer
@@ -580,7 +601,7 @@ function renderScatterAxes(layer, scales) {
     .data(["y"])
     .join("g")
     .attr("class", "scatter-axis scatter-y")
-    .attr("transform", "translate(82,0)")
+    .attr("transform", `translate(${SCATTER_PLOT_BOUNDS.left},0)`)
     .call(yAxis);
 
   layer
@@ -588,9 +609,9 @@ function renderScatterAxes(layer, scales) {
     .data([SCATTER_X_AXIS])
     .join("text")
     .attr("class", "scatter-axis-label scatter-x-label")
-    .attr("x", WIDTH - 48)
-    .attr("y", HEIGHT - 28)
-    .attr("text-anchor", "end")
+    .attr("x", xLabelX)
+    .attr("y", SCATTER_PLOT_BOUNDS.bottom + 42)
+    .attr("text-anchor", "middle")
     .text(`${SCATTER_X_AXIS} compounded since 2000`);
 
   layer
@@ -598,8 +619,11 @@ function renderScatterAxes(layer, scales) {
     .data([SCATTER_Y_AXIS])
     .join("text")
     .attr("class", "scatter-axis-label scatter-y-label")
-    .attr("x", 82)
-    .attr("y", 24)
+    .attr("x", yLabelX)
+    .attr("y", yLabelY)
+    .attr("text-anchor", "middle")
+    .attr("dominant-baseline", "middle")
+    .attr("transform", `rotate(-90,${yLabelX},${yLabelY})`)
     .text(`${SCATTER_Y_AXIS} compounded since 2000`);
 }
 

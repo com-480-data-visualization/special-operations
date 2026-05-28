@@ -34,7 +34,55 @@ export function renderPost2008Analysis(data) {
   renderDistributionChart(getRequiredElement("analysis-distribution-chart"));
 }
 
-function renderMarketChart(data, container) {
+/**
+ * Renders the focused 2008 divergence chart used in the final guided story.
+ *
+ * @param {object} data Loaded spider data.
+ * @param {HTMLElement} container Chart container.
+ * @param {HTMLElement | null} noteElement Optional explanatory note target.
+ */
+export function renderMarketDivergenceAnalysis(data, container, noteElement = null) {
+  renderMarketChart(data, container, noteElement);
+}
+
+/**
+ * Renders candidate break-year BIC score histograms around the 2008 crisis.
+ *
+ * @param {object[]} rows Break-finder rows from analysis_lab_data.json.
+ * @param {HTMLElement} container Chart container.
+ */
+export function renderBreakFinderAnalysis(rows, container) {
+  const selectedRows = rows.filter((row) =>
+    ["Current-USD GDP gap", "ETF gap", "Market-cap gap"].includes(row.metric),
+  );
+  const wrap = d3.select(container);
+  wrap.selectAll("*").remove();
+  wrap
+    .append("p")
+    .attr("class", "story-methodology")
+    .text("Candidate break years from 2005-2015. Height shows relative BIC score for a piecewise US/Europe gap model; 1 is the best candidate for that metric.");
+
+  selectedRows.forEach((row) => {
+    const item = wrap.append("div").attr("class", "story-break");
+    item.append("span").attr("class", "story-break__metric").text(row.metric);
+    item.append("strong").text(row.bestYear);
+    const scores = item.append("div").attr("class", "story-break__scores");
+    scores
+      .selectAll("span")
+      .data(row.scores)
+      .join("span")
+      .style("--score", (score) => score.score)
+      .attr("title", (score) => `${score.year}: ${score.score.toFixed(2)}`)
+      .attr("data-best", (score) => score.year === row.bestYear)
+      .attr("data-crisis", (score) => score.year === 2008);
+    item
+      .append("span")
+      .attr("class", "story-break__axis-note")
+      .text("2005 -> 2015, highlighted bar = best fit; 2008 is marked where relevant.");
+  });
+}
+
+function renderMarketChart(data, container, noteElement = getRequiredElement("analysis-market-note")) {
   renderIndexedLineChart(
     container,
     "Markets indexed to 2008 = 1",
@@ -47,7 +95,7 @@ function renderMarketChart(data, container) {
     })),
   );
 
-  getRequiredElement("analysis-market-note").textContent =
+  if (noteElement) noteElement.textContent =
     "All lines rebased to 2008 = 1 on the same real/PPP preprocessing basis. The ETF split remains the clearest divergence: US rebounds strongly, Europe stays below its 2008 level.";
 }
 

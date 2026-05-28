@@ -470,8 +470,30 @@ export function formatMetricValue(data, axis, value, valueMode) {
   if (value === null) return "n/a";
   if (valueMode !== "absolute") return formatMultiple(value);
   const unit = getMetricMetadata(data, axis).unit;
-  if (unit.includes("US$")) return formatCurrency(value);
+  if (isMoneyUnit(unit)) return `${formatCurrency(value)}${getCurrencyQualifier(unit)}`;
   return `${value.toFixed(2)} ${unit}`;
+}
+
+/**
+ * Returns whether a metric unit should be rendered as compact money.
+ *
+ * @param {string} unit Metric unit label.
+ * @returns {boolean} Whether the unit is monetary.
+ */
+function isMoneyUnit(unit) {
+  return unit.includes("$") || unit.toLowerCase().includes("international");
+}
+
+/**
+ * Adds a compact qualifier for PPP-adjusted monetary values.
+ *
+ * @param {string} unit Metric unit label.
+ * @returns {string} Short qualifier.
+ */
+function getCurrencyQualifier(unit) {
+  const lowerUnit = unit.toLowerCase();
+  if (lowerUnit.includes("ppp") || lowerUnit.includes("international")) return " PPP";
+  return "";
 }
 
 /**

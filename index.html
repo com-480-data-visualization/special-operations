@@ -19,9 +19,11 @@
           Is Europe <em>really</em> falling behind?
         </h1>
         <p class="lede">
-          The answer depends on the lens. Europe kept growing, but the market
-          story moved elsewhere: first toward the United States, then toward the
-          sectors that global equity indexes reward most.
+          Europe was long seen as one of the world’s economic powerhouses. As
+          other regions accelerate and the narrative of European decline grows
+          louder, understanding its trajectory matters for citizens,
+          policymakers, and entrepreneurs trying to anticipate where economic
+          power will lie if nothing changes.
         </p>
         <p class="story-cue">
           Follow the argument from the real economy to market proxies, from
@@ -105,7 +107,7 @@
             </article>
 
             <article class="story-step" data-story-preset="divergence-hypothesis">
-              <p class="eyebrow">Act 2.5 &middot; Divergence hypothesis</p>
+              <p class="eyebrow">Act 3 &middot; Divergence hypothesis</p>
               <h2>The gap opens when we change the measure.</h2>
               <p>
                 The central hypothesis is not that Europe stopped producing
@@ -124,7 +126,7 @@
             </article>
 
             <article class="story-step" data-story-preset="europe-dispersion">
-              <p class="eyebrow">Act 3 &middot; Inside Europe</p>
+              <p class="eyebrow">Act 4 &middot; Inside Europe</p>
               <h2>Europe is not one datapoint.</h2>
               <p>
                 The European average hides national variation. Some countries
@@ -143,7 +145,7 @@
             </article>
 
             <article class="story-step" data-story-preset="sector-drivers">
-              <p class="eyebrow">Act 4 &middot; Industry drivers</p>
+              <p class="eyebrow">Act 5 &middot; Industry drivers</p>
               <h2>The winning sectors sit elsewhere.</h2>
               <p>
                 The ACWI snapshots translate the country story into sector
@@ -202,10 +204,14 @@
               </button>
               <button type="button" data-stage-jump="stage-evolution">
                 <span>02</span>
+                2008 break
+              </button>
+              <button type="button" data-stage-jump="stage-trajectory">
+                <span>03</span>
                 Trajectory
               </button>
               <button type="button" data-stage-jump="stage-acwi">
-                <span>03</span>
+                <span>04</span>
                 ACWI sectors
               </button>
             </div>
@@ -282,7 +288,23 @@
             </aside>
           </section>
 
-          <section id="stage-evolution" class="evidence-step evolution-panel" data-stage-step="stage-evolution" aria-label="Evolution chart">
+          <section id="stage-evolution" class="evidence-step analysis-card analysis-card--wide story-break-panel" data-stage-step="stage-evolution" aria-label="2008 market divergence chart">
+            <div>
+              <p class="eyebrow">2008 break</p>
+              <h2>The break-year test points to the crisis window.</h2>
+              <p>
+                This is the Act 3 evidence: candidate break years
+                cluster around 2007-2008 for market proxies. Then, rebasing each
+                series to 2008 shows the path after the break.
+              </p>
+            </div>
+            <div id="analysis-break-finder" class="story-breaks"></div>
+            <div id="analysis-market-chart" class="analysis-chart analysis-chart--wide"></div>
+            <p id="analysis-market-note" class="analysis-card__note"></p>
+            <p class="analysis-card__source">Source: country and regional ETF and market-cap proxies, indexed to 2008 = 1 on the project’s real/PPP preprocessing basis.</p>
+          </section>
+
+          <section id="stage-trajectory" class="evidence-step evolution-panel" data-stage-step="stage-trajectory" aria-label="Evolution chart">
             <div>
               <p class="eyebrow">Evolution</p>
               <h2 id="evolution-title">Indicator trajectory</h2>
