@@ -5,6 +5,7 @@
 
 import "./style.css";
 import * as d3 from "d3";
+import { renderAnalysisLab } from "./analysis-lab.js";
 import {
   DEFAULT_SELECTION,
   REGION_ORDER,
@@ -14,9 +15,14 @@ import {
   getYearIndex,
   hasAbsoluteMetric,
 } from "./data-model.js";
+import { renderEcbHouseholdAnalysis } from "./ecb-household-analysis.js";
 import { createEvolutionChart } from "./evolution-chart.js";
+import { renderInequalityAddon } from "./inequality-addon.js";
+import { createNormalizationExplorer } from "./normalization-explorer.js";
+import { renderPost2008Analysis } from "./post-2008-analysis.js";
 import { createIndicatorMap } from "./regional-map.js";
 import { createSpiderChart } from "./spider.js";
+import { renderThreePartStory } from "./three-part-story.js";
 import { createSectorTreemap, createTreemap } from "./treemap.js";
 
 const ANIMATION_MS = 650;
@@ -75,6 +81,12 @@ async function main() {
     axes: spiderAxes,
   });
   const updateEvolution = createEvolutionChart(evolutionContainer, data);
+  renderPost2008Analysis(data);
+  await renderEcbHouseholdAnalysis();
+  await renderInequalityAddon(data);
+  await renderThreePartStory(document.getElementById("three-part-story"));
+  createNormalizationExplorer(document.getElementById("normalization-explorer"), data);
+  await renderAnalysisLab(document.getElementById("analysis-lab"));
 
   // Load treemap data (preprocessed JSON) and initialize treemap component.
   // Treemap: load data and initialize, but keep it fully independent (no selection, no axis, just year)

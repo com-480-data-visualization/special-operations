@@ -123,13 +123,141 @@
             </div>
           </section>
         </section>
+
+        <section class="analysis-panel" aria-label="Narrative analysis">
+          <div class="analysis-panel__intro">
+            <p class="eyebrow">2008: tipping point?</p>
+            <h2>After 2008, Europe’s market proxies diverged more than its output.</h2>
+            <p>
+              Rebuilt on a constant-PPP basis, the story is more precise: Europe does lag
+              in real GDP per person, but the much larger post-2008 split is in valuation
+              proxies and household capital gains.
+            </p>
+          </div>
+
+          <div class="analysis-grid">
+            <article class="analysis-card">
+              <h3>1. Market verdict</h3>
+              <p>
+                Post-2008, market-linked proxies tell the sharpest version of the story.
+                Europe’s ETF proxy remains weak while the US proxy rebounds strongly.
+              </p>
+              <div id="analysis-market-chart" class="analysis-chart"></div>
+              <p id="analysis-market-note" class="analysis-card__note"></p>
+              <p class="analysis-card__source">Source: country and regional ETF and market-cap proxies, converted to a constant-2021 PPP-equivalent basis, 2008-2023.</p>
+            </article>
+
+            <article class="analysis-card">
+              <h3>2. Fundamentals held up better</h3>
+              <p>
+                Macro growth slows after 2008, but it does not collapse. On a real/PPP basis,
+                Europe still grows in GDP and GDP per capita; the market-proxy gap is larger.
+              </p>
+              <div id="analysis-fundamentals-chart" class="analysis-chart"></div>
+              <p id="analysis-fundamentals-note" class="analysis-card__note"></p>
+              <p class="analysis-card__source">Source: processed World Bank GDP and GDP per capita series, compared with ETF-price growth.</p>
+            </article>
+
+            <article class="analysis-card analysis-card--question">
+              <h3>3. Growth for whom?</h3>
+              <p>
+                Distribution question starts with assets. If US households with financial
+                wealth captured much larger valuation gains than euro-area households, faster
+                growth may have favored capital owners first.
+              </p>
+              <div id="analysis-distribution-chart" class="analysis-chart"></div>
+              <p class="analysis-card__note">
+                ECB comparison uses average annual capital gains on household financial assets
+                since 2000, expressed as share of annual gross disposable income.
+              </p>
+              <p class="analysis-card__source">Source: ECB, <a href="https://www.ecb.europa.eu/press/key/date/2025/html/ecb.sp251009~49b985af53.en.pdf" target="_blank" rel="noreferrer">The Asset Holdings of Euro Area Households</a>, latest observations Q2 2025.</p>
+            </article>
+
+            <article class="analysis-card analysis-card--wide">
+              <h3>Read so far</h3>
+              <p>
+                Current read after rebuilding the data: Europe’s real-output gap is present but
+                moderate; the sharper divergence is in valuation proxies and capital-gains capture.
+              </p>
+              <p class="analysis-card__note">
+                Next data pass should test whether stronger US market growth translated into broader
+                household welfare, or mainly into asset-owner gains.
+              </p>
+            </article>
+
+            <article class="analysis-card analysis-card--wide analysis-card--addon">
+              <h3>ECB add-on: household balance sheets around 2008</h3>
+              <p>
+                Separate from the core story, this ECB-only panel tracks how euro-area household
+                assets evolved across the crisis break. Both lines are rebased to late 2008 so the
+                pre- and post-crisis shapes are directly comparable.
+              </p>
+              <div id="analysis-ecb-chart" class="analysis-chart analysis-chart--wide"></div>
+              <p id="analysis-ecb-note" class="analysis-card__note"></p>
+              <p class="analysis-card__source">
+                Source: ECB Data Portal quarterly sector accounts, series for
+                <a href="https://data.ecb.europa.eu/data/datasets/QSA/QSA.Q.N.I9.W0.S1M.S1.N.A.LE.F._Z._Z.XDC._T.S.V.N._T" target="_blank" rel="noreferrer">household financial asset stock</a>
+                and
+                <a href="https://data.ecb.europa.eu/data/datasets/QSA/QSA.Q.N.I9.W0.S1M.S1._Z.B.B90._Z._Z._Z.XDC_R_B6G_CY._T.S.V.N._T" target="_blank" rel="noreferrer">household net worth relative to disposable income</a>.
+              </p>
+            </article>
+
+            <article class="analysis-card analysis-card--wide analysis-card--addon analysis-card--inequality">
+              <h3>US vs Europe: rebound, gains, people</h3>
+              <p>
+                This add-on keeps the comparison symmetric where the data allows it: how much each region
+                rebounded, how much of the rebound showed up as financial gains, and whether labour shared
+                in the upside.
+              </p>
+              <div id="analysis-inequality-addon"></div>
+              <p class="analysis-card__source">
+                Sources:
+                <a href="https://www.federalreserve.gov/releases/z1/dataviz/dfa/" target="_blank" rel="noreferrer">Federal Reserve DFA</a>,
+                <a href="https://data.ecb.europa.eu/data/datasets/DWA/data-information" target="_blank" rel="noreferrer">ECB DWA</a>,
+                <a href="https://rplumber.ilo.org/data/indicator?id=LAP_2GDP_NOC_RT_A&format=.csv" target="_blank" rel="noreferrer">ILO labour-share estimates</a>,
+                and
+                <a href="https://www.ecb.europa.eu/press/key/date/2025/html/ecb.sp251009~49b985af53.en.pdf" target="_blank" rel="noreferrer">ECB asset-holdings comparison</a>.
+              </p>
+            </article>
+
+            <article class="analysis-card analysis-card--wide analysis-card--addon analysis-card--people">
+              <h3>2008 and the two recoveries</h3>
+              <p>
+                Three-part story frame: where the US and Europe looked similar before the break,
+                why 2008 is a measurable inflection, and where the post-crisis gains showed up.
+              </p>
+              <div id="three-part-story" class="three-part-story"></div>
+              <p class="analysis-card__source">Source: processed project data, World Bank API, ILO labour share, ECB asset-holdings comparison, and OWID life satisfaction.</p>
+            </article>
+
+            <article class="analysis-card analysis-card--wide analysis-card--addon">
+              <h3>Normalization explorer</h3>
+              <p>
+                Choose a base year and series. Every selected line is rebased to that year from
+                the same constant-PPP preprocessing basis.
+              </p>
+              <div id="normalization-explorer" class="normalization-explorer"></div>
+              <p class="analysis-card__source">Source: processed project country and regional GDP, ETF, and market-cap series.</p>
+            </article>
+
+            <article class="analysis-card analysis-card--wide analysis-card--addon">
+              <h3>Backup analysis</h3>
+              <p>
+                Parked candidate views: useful for checking the claim, but not currently strong enough
+                to carry the main story.
+              </p>
+              <div id="analysis-lab" class="analysis-lab"></div>
+              <p class="analysis-card__source">Source: processed project data, World Bank API, Fed DFA, ECB DWA, ILO, and OWID happiness series.</p>
+            </article>
+          </div>
+        </section>
       </main>
 
       <footer>
         <p>
           Growth mode normalizes every country to its year-2000 baseline.
           Absolute mode reveals economic scale where the underlying units are
-          comparable; ETF prices remain a normalized public-market proxy.
+          comparable; ETF prices remain a real/PPP-adjusted public-market proxy.
         </p>
       </footer>
     </div>
