@@ -52,9 +52,7 @@ export function renderMarketDivergenceAnalysis(data, container, noteElement = nu
  * @param {HTMLElement} container Chart container.
  */
 export function renderBreakFinderAnalysis(rows, container) {
-  const selectedRows = rows.filter((row) =>
-    ["Current-USD GDP gap", "ETF gap", "Market-cap gap"].includes(row.metric),
-  );
+  const selectedRows = rows;
   const wrap = d3.select(container);
   wrap.selectAll("*").remove();
   wrap

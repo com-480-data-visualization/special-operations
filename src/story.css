@@ -429,6 +429,31 @@
   line-height: 1.5;
 }
 
+.story-break-subpanel {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.story-break-subpanel h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.story-break-subpanel > p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
 .story-break-panel h2 {
   margin: 0 0 10px;
   color: var(--text-primary);

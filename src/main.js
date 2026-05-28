@@ -30,6 +30,7 @@ import { renderInequalityAddon } from "./inequality-addon.js";
 import { createNormalizationExplorer } from "./normalization-explorer.js";
 import { renderPost2008Analysis } from "./post-2008-analysis.js";
  */
+import { createNormalizationExplorer } from "./normalization-explorer.js";
 import {
   renderBreakFinderAnalysis,
   renderMarketDivergenceAnalysis,
@@ -119,6 +120,7 @@ async function main() {
       getRequiredElement("analysis-break-finder"),
     );
   }
+  createNormalizationExplorer(getRequiredElement("normalization-explorer"), data);
   renderMarketDivergenceAnalysis(
     data,
     getRequiredElement("analysis-market-chart"),
