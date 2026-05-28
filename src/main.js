@@ -6,7 +6,12 @@
 import "./style.css";
 import "./story.css";
 import * as d3 from "d3";
+/*
+ * Candidate analysis modules from the previous broader draft are retained in
+ * the codebase but paused while the final milestone story foregrounds the
+ * guided evidence stage.
 import { renderAnalysisLab } from "./analysis-lab.js";
+ */
 import {
   DEFAULT_SELECTION,
   REGION_ORDER,
@@ -16,14 +21,20 @@ import {
   getYearIndex,
   hasAbsoluteMetric,
 } from "./data-model.js";
+/*
 import { renderEcbHouseholdAnalysis } from "./ecb-household-analysis.js";
+ */
 import { createEvolutionChart } from "./evolution-chart.js";
+/*
 import { renderInequalityAddon } from "./inequality-addon.js";
 import { createNormalizationExplorer } from "./normalization-explorer.js";
 import { renderPost2008Analysis } from "./post-2008-analysis.js";
+ */
 import { createIndicatorMap } from "./regional-map.js";
 import { createSpiderChart } from "./spider.js";
+/*
 import { renderThreePartStory } from "./three-part-story.js";
+ */
 import { createStoryController } from "./story-controller.js";
 import { DEFAULT_STORY_PRESET_ID, STORY_PRESETS } from "./story-presets.js";
 import {
@@ -62,6 +73,7 @@ async function main() {
   const resetSelectionButton = getRequiredElement("reset-selection");
   const selectedSummary = getRequiredElement("selected-summary");
   const mapContainer = getRequiredElement("map-chart");
+  const storyEvidenceCallout = getRequiredElement("story-evidence-callout");
   const spiderPanel = getRequiredElement("spider-panel");
   const spiderCaption = getRequiredElement("spider-caption");
   const spiderContainer = getRequiredElement("spider-chart");
@@ -77,6 +89,7 @@ async function main() {
   let viewMode = "map";
   let selectionMode = "countries";
   let valueMode = "growth";
+  let mapFocus = "world";
   let isPlaying = false;
   let animationId = 0;
   let activeStoryPresetId = DEFAULT_STORY_PRESET_ID;
@@ -94,12 +107,17 @@ async function main() {
     axes: spiderAxes,
   });
   const updateEvolution = createEvolutionChart(evolutionContainer, data);
+  /*
+   * Previous candidate analysis views are commented out in index.html and kept
+   * here for easy restoration if the team wants a longer appendix after the
+   * final presentation version.
   renderPost2008Analysis(data);
   await renderEcbHouseholdAnalysis();
   await renderInequalityAddon(data);
   await renderThreePartStory(document.getElementById("three-part-story"));
   createNormalizationExplorer(document.getElementById("normalization-explorer"), data);
   await renderAnalysisLab(document.getElementById("analysis-lab"));
+   */
 
   let treemap = null;
   let sectorTreemap = null;
@@ -184,8 +202,8 @@ async function main() {
     );
     spiderCaption.textContent =
       selectionMode === "regions"
-        ? "Click countries to select their whole region. The spider graph shows how real-economy growth compares with market growth across regional averages."
-        : "Click countries on the map to compare their full normalized profiles and see where GDP growth diverges from ETF and market-cap growth.";
+        ? "Click countries to select their whole region. The spider graph shows how compounded real-economy values compare with compounded market values across regional averages."
+        : "Click countries on the map to compare their full compounded profiles and see where GDP diverges from ETF and market-cap values.";
     evolutionTitle.textContent =
       selectionMode === "regions"
         ? `${axis}: ${valueMode} by region`
@@ -199,6 +217,7 @@ async function main() {
       selectedRegions,
       selectionMode,
       valueMode,
+      mapFocus,
     });
     spiderChart.update(
       buildComparisonProfiles(
@@ -255,9 +274,11 @@ async function main() {
     viewMode = preset.viewMode ?? viewMode;
     selectionMode = preset.selectionMode ?? selectionMode;
     valueMode = preset.valueMode ?? valueMode;
+    mapFocus = preset.mapFocus ?? "world";
     selectedIso3 = getValidCountries(preset.selectedIso3, data, DEFAULT_SELECTION);
     selectedRegions = getValidRegions(preset.selectedRegions, DEFAULT_REGIONS);
     setTreemapSnapshot(preset.treemapSnapshot);
+    renderStoryEvidenceCallout(storyEvidenceCallout, preset.callout);
     render();
     setStageFocus(storyStage, treemapPanel, preset.stageFocus);
   }
@@ -430,6 +451,41 @@ function populateIndicatorSelect(select, data) {
 function setModeButtonState(button, isActive) {
   button.dataset.active = String(isActive);
   button.setAttribute("aria-pressed", String(isActive));
+}
+
+/**
+ * Updates the chart overlay with the active story claim.
+ *
+ * @param {HTMLElement} container Callout container.
+ * @param {{ label: string, title: string, body: string, stats?: string[] } | undefined} callout Story callout copy.
+ */
+function renderStoryEvidenceCallout(container, callout) {
+  container.replaceChildren();
+  container.hidden = !callout;
+  if (!callout) return;
+
+  const label = document.createElement("p");
+  label.className = "story-evidence-callout__label";
+  label.textContent = callout.label;
+
+  const title = document.createElement("h3");
+  title.textContent = callout.title;
+
+  const body = document.createElement("p");
+  body.className = "story-evidence-callout__body";
+  body.textContent = callout.body;
+
+  container.append(label, title, body);
+
+  if (!callout.stats?.length) return;
+  const statList = document.createElement("div");
+  statList.className = "story-evidence-callout__stats";
+  for (const stat of callout.stats) {
+    const badge = document.createElement("span");
+    badge.textContent = stat;
+    statList.append(badge);
+  }
+  container.append(statList);
 }
 
 /**

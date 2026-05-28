@@ -19,14 +19,14 @@
           Is Europe <em>really</em> falling behind?
         </h1>
         <p class="lede">
-          Not in the simple way the headline suggests. Since 2000, European
-          economies kept growing, but public markets compounded much more
-          aggressively in the United States and selected Asian markets.
+          The answer depends on the lens. Europe kept growing, but the market
+          story moved elsewhere: first toward the United States, then toward the
+          sectors that global equity indexes reward most.
         </p>
         <p class="story-cue">
-          Read the charts from left to right: first the real economy, then the
-          investable market proxy, then the global index weight that investors
-          actually experience.
+          Follow the argument from the real economy to market proxies, from
+          regional averages to country variation, and finally to the industries
+          behind global index concentration.
         </p>
       </header>
 
@@ -37,24 +37,24 @@
         </div>
         <div class="finding-grid">
           <article class="finding-card">
-            <span class="finding-card__label">Real economy</span>
-            <strong>2.48x</strong>
-            <p>Average European GDP growth by 2023, with GDP per capita also more than doubling.</p>
+            <span class="finding-card__label">1. Growth</span>
+            <strong>1.38x</strong>
+            <p>European regional GDP in 2023, compounded from the 2000 baseline in the current dataset.</p>
           </article>
           <article class="finding-card">
-            <span class="finding-card__label">Market proxy</span>
-            <strong>1.15x</strong>
-            <p>Average European country-ETF growth, versus 2.28x for North America.</p>
+            <span class="finding-card__label">2. Benchmark</span>
+            <strong>US vs EU</strong>
+            <p>The comparison is useful because both start as rich-market anchors in a global investor portfolio.</p>
           </article>
           <article class="finding-card">
-            <span class="finding-card__label">Clearest split</span>
-            <strong>0.90x vs 2.51x</strong>
-            <p>Germany's ETF ended below its 2000 level, while the US ETF more than doubled.</p>
+            <span class="finding-card__label">3. Within Europe</span>
+            <strong>Not one block</strong>
+            <p>European countries do not move together. The average hides a wide spread of national outcomes.</p>
           </article>
           <article class="finding-card">
-            <span class="finding-card__label">Global weight</span>
+            <span class="finding-card__label">4. Sectors</span>
             <strong>63.7%</strong>
-            <p>The US share of MSCI ACWI in May 2026, up from 53.0% in April 2015.</p>
+            <p>The US share of MSCI ACWI in May 2026, helped by technology-heavy listed-company growth.</p>
           </article>
         </div>
       </section>
@@ -72,78 +72,83 @@
               <h2>Europe did not stop growing.</h2>
               <p>
                 Start with GDP in regional mode. By 2023, Europe is around
-                2.48x its 2000 GDP baseline, and GDP per capita also more than
-                doubled. The first lesson is that the story is not collapse.
+                1.38x its 2000 GDP baseline, and GDP per capita is around
+                1.21x. Any claim that Europe is "falling behind" has to explain
+                why this compounded growth is not enough.
               </p>
               <div class="story-stat-row">
-                <span><strong>2.48x</strong> Europe GDP</span>
-                <span><strong>2.18x</strong> Europe GDP per capita</span>
+                <span><strong>1.38x</strong> Europe GDP</span>
+                <span><strong>1.21x</strong> Europe GDP per capita</span>
               </div>
               <button class="story-preset-button" type="button" data-story-action="real-economy">
-                Show GDP view
+                Show compounded GDP view
               </button>
             </article>
 
-            <article class="story-step" data-story-preset="market-gap">
-              <p class="eyebrow">Act 2 &middot; Market proxy</p>
-              <h2>The market line tells a harsher story.</h2>
+            <article class="story-step" data-story-preset="us-eu-frame">
+              <p class="eyebrow">Act 2 &middot; Why US and Europe?</p>
+              <h2>The benchmark is not arbitrary.</h2>
               <p>
-                Switch to country ETF prices and the gap opens. Germany and the
-                UK sit below their 2000 ETF baselines, while the US ETF more
-                than doubles and Korea becomes the key counterexample.
+                The United States and Europe are both high-income, institutionally
+                mature markets that matter in global portfolios. Comparing them
+                lets us separate a real-economy question from a listed-market
+                question: did people get poorer, or did public equity value
+                compound somewhere else?
               </p>
               <div class="story-stat-row">
+                <span><strong>Rich-market</strong> baseline</span>
+                <span><strong>Different</strong> market composition</span>
+              </div>
+              <button class="story-preset-button" type="button" data-story-action="us-eu-frame">
+                Show benchmark view
+              </button>
+            </article>
+
+            <article class="story-step" data-story-preset="divergence-hypothesis">
+              <p class="eyebrow">Act 2.5 &middot; Divergence hypothesis</p>
+              <h2>The gap opens when we change the measure.</h2>
+              <p>
+                The central hypothesis is not that Europe stopped producing
+                output. It is that output growth translated less cleanly into
+                public-market returns. The scatter view makes that split visible:
+                prosperity growth on one axis, ETF growth on the other.
+              </p>
+              <div class="story-stat-row">
+                <span><strong>2.51x</strong> US ETF</span>
                 <span><strong>0.90x</strong> Germany ETF</span>
                 <span><strong>0.62x</strong> UK ETF</span>
-                <span><strong>2.51x</strong> US ETF</span>
               </div>
-              <button class="story-preset-button" type="button" data-story-action="market-gap">
-                Show ETF view
+              <button class="story-preset-button" type="button" data-story-action="divergence-hypothesis">
+                Show divergence view
               </button>
             </article>
 
-            <article class="story-step" data-story-preset="scatter-gap">
-              <p class="eyebrow">Act 3 &middot; Uneven gap</p>
-              <h2>Prosperity and markets separate.</h2>
+            <article class="story-step" data-story-preset="europe-dispersion">
+              <p class="eyebrow">Act 3 &middot; Inside Europe</p>
+              <h2>Europe is not one datapoint.</h2>
               <p>
-                The scatter view fixes the comparison: GDP per capita growth on
-                one axis, ETF growth on the other. Countries to the upper right
-                turned prosperity into investable market returns; Europe is more
-                mixed.
+                The European average hides national variation. Some countries
+                convert growth into stronger market proxies; others show GDP
+                progress without comparable listed-market lift. This matters
+                because "Europe" is a political label, not a single balance sheet.
               </p>
               <div class="story-stat-row">
-                <span><strong>Korea</strong> high market response</span>
-                <span><strong>Germany</strong> GDP without ETF lift</span>
+                <span><strong>Germany</strong> weak ETF lift</span>
+                <span><strong>Switzerland</strong> different profile</span>
+                <span><strong>Netherlands</strong> different profile</span>
               </div>
-              <button class="story-preset-button" type="button" data-story-action="scatter-gap">
-                Show scatter view
+              <button class="story-preset-button" type="button" data-story-action="europe-dispersion">
+                Show Europe spread
               </button>
             </article>
 
-            <article class="story-step" data-story-preset="market-cap">
-              <p class="eyebrow">Act 4 &middot; Market cap</p>
-              <h2>Listed-company value compounds elsewhere.</h2>
+            <article class="story-step" data-story-preset="sector-drivers">
+              <p class="eyebrow">Act 4 &middot; Industry drivers</p>
+              <h2>The winning sectors sit elsewhere.</h2>
               <p>
-                Market capitalization makes the asymmetry harder to miss. The
-                US compounds strongly, Korea is exceptional, and several major
-                European markets trail despite real-economy growth.
-              </p>
-              <div class="story-stat-row">
-                <span><strong>11.49x</strong> Korea market cap</span>
-                <span><strong>3.24x</strong> US market cap</span>
-                <span><strong>1.14x</strong> UK market cap</span>
-              </div>
-              <button class="story-preset-button" type="button" data-story-action="market-cap">
-                Show market-cap view
-              </button>
-            </article>
-
-            <article class="story-step" data-story-preset="acwi-latest">
-              <p class="eyebrow">Act 5 &middot; Global index</p>
-              <h2>The index investors buy became more concentrated.</h2>
-              <p>
-                The ACWI snapshots translate the country story into portfolio
-                exposure. From 2015 to 2026, US weight grows and technology
+                The ACWI snapshots translate the country story into sector
+                exposure. From 2015 to 2026, global index weight becomes more
+                concentrated in the United States, and information technology
                 becomes the dominant sector block.
               </p>
               <div class="story-stat-row">
@@ -154,20 +159,26 @@
                 <button class="story-preset-button" type="button" data-story-action="acwi-first">
                   Show 2015 ACWI
                 </button>
-                <button class="story-preset-button" type="button" data-story-action="acwi-latest">
+                <button class="story-preset-button" type="button" data-story-action="sector-drivers">
                   Show latest ACWI
                 </button>
               </div>
             </article>
 
-            <article class="story-step story-step--explore" data-story-preset="explore">
-              <p class="eyebrow">Explore yourself</p>
-              <h2>Now test the thesis.</h2>
+            <article class="story-step story-step--explore" data-story-preset="wrap-up">
+              <p class="eyebrow">Conclusion &middot; What falling behind means</p>
+              <h2>The verdict depends on the indicator.</h2>
               <p>
-                Use the controls to change the indicator, year, geography, and
-                scale. The guided sections set the argument; the explorer lets
-                you look for exceptions.
+                Europe looks less weak through real-output measures than through
+                public-market measures. That distinction matters: market indexes
+                track listed capital and sector mix, not the full well-being of
+                the population. Use the explorer to test the claim and its limits.
               </p>
+              <div class="story-stat-row">
+                <span><strong>Output</strong> still grew</span>
+                <span><strong>Markets</strong> concentrated</span>
+                <span><strong>Well-being</strong> needs more data</span>
+              </div>
               <button class="story-preset-button" type="button" data-story-action="explore">
                 Reset explorer
               </button>
@@ -177,80 +188,101 @@
           <section class="map-panel story-stage" aria-label="Interactive story stage">
           <div class="section-kicker section-kicker--panel">
             <p class="eyebrow">Evidence explorer</p>
-            <h2>Compare the growth story from four angles</h2>
+            <h2>Compare the story from four angles</h2>
             <p>
               Start with GDP to see that Europe is not standing still, then
-              switch to ETF Price and Market Cap to see where the gap opens.
-              Use countries for concrete examples, or regions for the broader pattern.
+              switch to ETF Price, Market Cap, and ACWI composition to see where
+              the gap opens. Use countries for concrete examples, or regions for
+              the broader pattern.
             </p>
-          </div>
-
-          <div class="control-bar">
-            <div class="control-group control-group--inputs">
-              <label class="control-field">
-                <span class="control-label">Indicator</span>
-                <select id="indicator-select"></select>
-              </label>
-
-              <label class="control-field control-field--year">
-                <span class="control-label">
-                  Year <span id="year-label" class="control-value">2023</span>
-                </span>
-                <input id="year-slider" type="range" min="2000" max="2023" value="2023" step="1" />
-              </label>
-
-              <button id="play-button" class="play-button" type="button" aria-label="Play timeline">
-                <span class="play-button__icon" aria-hidden="true"></span>
-                <span class="play-button__label">Play</span>
+            <div class="stage-guide" aria-label="Evidence graph steps">
+              <button type="button" data-stage-jump="stage-map">
+                <span>01</span>
+                Map / scatter
               </button>
-
-              <div class="selection-control">
-                <p id="selected-summary"></p>
-                <button id="reset-selection" class="ghost-button reset-selection-button" type="button">Reset selection</button>
-              </div>
-            </div>
-
-            <div class="control-group control-group--toggles">
-              <div class="segmented-control" aria-label="Visualization mode">
-                <button id="map-mode" type="button" data-active="true">Map</button>
-                <button id="scatter-mode" type="button">Scatter</button>
-              </div>
-
-              <div class="segmented-control" aria-label="Selection mode">
-                <button id="country-mode" type="button" data-active="true">Countries</button>
-                <button id="region-mode" type="button">Regions</button>
-              </div>
-
-              <div class="segmented-control" aria-label="Value mode">
-                <button id="growth-mode" type="button" data-active="true">Growth</button>
-                <button id="absolute-mode" type="button">Absolute</button>
-              </div>
-
-              <button id="toggle-spider" class="ghost-button" type="button" aria-pressed="false">Show spider</button>
+              <button type="button" data-stage-jump="stage-evolution">
+                <span>02</span>
+                Trajectory
+              </button>
+              <button type="button" data-stage-jump="stage-acwi">
+                <span>03</span>
+                ACWI sectors
+              </button>
             </div>
           </div>
 
-          <div id="map-chart" class="map-chart"></div>
-          <p class="chart-note">
-            Map mode shows where each indicator has grown since 2000. Scatter
-            mode fixes the question to prosperity growth versus investable
-            market growth, making outliers like the US, Korea, Germany, and the
-            UK easier to compare.
-          </p>
+          <section id="stage-map" class="evidence-step evidence-step--map" data-stage-step="stage-map" aria-label="Map and scatter evidence">
+            <div class="control-bar">
+              <div class="control-group control-group--inputs">
+                <label class="control-field">
+                  <span class="control-label">Indicator</span>
+                  <select id="indicator-select"></select>
+                </label>
 
-          <aside id="spider-panel" class="spider-overlay" aria-label="Spider comparison" hidden>
-            <div class="spider-heading">
-              <div>
-                <p class="eyebrow">Spider graph</p>
-                <h2>Profile comparison</h2>
+                <label class="control-field control-field--year">
+                  <span class="control-label">
+                    Year <span id="year-label" class="control-value">2023</span>
+                  </span>
+                  <input id="year-slider" type="range" min="2000" max="2023" value="2023" step="1" />
+                </label>
+
+                <button id="play-button" class="play-button" type="button" aria-label="Play timeline">
+                  <span class="play-button__icon" aria-hidden="true"></span>
+                  <span class="play-button__label">Play</span>
+                </button>
+
+                <div class="selection-control">
+                  <p id="selected-summary"></p>
+                  <button id="reset-selection" class="ghost-button reset-selection-button" type="button">Reset selection</button>
+                </div>
               </div>
-              <button id="close-spider" type="button" aria-label="Close spider graph">Close</button>
-            </div>
-            <p id="spider-caption">Click countries on the map to compare their full normalized profiles.</p>
-            <div id="spider-chart" class="chart"></div>
-          </aside>
 
-          <section class="evolution-panel" aria-label="Evolution chart">
+              <div class="control-group control-group--toggles">
+                <div class="segmented-control" aria-label="Visualization mode">
+                  <button id="map-mode" type="button" data-active="true">Map</button>
+                  <button id="scatter-mode" type="button">Scatter</button>
+                </div>
+
+                <div class="segmented-control" aria-label="Selection mode">
+                  <button id="country-mode" type="button" data-active="true">Countries</button>
+                  <button id="region-mode" type="button">Regions</button>
+                </div>
+
+                <div class="segmented-control" aria-label="Value mode">
+                  <button id="growth-mode" type="button" data-active="true">Compounded</button>
+                  <button id="absolute-mode" type="button">Absolute</button>
+                </div>
+
+                <button id="toggle-spider" class="ghost-button" type="button" aria-pressed="false">Show spider</button>
+              </div>
+            </div>
+
+            <div class="map-viewport">
+              <div id="map-chart" class="map-chart"></div>
+              <aside id="story-evidence-callout" class="story-evidence-callout" aria-live="polite"></aside>
+            </div>
+            <p class="chart-note">
+              Map mode shows compounded values relative to the 2000 baseline. A
+              value of 1.38x means the indicator is 38% above its 2000 level. In
+              Regions mode, every country is colored by its regional compounded
+              aggregate; in Countries mode, each country uses its own compounded
+              value.
+            </p>
+
+            <aside id="spider-panel" class="spider-overlay" aria-label="Spider comparison" hidden>
+              <div class="spider-heading">
+                <div>
+                  <p class="eyebrow">Spider graph</p>
+                  <h2>Profile comparison</h2>
+                </div>
+                <button id="close-spider" type="button" aria-label="Close spider graph">Close</button>
+              </div>
+              <p id="spider-caption">Click countries on the map to compare their full normalized profiles.</p>
+              <div id="spider-chart" class="chart"></div>
+            </aside>
+          </section>
+
+          <section id="stage-evolution" class="evidence-step evolution-panel" data-stage-step="stage-evolution" aria-label="Evolution chart">
             <div>
               <p class="eyebrow">Evolution</p>
               <h2 id="evolution-title">Indicator trajectory</h2>
@@ -263,10 +295,10 @@
             <div id="evolution-chart" class="chart"></div>
           </section>
 
-          <section class="treemap-panel" aria-label="Country / sector treemap">
+          <section id="stage-acwi" class="evidence-step treemap-panel" data-stage-step="stage-acwi" aria-label="Country / sector treemap">
             <div class="treemap-panel__heading">
               <div>
-                <p class="eyebrow">Final act</p>
+                <p class="eyebrow">Industry lens</p>
                 <h2 id="treemap-title">Where global equity weight moved</h2>
                 <p class="panel-copy">
                   The
@@ -306,6 +338,40 @@
           </section>
           </section>
         </section>
+
+        <section class="story-close-panel" aria-label="Conclusion and limitations">
+          <div class="section-kicker">
+            <p class="eyebrow">Wrap up</p>
+            <h2>Europe is not simply falling behind. It is falling behind in a specific market story.</h2>
+            <p>
+              The evidence supports a narrower thesis: Europe continued to grow,
+              but the investable-market rewards, sector concentration, and global
+              index weight shifted more strongly toward the United States. The
+              final question is whether these indicators track broad well-being,
+              or mostly the returns to listed capital.
+            </p>
+          </div>
+          <div class="story-close-grid">
+            <article class="story-close-card">
+              <h3>What the data can say</h3>
+              <p>GDP and GDP per capita reject a simple stagnation story. ETF, market-cap, and ACWI views show the sharper divergence.</p>
+            </article>
+            <article class="story-close-card">
+              <h3>What it cannot fully say</h3>
+              <p>Market data does not measure public services, inequality, household balance sheets, or lived well-being directly.</p>
+            </article>
+            <article class="story-close-card">
+              <h3>How to read the project</h3>
+              <p>Treat the guided story as the argument and the controls as the audit trail: change the indicator, year, and geography to look for exceptions.</p>
+            </article>
+          </div>
+        </section>
+
+        <!--
+        Previous broader analysis panel retained for reference. It is commented
+        out for the final narrative so the page foregrounds the whiteboard story:
+        growth -> US/EU benchmark -> divergence -> European dispersion ->
+        sector drivers -> conclusion and limitations.
 
         <section class="analysis-panel" aria-label="Narrative analysis">
           <div class="analysis-panel__intro">
@@ -435,14 +501,15 @@
             </article>
           </div>
         </section>
+        -->
       </main>
 
       <footer>
         <p>
           Methodology: the main comparison covers 20 countries with comparable
-          country ETF histories from 2000 to 2023. Growth mode normalizes each
-          country to its year-2000 baseline. Absolute mode is shown only where
-          units are comparable; ETF prices remain a real/PPP-adjusted investable-market
+          country ETF histories from 2000 to 2023. Compounded mode normalizes
+          each country or region to its year-2000 baseline. Absolute mode is
+          shown only where units are comparable; ETF prices remain a real/PPP-adjusted investable-market
           proxy.
         </p>
         <p>

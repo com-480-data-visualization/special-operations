@@ -15,8 +15,8 @@ const DEFAULT_GRID_LEVELS = [1, 2, 4, 6, 8];
 export function createSpiderPlot(container, options) {
   const radius = options.radius ?? DEFAULT_RADIUS;
   const margin = options.margin ?? DEFAULT_MARGIN;
-  const maxValue = options.maxValue ?? DEFAULT_MAX_VALUE;
-  const gridLevels = options.gridLevels ?? DEFAULT_GRID_LEVELS;
+  let maxValue = options.maxValue ?? DEFAULT_MAX_VALUE;
+  let gridLevels = options.gridLevels ?? DEFAULT_GRID_LEVELS;
   const svgSize = (radius + margin) * 2;
   const rScale = d3.scaleLinear().domain([0, maxValue]).range([0, radius]);
 
@@ -61,6 +61,16 @@ export function createSpiderPlot(container, options) {
   }
 
   function update(profiles) {
+    if (options.dynamicScale) {
+      const nextMaxValue = getDynamicMaxValue(profiles, axes);
+      if (Math.abs(nextMaxValue - maxValue) > 0.001) {
+        maxValue = nextMaxValue;
+        gridLevels = getDynamicGridLevels(maxValue);
+        rScale.domain([0, maxValue]);
+        renderScaffold();
+      }
+    }
+
     const renderProfiles = profiles.map((profile) => {
       const profileWithBadge = {
         ...profile,
@@ -212,6 +222,28 @@ function normalizeAxes(axes) {
   return axes.map((axis) =>
     typeof axis === "string" ? { id: axis, label: axis } : axis,
   );
+}
+
+function getDynamicMaxValue(profiles, axes) {
+  const axisIds = new Set(axes.map((axis) => axis.id));
+  const values = profiles
+    .flatMap((profile) => profile.points ?? [])
+    .filter((point) => axisIds.has(point.axis) && Number.isFinite(point.value))
+    .map((point) => point.value);
+  const maxProfileValue = d3.max(values) ?? 1;
+  return Math.max(1.5, Math.ceil(maxProfileValue * 1.1 * 4) / 4);
+}
+
+function getDynamicGridLevels(maxValue) {
+  if (maxValue <= 1.75) return [1, 1.25, 1.5, maxValue].filter(uniqueAscending);
+  if (maxValue <= 2.5) return [1, 1.5, 2, maxValue].filter(uniqueAscending);
+  const roundedMax = Math.ceil(maxValue);
+  return [1, Math.round((roundedMax / 3) * 10) / 10, Math.round(((roundedMax * 2) / 3) * 10) / 10, roundedMax]
+    .filter(uniqueAscending);
+}
+
+function uniqueAscending(value, index, values) {
+  return index === 0 || value > values[index - 1] + 0.001;
 }
 
 function renderLegend(layer, profiles) {

@@ -69,8 +69,23 @@ export function getTreemapSnapshotIndex(snapshots, target) {
 export function setStageFocus(stage, treemapPanel, focus) {
   if (!(stage instanceof HTMLElement)) return;
   if (focus === "treemap" && treemapPanel instanceof HTMLElement) {
-    stage.scrollTo({ top: Math.max(0, treemapPanel.offsetTop - 12), behavior: "smooth" });
+    stage.scrollTo({
+      top: Math.max(0, treemapPanel.offsetTop - getStageHeaderOffset(stage)),
+      behavior: "smooth",
+    });
     return;
   }
   stage.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/**
+ * Measures the sticky right-panel header so preset jumps land below it.
+ *
+ * @param {Element} stage Scrollable evidence stage.
+ * @returns {number} Pixel offset for guided jumps.
+ */
+function getStageHeaderOffset(stage) {
+  const header = stage.querySelector(".section-kicker--panel");
+  if (!(header instanceof HTMLElement)) return 160;
+  return header.offsetHeight + 28;
 }

@@ -21,6 +21,7 @@ const WIDTH = 960;
 const HEIGHT = 560;
 const SCATTER_X_AXIS = "GDP per Capita";
 const SCATTER_Y_AXIS = "ETF Price";
+const TOOLTIP_AXIS_ORDER = ["GDP", "GDP per Capita", "ETF Price", "Market Cap"];
 const WORLD_FEATURES = feature(
   worldCountries,
   worldCountries.objects.countries,
@@ -53,11 +54,13 @@ export function createIndicatorMap(container, data, onSelectCountry, onSelectReg
   const geoPath = d3.geoPath(projection);
   const countries = getRenderableCountries(data, geoPath);
 
-  const baseLayer = svg.append("g").attr("class", "world-base");
-  const mapLayer = svg.append("g").attr("class", "indicator-map");
+  const viewportLayer = svg.append("g").attr("class", "map-viewport-layer");
+  const baseLayer = viewportLayer.append("g").attr("class", "world-base");
+  const mapLayer = viewportLayer.append("g").attr("class", "indicator-map");
   const scatterLayer = svg.append("g").attr("class", "scatter-layer");
-  const labelLayer = svg.append("g").attr("class", "map-labels");
+  const labelLayer = viewportLayer.append("g").attr("class", "map-labels");
   const legendLayer = svg.append("g").attr("class", "map-legend");
+  const tooltip = d3.select(container).append("div").attr("class", "map-tooltip").attr("hidden", true);
 
   renderBaseMap(baseLayer, geoPath);
 
@@ -69,12 +72,21 @@ export function createIndicatorMap(container, data, onSelectCountry, onSelectReg
   function update(options) {
     const values = countries.map((country) => ({
       ...country,
-      value: getCountryMetricValue(
-        data.countries[country.iso3],
-        options.axis,
-        options.yearIndex,
-        options.valueMode,
-      ),
+      value:
+        options.selectionMode === "regions"
+          ? calculateRegionMetricValue(
+              data,
+              country.region,
+              options.axis,
+              options.yearIndex,
+              options.valueMode,
+            )
+          : getCountryMetricValue(
+              data.countries[country.iso3],
+              options.axis,
+              options.yearIndex,
+              options.valueMode,
+            ),
       scatterX: getCountryMetricValue(
         data.countries[country.iso3],
         SCATTER_X_AXIS,
@@ -88,10 +100,10 @@ export function createIndicatorMap(container, data, onSelectCountry, onSelectReg
         "growth",
       ),
     }));
-    const maxValue = Math.max(2, d3.max(values, (country) => country.value ?? 0) ?? 2);
-    const colorScale = d3
-      .scaleSequential(d3.interpolateRgbBasis(["#24324f", "#7fb0ff", "#f9d976"]))
-      .domain([0, maxValue]);
+    const finiteValues = values
+      .map((country) => country.value)
+      .filter((value) => Number.isFinite(value));
+    const colorScale = createMetricColorScale(finiteValues, options.valueMode);
     const scatterPoints = buildScatterPoints(data, values, options);
     const scatterScales = getScatterScales(scatterPoints);
 
@@ -100,12 +112,13 @@ export function createIndicatorMap(container, data, onSelectCountry, onSelectReg
       .attr("opacity", options.viewMode === "map" ? 1 : 0)
       .attr("pointer-events", options.viewMode === "map" ? "auto" : "none");
     labelLayer.attr("opacity", options.viewMode === "map" ? 1 : 0);
+    applyMapFocus(viewportLayer, options.mapFocus, options.viewMode);
     scatterLayer
       .attr("opacity", options.viewMode === "scatter" ? 1 : 0)
       .attr("pointer-events", options.viewMode === "scatter" ? "auto" : "none");
-    renderLegend(legendLayer, data, options.axis, options.valueMode, maxValue);
-    renderMap(mapLayer, values, geoPath, colorScale, options, data, onSelectCountry, onSelectRegion);
-    renderLabels(labelLayer, values, options);
+    renderLegend(legendLayer, data, options.axis, options.valueMode, finiteValues);
+    renderMap(mapLayer, values, geoPath, colorScale, options, data, onSelectCountry, onSelectRegion, tooltip, container);
+    renderLabels(labelLayer, values, options, data);
     renderScatter(
       scatterLayer,
       scatterPoints,
@@ -132,9 +145,9 @@ function renderBaseMap(layer, geoPath) {
     .data(WORLD_FEATURES)
     .join("path")
     .attr("d", geoPath)
-    .attr("fill", "#121a29")
-    .attr("stroke", "#263347")
-    .attr("stroke-width", 0.35);
+    .attr("fill", "#1c2738")
+    .attr("stroke", "#3a4860")
+    .attr("stroke-width", 0.45);
 }
 
 /**
@@ -147,8 +160,21 @@ function renderBaseMap(layer, geoPath) {
  * @param {object} options Active state.
  * @param {(iso3: string) => void} onSelectCountry Country click handler.
  * @param {(region: string) => void} onSelectRegion Region click handler.
+ * @param {d3.Selection} tooltip Country tooltip element.
+ * @param {HTMLElement} container Chart container.
  */
-function renderMap(layer, countries, geoPath, colorScale, options, data, onSelectCountry, onSelectRegion) {
+function renderMap(
+  layer,
+  countries,
+  geoPath,
+  colorScale,
+  options,
+  data,
+  onSelectCountry,
+  onSelectRegion,
+  tooltip,
+  container,
+) {
   const paths = layer
     .selectAll("path")
     .data(countries, (country) => country.iso3)
@@ -156,7 +182,7 @@ function renderMap(layer, countries, geoPath, colorScale, options, data, onSelec
     .attr("class", "map-country-shape")
     .attr("d", (country) => geoPath(country.feature))
     .attr("fill", (country) =>
-      country.value === null ? "#30394c" : colorScale(country.value),
+      country.value === null ? "#485468" : colorScale(country.value),
     )
     .attr("stroke", (country) =>
       isSelected(country, options)
@@ -169,22 +195,18 @@ function renderMap(layer, countries, geoPath, colorScale, options, data, onSelec
     .on("click", (_, country) => {
       if (options.selectionMode === "regions") onSelectRegion(country.region);
       else onSelectCountry(country.iso3);
+    })
+    .on("mouseenter", (event, country) => {
+      showCountryTooltip(tooltip, event, country, data, options, container);
+    })
+    .on("mousemove", (event) => {
+      positionTooltip(tooltip, event, container);
+    })
+    .on("mouseleave", () => {
+      tooltip.attr("hidden", true);
     });
 
   paths.selectAll("title").remove();
-  paths
-    .append("title")
-    .text(
-      (country) => {
-        const value = formatMetricValue(
-          data,
-          options.axis,
-          country.value,
-          options.valueMode,
-        );
-        return `${country.name}: ${value} (${country.region})`;
-      },
-    );
 }
 
 /**
@@ -200,13 +222,77 @@ function getCountryStroke(country, options) {
 }
 
 /**
+ * Shows country metrics with the active map metric first.
+ *
+ * @param {d3.Selection} tooltip Tooltip element.
+ * @param {PointerEvent} event Pointer event.
+ * @param {object} country Renderable country object.
+ * @param {object} data Loaded spider data.
+ * @param {object} options Active state.
+ * @param {HTMLElement} container Chart container.
+ */
+function showCountryTooltip(tooltip, event, country, data, options, container) {
+  const countryData = data.countries[country.iso3];
+  if (!countryData) return;
+
+  const axes = [
+    options.axis,
+    ...TOOLTIP_AXIS_ORDER.filter((axis) => axis !== options.axis && data.axes.includes(axis)),
+  ];
+  const rows = axes.map((axis) => ({
+    axis,
+    value: formatMetricValue(
+      data,
+      axis,
+      getCountryMetricValue(countryData, axis, options.yearIndex, options.valueMode),
+      options.valueMode,
+    ),
+  }));
+
+  tooltip
+    .attr("hidden", null)
+    .html(
+      `<p class="map-tooltip__kicker">${country.region}</p>
+       <h3>${country.name}</h3>
+       <p class="map-tooltip__mode">${options.valueMode === "growth" ? "Compounded since 2000" : "Absolute value"} · ${data.years[options.yearIndex]}</p>
+       <dl>
+         ${rows.map((row) => `<div><dt>${row.axis}</dt><dd>${row.value}</dd></div>`).join("")}
+       </dl>`,
+    );
+  positionTooltip(tooltip, event, container);
+}
+
+/**
+ * Positions the HTML country tooltip inside the chart bounds.
+ *
+ * @param {d3.Selection} tooltip Tooltip element.
+ * @param {PointerEvent} event Pointer event.
+ * @param {HTMLElement} container Chart container.
+ */
+function positionTooltip(tooltip, event, container) {
+  const [x, y] = d3.pointer(event, container);
+  const node = tooltip.node();
+  const width = node?.offsetWidth ?? 260;
+  const height = node?.offsetHeight ?? 220;
+  const left = Math.min(Math.max(12, x + 18), Math.max(12, container.clientWidth - width - 12));
+  const top = Math.min(Math.max(12, y + 18), Math.max(12, container.clientHeight - height - 12));
+  tooltip.style("left", `${left}px`).style("top", `${top}px`);
+}
+
+/**
  * Draws labels only for selected countries.
  *
  * @param {d3.Selection} layer SVG group.
  * @param {object[]} countries Renderable country objects.
  * @param {object} options Active state.
+ * @param {object} data Loaded spider data.
  */
-function renderLabels(layer, countries, options) {
+function renderLabels(layer, countries, options, data) {
+  if (options.selectionMode === "regions") {
+    renderRegionLabels(layer, countries, options, data);
+    return;
+  }
+
   layer
     .selectAll("text")
     .data(
@@ -218,6 +304,50 @@ function renderLabels(layer, countries, options) {
     .attr("y", (country) => country.y - 6)
     .attr("text-anchor", "middle")
     .text((country) => country.iso3);
+}
+
+/**
+ * Draws one aggregate label per selected region in region mode.
+ *
+ * @param {d3.Selection} layer SVG group.
+ * @param {object[]} countries Renderable country objects.
+ * @param {object} options Active state.
+ * @param {object} data Loaded spider data.
+ */
+function renderRegionLabels(layer, countries, options, data) {
+  const labels = options.selectedRegions
+    .map((region) => {
+      const regionCountries = countries.filter((country) => country.region === region);
+      if (!regionCountries.length) return null;
+      const x = d3.mean(regionCountries, (country) => country.x);
+      const y = d3.mean(regionCountries, (country) => country.y);
+      const value = calculateRegionMetricValue(
+        data,
+        region,
+        options.axis,
+        options.yearIndex,
+        options.valueMode,
+      );
+      return { region, x, y, value };
+    })
+    .filter((label) => label !== null);
+
+  layer
+    .selectAll("text")
+    .data(labels, (label) => label.region)
+    .join("text")
+    .attr("x", (label) => label.x)
+    .attr("y", (label) => label.y - 8)
+    .attr("text-anchor", "middle")
+    .text(
+      (label) =>
+        `${getRegionLabel(label.region)} ${formatMetricValue(
+          data,
+          options.axis,
+          label.value,
+          options.valueMode,
+        )}`,
+    );
 }
 
 /**
@@ -408,6 +538,26 @@ function getRegionLabel(region) {
 }
 
 /**
+ * Zooms the map viewport for story beats that focus on specific geographies.
+ *
+ * @param {d3.Selection} layer Group containing basemap, countries, and labels.
+ * @param {"world" | "north-atlantic" | undefined} focus Map focus preset.
+ * @param {"map" | "scatter"} viewMode Active view mode.
+ */
+function applyMapFocus(layer, focus, viewMode) {
+  const transform =
+    viewMode === "map" && focus === "north-atlantic"
+      ? "translate(-330,-120) scale(1.9)"
+      : "translate(0,0) scale(1)";
+
+  layer
+    .transition()
+    .duration(520)
+    .ease(d3.easeCubicOut)
+    .attr("transform", transform);
+}
+
+/**
  * Draws scatter plot axes.
  *
  * @param {d3.Selection} layer SVG group.
@@ -441,7 +591,7 @@ function renderScatterAxes(layer, scales) {
     .attr("x", WIDTH - 48)
     .attr("y", HEIGHT - 28)
     .attr("text-anchor", "end")
-    .text(`${SCATTER_X_AXIS} growth`);
+    .text(`${SCATTER_X_AXIS} compounded since 2000`);
 
   layer
     .selectAll("text.scatter-y-label")
@@ -450,7 +600,7 @@ function renderScatterAxes(layer, scales) {
     .attr("class", "scatter-axis-label scatter-y-label")
     .attr("x", 82)
     .attr("y", 24)
-    .text(`${SCATTER_Y_AXIS} growth`);
+    .text(`${SCATTER_Y_AXIS} compounded since 2000`);
 }
 
 /**
@@ -464,24 +614,70 @@ function formatTick(value) {
 }
 
 /**
+ * Creates a color scale from the actual values visible on the map.
+ *
+ * @param {number[]} values Visible numeric values.
+ * @param {"growth" | "absolute"} valueMode Value mode.
+ * @returns {(value: number) => string} Color scale.
+ */
+function createMetricColorScale(values, valueMode) {
+  const maxValue = d3.max(values) ?? 1;
+  if (valueMode !== "growth") {
+    return d3
+      .scaleSequential(d3.interpolateRgbBasis(["#24324f", "#7fb0ff", "#f9d976"]))
+      .domain([0, maxValue || 1]);
+  }
+
+  const minValue = d3.min(values) ?? 1;
+  const lowerBound = Math.min(1, minValue);
+  const upperBound = Math.max(1.01, maxValue);
+  if (lowerBound < 1) {
+    return d3
+      .scaleLinear()
+      .domain([lowerBound, 1, upperBound])
+      .range(["#59657c", "#8fb8ff", "#f9d976"])
+      .clamp(true);
+  }
+
+  return d3
+    .scaleLinear()
+    .domain([1, upperBound])
+    .range(["#8fb8ff", "#f9d976"])
+    .clamp(true);
+}
+
+/**
  * Renders a compact color legend.
  *
  * @param {d3.Selection} layer SVG group.
  * @param {object} data Loaded spider data.
  * @param {string} axis Indicator name.
  * @param {"growth" | "absolute"} valueMode Value mode.
- * @param {number} maxValue Maximum current value.
+ * @param {number[]} values Visible numeric values.
  */
-function renderLegend(layer, data, axis, valueMode, maxValue) {
+function renderLegend(layer, data, axis, valueMode, values) {
+  const maxValue = d3.max(values) ?? 1;
+  const minValue = d3.min(values) ?? 1;
   const stops =
     valueMode === "growth"
-      ? [1, Math.max(2, maxValue / 2), maxValue]
+      ? getCompoundedLegendStops(minValue, maxValue)
       : [0, maxValue / 2, maxValue];
-  const colorScale = d3
-    .scaleSequential(d3.interpolateRgbBasis(["#24324f", "#7fb0ff", "#f9d976"]))
-    .domain([0, maxValue]);
+  const colorScale = createMetricColorScale(values, valueMode);
 
   layer.attr("transform", `translate(${WIDTH - 250},${HEIGHT - 26})`);
+
+  layer
+    .selectAll("text.legend-title")
+    .data([valueMode === "growth" ? "Compounded since 2000" : "Absolute value"])
+    .join("text")
+    .attr("class", "legend-title")
+    .attr("x", 0)
+    .attr("y", -18)
+    .attr("fill", "#aab3c5")
+    .attr("font-size", 11)
+    .attr("font-weight", 800)
+    .attr("letter-spacing", "0.08em")
+    .text((label) => label.toUpperCase());
 
   layer
     .selectAll("circle")
@@ -494,12 +690,27 @@ function renderLegend(layer, data, axis, valueMode, maxValue) {
     .attr("stroke", "#ffffff55");
 
   layer
-    .selectAll("text")
+    .selectAll("text.legend-value")
     .data(stops)
     .join("text")
+    .attr("class", "legend-value")
     .attr("x", (_, index) => index * 78 + 13)
     .attr("y", 4)
     .attr("fill", "#aab3c5")
     .attr("font-size", 12)
     .text((value) => formatMetricValue(data, axis, value, valueMode));
+}
+
+/**
+ * Builds readable compounded legend stops around the 1.00x baseline.
+ *
+ * @param {number} minValue Minimum visible value.
+ * @param {number} maxValue Maximum visible value.
+ * @returns {number[]} Legend stop values.
+ */
+function getCompoundedLegendStops(minValue, maxValue) {
+  const lowerBound = Math.min(1, minValue);
+  const upperBound = Math.max(1.01, maxValue);
+  const midpoint = lowerBound + (upperBound - lowerBound) / 2;
+  return [lowerBound, midpoint, upperBound];
 }
