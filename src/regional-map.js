@@ -1,6 +1,6 @@
 /**
- * D3 map/scatter view for the Milestone 2 MVP. Map mode colors countries by
- * the selected indicator; scatter mode offers a simpler complementary view.
+ * D3 map/scatter view for the economic data story. Map mode colors countries
+ * by the selected indicator; scatter mode compares prosperity and markets.
  */
 
 import * as d3 from "d3";

@@ -1,9 +1,10 @@
 /**
- * Application entry point for the Milestone 2 MVP: an animated indicator map
- * plus a spider graph for a small selected set of countries.
+ * Application entry point for the data story: linked economic views, timeline
+ * controls, country and region selection, and ACWI market-composition treemaps.
  */
 
 import "./style.css";
+import "./story.css";
 import * as d3 from "d3";
 import { renderAnalysisLab } from "./analysis-lab.js";
 import {
@@ -23,6 +24,15 @@ import { renderPost2008Analysis } from "./post-2008-analysis.js";
 import { createIndicatorMap } from "./regional-map.js";
 import { createSpiderChart } from "./spider.js";
 import { renderThreePartStory } from "./three-part-story.js";
+import { createStoryController } from "./story-controller.js";
+import { DEFAULT_STORY_PRESET_ID, STORY_PRESETS } from "./story-presets.js";
+import {
+  clampYear,
+  getTreemapSnapshotIndex,
+  getValidCountries,
+  getValidRegions,
+  setStageFocus,
+} from "./story-state.js";
 import { createSectorTreemap, createTreemap } from "./treemap.js";
 
 const ANIMATION_MS = 650;
@@ -59,6 +69,8 @@ async function main() {
   const evolutionContainer = getRequiredElement("evolution-chart");
   const treemapSlider = getRequiredElement("treemap-slider");
   const treemapDateLabel = getRequiredElement("treemap-date-label");
+  const storyStage = document.querySelector(".story-stage");
+  const treemapPanel = document.querySelector(".treemap-panel");
 
   let selectedIso3 = DEFAULT_SELECTION.filter((iso3) => iso3 in data.countries);
   let selectedRegions = [...DEFAULT_REGIONS];
@@ -67,6 +79,7 @@ async function main() {
   let valueMode = "growth";
   let isPlaying = false;
   let animationId = 0;
+  let activeStoryPresetId = DEFAULT_STORY_PRESET_ID;
 
   populateIndicatorSelect(indicatorSelect, data);
   yearSlider.min = String(data.baselineYear);
@@ -88,8 +101,6 @@ async function main() {
   createNormalizationExplorer(document.getElementById("normalization-explorer"), data);
   await renderAnalysisLab(document.getElementById("analysis-lab"));
 
-  // Load treemap data (preprocessed JSON) and initialize treemap component.
-  // Treemap: load data and initialize, but keep it fully independent (no selection, no axis, just year)
   let treemap = null;
   let sectorTreemap = null;
   let treemapData = null;
@@ -173,8 +184,8 @@ async function main() {
     );
     spiderCaption.textContent =
       selectionMode === "regions"
-        ? "Click countries to select their whole region. The spider graph shows regional averages."
-        : "Click countries on the map to compare their full normalized profiles.";
+        ? "Click countries to select their whole region. The spider graph shows how real-economy growth compares with market growth across regional averages."
+        : "Click countries on the map to compare their full normalized profiles and see where GDP growth diverges from ETF and market-cap growth.";
     evolutionTitle.textContent =
       selectionMode === "regions"
         ? `${axis}: ${valueMode} by region`
@@ -227,6 +238,43 @@ async function main() {
   }
 
   /**
+   * Applies a named story preset to all linked views.
+   *
+   * @param {string} presetId Story preset identifier.
+   * @param {{ force?: boolean }} [options] Preset options.
+   */
+  function applyStoryPreset(presetId, options = {}) {
+    const preset = STORY_PRESETS[presetId];
+    if (!preset || (activeStoryPresetId === presetId && !options.force)) return;
+
+    stopAnimation();
+    activeStoryPresetId = presetId;
+    indicatorSelect.value = data.axes.includes(preset.axis) ? preset.axis : data.axes[0];
+    yearSlider.value = String(clampYear(data, preset.year ?? data.latestYear));
+    updateRangeProgress(yearSlider);
+    viewMode = preset.viewMode ?? viewMode;
+    selectionMode = preset.selectionMode ?? selectionMode;
+    valueMode = preset.valueMode ?? valueMode;
+    selectedIso3 = getValidCountries(preset.selectedIso3, data, DEFAULT_SELECTION);
+    selectedRegions = getValidRegions(preset.selectedRegions, DEFAULT_REGIONS);
+    setTreemapSnapshot(preset.treemapSnapshot);
+    render();
+    setStageFocus(storyStage, treemapPanel, preset.stageFocus);
+  }
+
+  /**
+   * Moves the ACWI treemap slider to a semantic snapshot.
+   *
+   * @param {"first" | "latest" | string | undefined} snapshot Target snapshot.
+   */
+  function setTreemapSnapshot(snapshot) {
+    if (!treemapSnapshots.length || !snapshot) return;
+    const snapshotIndex = getTreemapSnapshotIndex(treemapSnapshots, snapshot);
+    treemapSlider.value = String(snapshotIndex);
+    updateRangeProgress(treemapSlider);
+  }
+
+  /**
    * Starts or stops year-by-year animation.
    */
   function toggleAnimation() {
@@ -241,6 +289,20 @@ async function main() {
     );
     if (isPlaying) stepAnimation();
     else window.clearTimeout(animationId);
+  }
+
+  /**
+   * Stops timeline playback and restores play-button state.
+   */
+  function stopAnimation() {
+    if (!isPlaying) return;
+    isPlaying = false;
+    window.clearTimeout(animationId);
+    const label = playButton.querySelector(".play-button__label");
+    if (label) label.textContent = "Play";
+    else playButton.textContent = "Play";
+    playButton.dataset.playing = "false";
+    playButton.setAttribute("aria-label", "Play timeline");
   }
 
   /**
@@ -311,6 +373,9 @@ async function main() {
   });
 
   render();
+  createStoryController({ applyPreset: applyStoryPreset });
+  activeStoryPresetId = "";
+  applyStoryPreset(DEFAULT_STORY_PRESET_ID);
 }
 
 /**
