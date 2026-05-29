@@ -5,6 +5,7 @@
 
 const ACTIVE_CLASS = "story-step--active";
 const STAGE_ACTIVE_CLASS = "evidence-step--active";
+const STORY_TRIGGER_RATIO = 0.7;
 
 /**
  * Connects story steps and preset buttons to a chart preset callback.
@@ -18,6 +19,8 @@ export function createStoryController({ applyPreset }) {
   const stage = document.querySelector(".story-stage");
   const stageSteps = [...document.querySelectorAll("[data-stage-step]")];
   const stageJumpButtons = [...document.querySelectorAll("[data-stage-jump]")];
+  let activeScrollPresetId = "";
+  let scrollFrame = 0;
 
   /**
    * Applies a preset and updates the active visual state.
@@ -54,23 +57,17 @@ export function createStoryController({ applyPreset }) {
   }
 
   if (!("IntersectionObserver" in window)) {
-    return { destroy() {} };
+    syncActiveStoryStep();
+    window.addEventListener("scroll", queueStorySync, { passive: true });
+    window.addEventListener("resize", queueStorySync);
+    return {
+      destroy() {
+        if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+        window.removeEventListener("scroll", queueStorySync);
+        window.removeEventListener("resize", queueStorySync);
+      },
+    };
   }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      const presetId = visible?.target?.dataset?.storyPreset;
-      if (presetId) activatePreset(presetId);
-    },
-    {
-      root: null,
-      rootMargin: "-28% 0px -44% 0px",
-      threshold: [0.25, 0.5, 0.75],
-    },
-  );
 
   const stageObserver =
     stage instanceof HTMLElement
@@ -96,8 +93,10 @@ export function createStoryController({ applyPreset }) {
         )
       : null;
 
-  for (const step of steps) observer.observe(step);
   if (steps[0]?.dataset.storyPreset) activatePreset(steps[0].dataset.storyPreset);
+  syncActiveStoryStep();
+  window.addEventListener("scroll", queueStorySync, { passive: true });
+  window.addEventListener("resize", queueStorySync);
   for (const step of stageSteps) stageObserver?.observe(step);
   if (stageSteps[0]?.dataset.stageStep) {
     stageSteps[0].classList.add(STAGE_ACTIVE_CLASS);
@@ -108,10 +107,53 @@ export function createStoryController({ applyPreset }) {
 
   return {
     destroy() {
-      observer.disconnect();
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+      window.removeEventListener("scroll", queueStorySync);
+      window.removeEventListener("resize", queueStorySync);
       stageObserver?.disconnect();
     },
   };
+
+  function queueStorySync() {
+    if (scrollFrame) return;
+    scrollFrame = window.requestAnimationFrame(() => {
+      scrollFrame = 0;
+      syncActiveStoryStep();
+    });
+  }
+
+  function syncActiveStoryStep() {
+    const nextStep = getActiveStoryStep(steps);
+    const presetId = nextStep?.dataset?.storyPreset;
+    if (!presetId || presetId === activeScrollPresetId) return;
+    activeScrollPresetId = presetId;
+    activatePreset(presetId);
+  }
+}
+
+/**
+ * Picks the story step whose vertical span currently contains the activation
+ * line. This fires when the top of a new section crosses the chosen band,
+ * which behaves well even when sections are taller than the viewport.
+ *
+ * @param {HTMLElement[]} steps Story steps ordered in document flow.
+ * @returns {HTMLElement | undefined} Active step.
+ */
+function getActiveStoryStep(steps) {
+  const triggerY = window.innerHeight * STORY_TRIGGER_RATIO;
+  let fallback = steps[0];
+
+  for (const step of steps) {
+    const rect = step.getBoundingClientRect();
+    if (rect.bottom <= 0) {
+      fallback = step;
+      continue;
+    }
+    if (rect.top <= triggerY && rect.bottom > triggerY) return step;
+    if (rect.top > triggerY) return fallback ?? step;
+  }
+
+  return fallback;
 }
 
 /**
@@ -123,6 +165,6 @@ export function createStoryController({ applyPreset }) {
  */
 function getStageHeaderOffset(stage) {
   const header = stage.querySelector(".section-kicker--panel");
-  if (!(header instanceof HTMLElement)) return 160;
+  if (!(header instanceof HTMLElement)) return 18;
   return header.offsetHeight + 28;
 }

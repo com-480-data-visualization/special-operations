@@ -353,56 +353,6 @@
   overscroll-behavior: contain;
 }
 
-.story-stage .section-kicker--panel {
-  position: sticky;
-  top: 0;
-  z-index: 4;
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
-  background: rgba(9, 13, 23, 0.9);
-}
-
-.stage-guide {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.stage-guide button {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 34px;
-  padding: 7px 11px;
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.035);
-  color: var(--text-secondary);
-  font-size: 0.74rem;
-  font-weight: 800;
-  transition:
-    border-color 180ms var(--ease-emphasized),
-    background 180ms var(--ease-emphasized),
-    color 180ms var(--ease-emphasized);
-}
-
-.stage-guide button span {
-  color: var(--text-tertiary);
-  font-variant-numeric: tabular-nums;
-}
-
-.stage-guide button:hover,
-.stage-guide button[data-active="true"] {
-  border-color: rgba(111, 161, 255, 0.34);
-  background: rgba(111, 161, 255, 0.12);
-  color: var(--text-primary);
-}
-
-.stage-guide button[hidden] {
-  display: none;
-}
-
 .evidence-step {
   position: relative;
   margin: 18px;
@@ -798,11 +748,6 @@ footer {
   .story-stat-row {
     margin-top: 18px;
   }
-
-  .section-kicker--panel {
-    padding: 18px;
-  }
-
   .chart-note {
     margin: -4px 16px 16px;
   }

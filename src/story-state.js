@@ -139,6 +139,6 @@ function getStageFocusTarget(stage, treemapPanel, focus) {
  */
 function getStageHeaderOffset(stage) {
   const header = stage.querySelector(".section-kicker--panel");
-  if (!(header instanceof HTMLElement)) return 160;
+  if (!(header instanceof HTMLElement)) return 18;
   return header.offsetHeight + 28;
 }
