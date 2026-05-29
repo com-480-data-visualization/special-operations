@@ -495,9 +495,14 @@ function renderStoryEvidenceCallout(container, callout) {
   container.hidden = !callout;
   if (!callout) return;
 
+  container.tabIndex = 0;
+
   const label = document.createElement("p");
   label.className = "story-evidence-callout__label";
   label.textContent = callout.label;
+
+  const content = document.createElement("div");
+  content.className = "story-evidence-callout__content";
 
   const title = document.createElement("h3");
   title.textContent = callout.title;
@@ -506,7 +511,8 @@ function renderStoryEvidenceCallout(container, callout) {
   body.className = "story-evidence-callout__body";
   body.textContent = callout.body;
 
-  container.append(label, title, body);
+  content.append(title, body);
+  container.append(label, content);
 
   if (!callout.stats?.length) return;
   const statList = document.createElement("div");
@@ -516,7 +522,7 @@ function renderStoryEvidenceCallout(container, callout) {
     badge.textContent = stat;
     statList.append(badge);
   }
-  container.append(statList);
+  content.append(statList);
 }
 
 /**
