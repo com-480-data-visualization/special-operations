@@ -452,7 +452,7 @@
   letter-spacing: -0.04em;
 }
 
-.story-break-panel p:not(.eyebrow) {
+.story-break-panel > div > p:not(.eyebrow) {
   margin: 0;
   color: var(--text-secondary);
   font-size: 0.94rem;
@@ -605,7 +605,7 @@
   font-variant-numeric: tabular-nums;
 }
 
-.story-evidence-callout__label {
+.story-evidence-callout .story-evidence-callout__label {
   margin: 0;
   color: var(--accent);
   font-size: 0.7rem;
@@ -661,7 +661,7 @@
   letter-spacing: -0.02em;
 }
 
-.story-evidence-callout__body {
+.story-evidence-callout .story-evidence-callout__body {
   margin: 0;
   color: var(--text-secondary);
   font-size: 0.9rem;
