@@ -30,7 +30,7 @@ export function renderTreemapDominanceSummary(container, data, snapshotKey) {
 
   const label = document.createElement("p");
   label.className = "treemap-dominance__label";
-  label.textContent = "Homogeneity test";
+  label.textContent = "Focused View";
 
   const title = document.createElement("h3");
   title.textContent = "Does one country or industry carry the index?";

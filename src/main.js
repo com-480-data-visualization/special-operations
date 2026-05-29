@@ -123,6 +123,7 @@ async function main() {
     );
   }
   createNormalizationExplorer(getRequiredElement("normalization-explorer"), data);
+  const storyPlotEvidenceCallout = getRequiredElement("story-evidence-callout-inline");
   /*
    * Previous candidate analysis views are commented out in index.html and kept
    * here for easy restoration if the team wants a longer appendix after the
@@ -301,7 +302,12 @@ async function main() {
     selectedRegions = getValidRegions(preset.selectedRegions, DEFAULT_REGIONS);
     setTreemapSnapshot(preset.treemapSnapshot);
     setVisibleStageSteps(storyStage, preset.stageSteps);
-    renderStoryEvidenceCallout(storyEvidenceCallout, preset.callout);
+    renderStoryEvidenceCallouts(
+      storyEvidenceCallout,
+      storyPlotEvidenceCallout,
+      preset.callout,
+      preset.calloutPlacement,
+    );
     render();
     setStageFocus(storyStage, treemapPanel, preset.stageFocus);
   }
@@ -523,6 +529,36 @@ function renderStoryEvidenceCallout(container, callout) {
     statList.append(badge);
   }
   content.append(statList);
+}
+
+/**
+ * Routes the story evidence callout to either the map overlay or an inline slot.
+ *
+ * @param {HTMLElement} overlayContainer Overlay callout host.
+ * @param {HTMLElement} secondaryContainer Secondary callout host.
+ * @param {{ label: string, title: string, body: string, stats?: string[] } | undefined} callout Story callout copy.
+ * @param {"overlay" | "inline" | undefined} [placement] Preferred callout placement.
+ */
+function renderStoryEvidenceCallouts(
+  overlayContainer,
+  secondaryContainer,
+  callout,
+  placement = "overlay",
+) {
+  const useSecondary = placement === "inline";
+  resetStoryEvidenceCallout(useSecondary ? overlayContainer : secondaryContainer);
+  renderStoryEvidenceCallout(useSecondary ? secondaryContainer : overlayContainer, callout);
+}
+
+/**
+ * Hides and clears a story evidence callout host.
+ *
+ * @param {HTMLElement} container Callout container.
+ */
+function resetStoryEvidenceCallout(container) {
+  container.replaceChildren();
+  container.hidden = true;
+  container.removeAttribute("tabindex");
 }
 
 /**

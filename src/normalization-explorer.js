@@ -67,7 +67,10 @@ export function createNormalizationExplorer(container, data) {
       </label>
       <div class="normalization-explorer__series" id="normalization-series"></div>
     </div>
-    <div class="analysis-chart normalization-explorer__chart" id="normalization-chart"></div>
+    <div class="normalization-explorer__chart-shell">
+      <div class="analysis-chart normalization-explorer__chart" id="normalization-chart"></div>
+      <aside id="story-evidence-callout-inline" class="story-evidence-callout story-evidence-callout--plot" aria-live="polite" hidden></aside>
+    </div>
     <p class="normalization-explorer__note" id="normalization-unit-note"></p>
   `;
 

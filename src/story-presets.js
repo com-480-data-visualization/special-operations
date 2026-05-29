@@ -20,9 +20,9 @@ export const STORY_PRESETS = {
     stageFocus: "stage-map",
     callout: {
       label: "Act 1 evidence",
-      title: "Europe still grew.",
-      body: "The map is set to compounded regional GDP growth in 2023. Europe is not flat: it is 1.38x its 2000 GDP baseline in this dataset.",
-      stats: ["Compounded since 2000", "Regions selected", "2023"],
+      title: "The regional view rules out collapse.",
+      body: "Europe stays above its 2000 baseline on both GDP and GDP per capita. The rest of the story is about relative pace and market outcomes, not whether Europe stopped growing outright.",
+      stats: ["GDP and GDP/person > 1x", "Regional comparison", "2023"],
     },
   },
   "us-eu-frame": {
@@ -40,9 +40,9 @@ export const STORY_PRESETS = {
     stageFocus: "stage-map",
     callout: {
       label: "Act 2 evidence",
-      title: "This is the benchmark.",
-      body: "The graph zooms into North America and Europe and switches to countries, so Canada no longer hides the US path inside a regional average.",
-      stats: ["Compounded since 2000", "Country-level view", "GDP per capita"],
+      title: "The comparison frame is deliberate.",
+      body: "From this point on, the chart holds Europe and North America as rich-market peers at country level. That keeps the rest of the story focused on within-peer divergence rather than global catch-up.",
+      stats: ["Rich-market peers", "Country-level frame", "Rest of story"],
     },
   },
   "divergence-hypothesis": {
@@ -55,13 +55,14 @@ export const STORY_PRESETS = {
     selectedRegions: ["Europe", "North America", "Asia-Pacific"],
     selectedIso3: ["DEU", "GBR", "USA", "KOR", "JPN"],
     treemapSnapshot: "latest",
-    stageSteps: ["stage-map", "stage-evolution"],
+    stageSteps: ["stage-evolution"],
     stageFocus: "stage-evolution",
+    calloutPlacement: "inline",
     callout: {
       label: "Act 3 evidence",
-      title: "The market proxy separates.",
-      body: "Scatter mode compares GDP per capita growth with ETF growth. The US sits far above major European markets on the ETF axis.",
-      stats: ["ETF Price", "Scatter view", "Selected outliers"],
+      title: "The break clusters around 2008.",
+      body: "Candidate break years concentrate around the crisis window, and the normalization explorer lets you test how much the split changes with the base year, lens, and price adjustment.",
+      stats: ["Break-year test", "Normalization explorer", "Lens-sensitive gap"],
     },
   },
   "europe-dispersion": {
