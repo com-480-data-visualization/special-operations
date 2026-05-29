@@ -1,8 +1,6 @@
 import { formatMultiple, getProfileFlag } from "./data-model.js";
 import { createSpiderPlot } from "./spider-plot.js";
 
-const MAX_VALUE = 8;
-
 /**
  * Creates repo-specific spider chart adapter on top of generic spider plot.
  *
@@ -15,7 +13,7 @@ export function createSpiderChart(container, data, options = {}) {
   const axes = options.axes ?? data.axes;
   const plot = createSpiderPlot(container, {
     axes,
-    maxValue: MAX_VALUE,
+    dynamicScale: true,
     ariaLabel: "Spider chart comparing selected profiles",
     getProfileBadge(profile) {
       const flag = getProfileFlag(profile.id);

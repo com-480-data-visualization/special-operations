@@ -71,27 +71,70 @@ REGION_BY_COUNTRY: dict[str, str] = {
     "USA": "North America",
 }
 
+REGIONAL_BENCHMARKS: dict[str, dict[str, str | int | None]] = {
+    "Europe": {
+        "symbol": "IEV",
+        "source": "local_stock_history",
+        "provider": "iShares",
+        "fundName": "iShares Europe ETF",
+        "benchmarkRegion": "Europe",
+        "officialUrl": "https://www.ishares.com/us/products/239736/ishares-europe-etf",
+        "localFile": "data/stock/history/IEV.csv",
+        "notes": "Tracks a broad European equity index. Local history starts in 2000.",
+    },
+    "Asia-Pacific": {
+        "symbol": "EPP",
+        "source": "local_stock_history",
+        "provider": "iShares",
+        "fundName": "iShares MSCI Pacific ex Japan ETF",
+        "benchmarkRegion": "Asia-Pacific",
+        "officialUrl": "https://www.ishares.com/us/products/239674/ishares-msci-pacific-ex-japan-etf",
+        "localFile": "data/stock/history/EPP.csv",
+        "notes": "Longest local regional Asia-Pacific proxy in repo. Excludes Japan, so not a perfect benchmark match.",
+    },
+    "Latin America": {
+        "symbol": "ILF",
+        "source": "local_stock_history",
+        "provider": "iShares",
+        "fundName": "iShares Latin America 40 ETF",
+        "benchmarkRegion": "Latin America",
+        "officialUrl": "https://www.ishares.com/us/products/239761/ishares-latin-america-40-etf",
+        "localFile": "data/stock/history/ILF.csv",
+        "notes": "Regional equity benchmark. Local history starts in 2001.",
+    },
+    "North America": {
+        "symbol": "INAA",
+        "source": "documented_only",
+        "provider": "iShares",
+        "fundName": "iShares MSCI North America UCITS ETF",
+        "benchmarkRegion": "North America",
+        "officialUrl": "https://www.ishares.com/uk/individual/en/literature/fact-sheet/inaa-ishares-msci-north-america-ucits-etf-fund-fact-sheet-en-gb.pdf",
+        "localFile": None,
+        "notes": "Official fund exists, but this repo does not yet contain a matching local price history snapshot.",
+    },
+}
+
 METRIC_METADATA: dict[str, dict[str, str | bool]] = {
     "GDP": {
-        "unit": "current US$",
+        "unit": "constant 2021 international $ (PPP)",
         "absoluteLabel": "Economic weight",
         "aggregate": "sum",
         "absoluteComparable": True,
     },
     "GDP per Capita": {
-        "unit": "current US$ per person",
+        "unit": "constant 2021 international $ per person (PPP)",
         "absoluteLabel": "Prosperity",
         "aggregate": "mean",
         "absoluteComparable": True,
     },
     "ETF Price": {
-        "unit": "ETF share price, adjusted close",
+        "unit": "ETF price proxy, constant 2021 international $ equivalent",
         "absoluteLabel": "ETF price",
         "aggregate": "mean",
         "absoluteComparable": False,
     },
     "Market Cap": {
-        "unit": "current US$",
+        "unit": "constant 2021 international $ equivalent",
         "absoluteLabel": "Listed company market value",
         "aggregate": "sum",
         "absoluteComparable": True,
@@ -174,6 +217,31 @@ def load_etf_data(source: str, symbol: str) -> pd.DataFrame:
     return df[["close"]]
 
 
+def load_regional_benchmark_series(
+    symbol: str,
+    years: list[int],
+) -> dict[str, object] | None:
+    try:
+        df = load_etf_data("hist", symbol)
+    except FileNotFoundError:
+        return None
+
+    annual = {year: get_annual_etf_price(df, year) for year in years}
+    available_years = [year for year, value in annual.items() if value is not None]
+    if not available_years:
+        return None
+
+    start_year = available_years[0]
+    start_value = annual[start_year]
+
+    return {
+        "startYear": start_year,
+        "lastYear": available_years[-1],
+        "absolute": absolute_series(annual, years),
+        "normalizedToStart": normalize_series(annual, years, start_value),
+    }
+
+
 def get_annual_etf_price(df: pd.DataFrame, year: int) -> float | None:
     """Return close price of first trading day in the given year."""
     year_data = df[df.index.year == year]
@@ -190,6 +258,25 @@ def get_wb_series(df: pd.DataFrame, iso3: str, years: list[int]) -> dict | None:
         y: (float(v) if pd.notna(v := row.get(str(y))) else None)
         for y in years
     }
+
+
+def convert_usd_to_ppp_equivalent(
+    raw: dict[int, float | None],
+    gdp_current: dict[int, float | None],
+    gdp_ppp: dict[int, float | None],
+    years: list[int],
+) -> dict[int, float | None]:
+    """Put nominal USD asset series onto same broad real/PPP scale as GDP."""
+    converted = {}
+    for year in years:
+        value = raw.get(year)
+        current = gdp_current.get(year)
+        ppp = gdp_ppp.get(year)
+        if value is None or current is None or ppp is None or current <= 0:
+            converted[year] = None
+        else:
+            converted[year] = value * (ppp / current)
+    return converted
 
 
 # ── Market cap gap-filling ─────────────────────────────────────────────────────
@@ -564,8 +651,9 @@ def main() -> None:
     iso_codes = pd.read_csv(
         DATA_DIR / "iso" / "countries.csv", index_col="alpha-3"
     )
-    gdp = load_wb("gdp-current-usd-2026.csv")
-    gdp_pc = load_wb("gdp-capita-current-usd-2026.csv")
+    gdp_current = load_wb("gdp-current-usd-2026.csv")
+    gdp = load_wb("gdp-ppp-international-usd-2021.csv")
+    gdp_pc = load_wb("gdp-capita-ppp-international-usd-2021.csv")
     market_cap_raw = load_wb("market-cap-current-usd-2026.csv")
 
     years = list(range(BASELINE_YEAR, LATEST_YEAR + 1))
@@ -580,15 +668,18 @@ def main() -> None:
             print("SKIP: ETF file not found")
             continue
 
+        gdp_current_series = get_wb_series(gdp_current, iso3, years)
         gdp_series = get_wb_series(gdp, iso3, years)
         gdp_pc_series = get_wb_series(gdp_pc, iso3, years)
-        if gdp_series is None or gdp_pc_series is None:
+        if gdp_current_series is None or gdp_series is None or gdp_pc_series is None:
             print("SKIP: no World Bank GDP data")
             continue
 
         gdp_base = gdp_series.get(BASELINE_YEAR)
         gdp_pc_base = gdp_pc_series.get(BASELINE_YEAR)
-        etf_base = get_annual_etf_price(etf_df, BASELINE_YEAR)
+        etf_raw_nominal = {y: get_annual_etf_price(etf_df, y) for y in years}
+        etf_raw = convert_usd_to_ppp_equivalent(etf_raw_nominal, gdp_current_series, gdp_series, years)
+        etf_base = etf_raw.get(BASELINE_YEAR)
 
         if not gdp_base:
             print(f"SKIP: missing GDP baseline ({BASELINE_YEAR})")
@@ -599,8 +690,6 @@ def main() -> None:
         if not etf_base:
             print(f"SKIP: missing ETF baseline ({BASELINE_YEAR})")
             continue
-
-        etf_raw = {y: get_annual_etf_price(etf_df, y) for y in years}
 
         timeseries: dict = {
             "GDP": make_metric_series(gdp_series, years, gdp_base, "GDP"),
@@ -615,6 +704,7 @@ def main() -> None:
         # Market cap (optional; excluded for CHN, IND, SWE, RUS)
         if iso3 not in MC_EXCLUDE:
             mc_series = get_wb_series(market_cap_raw, iso3, years)
+            mc_series = convert_usd_to_ppp_equivalent(mc_series, gdp_current_series, gdp_series, years) if mc_series else None
             mc_base = mc_series.get(BASELINE_YEAR) if mc_series else None
             if mc_series and mc_base and mc_base > 0:
                 timeseries["Market Cap"] = make_metric_series(
@@ -644,6 +734,15 @@ def main() -> None:
     if mc_count > 0:
         universal_axes.append("Market Cap")
     regions_out = build_region_dataset(countries_out, years, universal_axes)
+    benchmark_out: dict[str, dict[str, object]] = {}
+    for region, metadata in REGIONAL_BENCHMARKS.items():
+        benchmark_entry = dict(metadata)
+        symbol = metadata["symbol"]
+        if metadata["source"] == "local_stock_history":
+            series = load_regional_benchmark_series(symbol, years)
+            if series is not None:
+                benchmark_entry["series"] = series
+        benchmark_out[region] = benchmark_entry
 
     output = {
         "baselineYear": BASELINE_YEAR,
@@ -653,6 +752,7 @@ def main() -> None:
         "metricMetadata": METRIC_METADATA,
         "regions": sorted(set(REGION_BY_COUNTRY.values())),
         "regionsData": regions_out,
+        "benchmarkMetadata": benchmark_out,
         "mcExcluded": sorted(MC_EXCLUDE),
         "countries": countries_out,
     }

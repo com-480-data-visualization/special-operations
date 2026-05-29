@@ -64,13 +64,81 @@ export function getTreemapSnapshotIndex(snapshots, target) {
  *
  * @param {Element | null} stage Scrollable story stage.
  * @param {Element | null} treemapPanel Treemap section inside the stage.
- * @param {"top" | "treemap" | undefined} focus Target chart family.
+ * @param {"top" | "treemap" | string | undefined} focus Target chart family.
  */
 export function setStageFocus(stage, treemapPanel, focus) {
   if (!(stage instanceof HTMLElement)) return;
-  if (focus === "treemap" && treemapPanel instanceof HTMLElement) {
-    stage.scrollTo({ top: Math.max(0, treemapPanel.offsetTop - 12), behavior: "smooth" });
+  const target = getStageFocusTarget(stage, treemapPanel, focus);
+  if (target) {
+    stage.scrollTo({
+      top: Math.max(0, target.offsetTop - getStageHeaderOffset(stage)),
+      behavior: "smooth",
+    });
     return;
   }
   stage.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/**
+ * Shows only the evidence charts relevant to the active story act.
+ *
+ * @param {Element | null} stage Scrollable story stage.
+ * @param {string[] | undefined} visibleStepIds Evidence step IDs to show.
+ */
+export function setVisibleStageSteps(stage, visibleStepIds) {
+  if (!(stage instanceof HTMLElement)) return;
+  const allowed = new Set(visibleStepIds?.length ? visibleStepIds : ["stage-map"]);
+  const steps = [...stage.querySelectorAll("[data-stage-step]")];
+  const buttons = [...stage.querySelectorAll("[data-stage-jump]")];
+
+  for (const step of steps) {
+    const isVisible = allowed.has(step.dataset.stageStep);
+    step.hidden = !isVisible;
+    if (!isVisible) step.classList.remove("evidence-step--active");
+  }
+
+  for (const button of buttons) {
+    const isVisible = allowed.has(button.dataset.stageJump);
+    button.hidden = !isVisible;
+    if (!isVisible) button.dataset.active = "false";
+  }
+
+  const firstVisibleStep = steps.find((step) => !step.hidden);
+  if (!firstVisibleStep) return;
+  for (const step of steps) {
+    step.classList.toggle("evidence-step--active", step === firstVisibleStep);
+  }
+  for (const button of buttons) {
+    button.dataset.active = String(button.dataset.stageJump === firstVisibleStep.dataset.stageStep);
+  }
+}
+
+/**
+ * Resolves a semantic stage focus to a concrete section.
+ *
+ * @param {HTMLElement} stage Scrollable evidence stage.
+ * @param {Element | null} treemapPanel Treemap section.
+ * @param {"top" | "treemap" | string | undefined} focus Target chart family.
+ * @returns {HTMLElement | null} Target section.
+ */
+function getStageFocusTarget(stage, treemapPanel, focus) {
+  if (focus === "treemap") return treemapPanel instanceof HTMLElement ? treemapPanel : null;
+  if (focus && focus !== "top") {
+    const directTarget = stage.querySelector(`#${CSS.escape(focus)}`);
+    if (directTarget instanceof HTMLElement && !directTarget.hidden) return directTarget;
+  }
+  const firstVisible = stage.querySelector("[data-stage-step]:not([hidden])");
+  return firstVisible instanceof HTMLElement ? firstVisible : null;
+}
+
+/**
+ * Measures the sticky right-panel header so preset jumps land below it.
+ *
+ * @param {Element} stage Scrollable evidence stage.
+ * @returns {number} Pixel offset for guided jumps.
+ */
+function getStageHeaderOffset(stage) {
+  const header = stage.querySelector(".section-kicker--panel");
+  if (!(header instanceof HTMLElement)) return 160;
+  return header.offsetHeight + 28;
 }
