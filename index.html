@@ -10,8 +10,8 @@
       rel="stylesheet"
     />
     <title>Is Europe Falling Behind?</title>
-    <script type="module" crossorigin src="./assets/index-CrJT5TjK.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DcNdHJkF.css">
+    <script type="module" crossorigin src="./assets/index-D1x4zNMn.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CeB9-hin.css">
   </head>
   <body>
     <div id="app">
@@ -37,7 +37,7 @@
       <section class="findings-panel" aria-labelledby="findings-title">
         <div class="section-kicker">
           <p class="eyebrow">Key findings</p>
-          <h2 id="findings-title">Europe grew. Markets repriced the world elsewhere.</h2>
+          <h2 id="findings-title">Europe kept growing, but listed-equity gains and index weight shifted toward the US.</h2>
         </div>
         <div class="finding-grid">
           <article class="finding-card">
@@ -94,10 +94,11 @@
               <h2>The benchmark is not arbitrary.</h2>
               <p>
                 The United States and Europe are both high-income, institutionally
-                mature markets that matter in global portfolios. Comparing them
-                lets us separate a real-economy question from a listed-market
-                question: did people get poorer, or did public equity value
-                compound somewhere else?
+                mature markets that matter in global portfolios. From here on,
+                we keep the comparison anchored on these rich-market blocs so
+                later gaps are not driven by emerging-market catch-up. The
+                question is whether output growth diverged, or whether listed
+                equity gains accumulated much more strongly in the US.
               </p>
               <div class="story-stat-row">
                 <span><strong>Rich-market</strong> baseline</span>
@@ -112,15 +113,15 @@
               <p class="eyebrow">Act 3 &middot; Divergence hypothesis</p>
               <h2>The gap opens when we change the measure.</h2>
               <p>
-                This leads us to the hypothesis that it isn't that Europe
-                stopped producing output, it is that output growth diverged from
-                broader market indicators. We apply a break-fit test to find
-                divergence points in various metrics, and find that candidate
-                break years cluster around the 2008 crisis window. The
-                normalization view lets you explore these critical years and
-                view the apparent divergence - much wider for ETF data and
-                market cap, but much narrower for GDP, and especially after
-                adjusting for PPP.
+                This leads to a narrower hypothesis: Europe did not stop
+                producing output, but market-linked indicators pulled away
+                after the crisis. To check that, we fit the log US/Europe gap
+                with the same piecewise trend at each candidate break year from
+                2005 to 2015 and rank those fits by BIC. The best-ranked years
+                cluster around the 2008 crisis window. The normalization view
+                then lets you stress-test the split across base years and
+                lenses: it is widest for ETF and market-cap proxies, narrower
+                for GDP, and narrower still after PPP adjustment.
               </p>
               <div class="story-stat-row">
                 <span><strong>2.51x</strong> US ETF</span>
@@ -147,11 +148,6 @@
                 <span><strong>1.52x</strong> US ETF</span>
                 <span><strong>Switzerland</strong> main exception</span>
               </div>
-              <p class="story-analysis-note">
-                Read: Europe is heterogeneous, but no selected European country
-                carries the market story the way the US does. The gap is not only
-                a single weak country dragging down the average.
-              </p>
               <button class="story-preset-button" type="button" data-story-action="europe-dispersion">
                 Show Europe spread
               </button>
@@ -159,12 +155,17 @@
 
             <article class="story-step" data-story-preset="sector-drivers">
               <p class="eyebrow">Act 5 &middot; Industry drivers</p>
-              <h2>The winning sectors sit elsewhere.</h2>
+              <h2>The sectors driving divergence.</h2>
               <p>
                 The ACWI snapshots translate the country story into sector
                 exposure. From 2015 to 2026, global index weight becomes more
                 concentrated in the United States, and information technology
                 becomes the dominant sector block.
+              </p>
+              <p>
+                The US begins with a strong weight for tech, and as the sector
+                inflates in value over the decade outpacing all others, the US
+                share of the ACWI outpaces the rest of the world.
               </p>
               <div class="story-stat-row">
                 <span><strong>63.7%</strong> US ACWI weight</span>
@@ -182,30 +183,18 @@
 
             <article class="story-step story-step--explore" data-story-preset="wrap-up">
               <p class="eyebrow">Conclusion &middot; What falling behind means</p>
-              <h2>Europe is not collapsing. Listed-market power moved elsewhere.</h2>
+              <h2>Europe kept growing. Market-linked gains pulled away.</h2>
               <p>
                 The final scatter keeps the comparison narrow: selected Europe
-                versus the US. Output per person is not wildly different, but the
-                market proxy is. Europe did not stop growing; the listed-market
-                upside concentrated elsewhere.
+                versus the US. Output per person remains in the same broad
+                neighborhood, but market proxies do not. The claim is not that
+                Europe stopped producing; it is that listed-equity gains and
+                benchmark index weight accumulated much more strongly in the US.
               </p>
               <div class="story-stat-row">
                 <span><strong>1.18x-1.26x</strong> Europe GDP/person</span>
                 <span><strong>0.43x-1.15x</strong> Europe ETF</span>
                 <span><strong>1.52x</strong> US ETF</span>
-              </div>
-              <div class="story-verdict-panel" aria-label="Conclusion verdict">
-                <strong>Final read</strong>
-                <p>
-                  The evidence does not support a simple European collapse story.
-                  It supports a more specific claim: Europe kept growing, but the
-                  investable market story shifted toward the US, especially through
-                  listed equity concentration and technology-heavy sectors.
-                </p>
-                <p>
-                  The limitation is equally important: these charts measure output
-                  and listed capital, not the full well-being of households.
-                </p>
               </div>
               <button class="story-preset-button" type="button" data-story-action="wrap-up">
                 Show final comparison
@@ -297,17 +286,16 @@
               <p class="eyebrow">2008 break</p>
               <h2>The break-year test points to the crisis window.</h2>
               <p>
-                This is the Act 3 evidence: candidate break years cluster around
-                the crisis window, and the interactive normalization explorer
-                lets you test whether the split depends on the base year or lens.
+                The break-year finder and normalization explorer let you inspect
+                when the split appears and how much it depends on the base year,
+                metric, and price adjustment.
               </p>
             </div>
             <section class="story-break-subpanel" aria-label="Interactive normalization explorer">
               <h3>Interactive divergence explorer</h3>
               <p>
                 Choose the base year and switch between GDP lenses, ETF, and
-                market-cap proxies. This is the original interactive divergence
-                plot, restored inside the divergence act.
+                market-cap proxies.
               </p>
               <div id="normalization-explorer" class="normalization-explorer"></div>
             </section>
@@ -382,28 +370,30 @@
         <section class="story-close-panel" aria-label="Conclusion and limitations">
           <div class="section-kicker">
             <p class="eyebrow">Wrap up</p>
-            <h2>Europe is not simply falling behind. It is falling behind in a specific market story.</h2>
-            <p>
-              The evidence supports a narrower thesis: Europe continued to grow,
-              but the investable-market rewards, sector concentration, and global
-              index weight shifted more strongly toward the United States. The
-              final question is whether these indicators track broad well-being,
-              or mostly the returns to listed capital.
-            </p>
+            <h2>Europe kept growing, but listed-equity gains and global index weight shifted toward the US.</h2>
           </div>
-          <div class="story-close-grid">
-            <article class="story-close-card">
-              <h3>What the data can say</h3>
-              <p>GDP and GDP per capita reject a simple stagnation story. ETF, market-cap, and ACWI views show the sharper divergence.</p>
-            </article>
-            <article class="story-close-card">
-              <h3>What it cannot fully say</h3>
-              <p>Market data does not measure public services, inequality, household balance sheets, or lived well-being directly.</p>
-            </article>
-            <article class="story-close-card">
-              <h3>How to read the project</h3>
-              <p>Treat the guided story as the argument and the controls as the audit trail: change the indicator, year, and geography to look for exceptions.</p>
-            </article>
+          <div class="story-verdict-panel story-verdict-panel--close" aria-label="Final read">
+            <strong>Final read</strong>
+            <p>
+              The evidence does not support a simple European collapse story.
+              GDP and GDP per capita reject that reading. The sharper divergence
+              appears in ETF, market-cap, and ACWI views, where listed-equity
+              rewards and global benchmark weight shift much more strongly toward
+              the United States.
+            </p>
+            <p>
+              The break-year check compares the same piecewise fit of the log
+              US/Europe gap across candidate years. Those rankings repeatedly land
+              near the 2008 crisis window, which makes the crisis period a
+              plausible turning point for the market story even though the
+              PPP-adjusted output split is milder.
+            </p>
+            <p>
+              The limitation is equally important: these charts measure output
+              and listed capital, not the full well-being of households. The
+              next question is how far market gains track lived economic welfare
+              rather than asset concentration.
+            </p>
           </div>
         </section>
 
