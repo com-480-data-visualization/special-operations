@@ -117,8 +117,8 @@ export const STORY_PRESETS = {
     stageFocus: "stage-map",
     callout: {
       label: "Conclusion evidence",
-      title: "Similar output neighborhood, different market outcome.",
-      body: "The final scatter is scoped to Europe + US. Selected European GDP per person growth stays near the US, but every selected European ETF proxy sits below the US.",
+      title: "Similar output range, different market outcome.",
+      body: "The final scatter keeps Europe and the US on the same rich-market frame. Output per person stays relatively close, but every selected European ETF proxy remains below the US.",
       stats: ["Europe + US only", "GDP/person close", "ETF gap large"],
     },
   },

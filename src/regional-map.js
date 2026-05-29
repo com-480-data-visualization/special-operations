@@ -65,7 +65,7 @@ export function createIndicatorMap(container, data, onSelectCountry, onSelectReg
   const mapLayer = viewportLayer.append("g").attr("class", "indicator-map");
   const scatterLayer = svg.append("g").attr("class", "scatter-layer");
   const labelLayer = viewportLayer.append("g").attr("class", "map-labels");
-  const legendLayer = svg.append("g").attr("class", "map-legend");
+  const legendLayer = svg.append("g").attr("class", "map-legend").attr("pointer-events", "none");
   const tooltip = d3.select(container).append("div").attr("class", "map-tooltip").attr("hidden", true);
 
   renderBaseMap(baseLayer, geoPath);
@@ -122,7 +122,14 @@ export function createIndicatorMap(container, data, onSelectCountry, onSelectReg
     scatterLayer
       .attr("opacity", options.viewMode === "scatter" ? 1 : 0)
       .attr("pointer-events", options.viewMode === "scatter" ? "auto" : "none");
-    renderLegend(legendLayer, data, options.axis, options.valueMode, finiteValues);
+    renderLegend(
+      legendLayer,
+      data,
+      options.axis,
+      options.valueMode,
+      finiteValues,
+      options.viewMode,
+    );
     renderMap(mapLayer, values, geoPath, colorScale, options, data, onSelectCountry, onSelectRegion, tooltip, container);
     renderLabels(labelLayer, values, options, data);
     renderScatter(
@@ -702,8 +709,9 @@ function createMetricColorScale(values, valueMode) {
  * @param {string} axis Indicator name.
  * @param {"growth" | "absolute"} valueMode Value mode.
  * @param {number[]} values Visible numeric values.
+ * @param {"map" | "scatter"} viewMode Active view mode.
  */
-function renderLegend(layer, data, axis, valueMode, values) {
+function renderLegend(layer, data, axis, valueMode, values, viewMode) {
   const maxValue = d3.max(values) ?? 1;
   const minValue = d3.min(values) ?? 1;
   const stops =
@@ -711,8 +719,24 @@ function renderLegend(layer, data, axis, valueMode, values) {
       ? getCompoundedLegendStops(minValue, maxValue)
       : [0, maxValue / 2, maxValue];
   const colorScale = createMetricColorScale(values, valueMode);
+  const legendX = viewMode === "scatter" ? SCATTER_PLOT_BOUNDS.left + 18 : 28;
+  const legendY = viewMode === "scatter" ? SCATTER_PLOT_BOUNDS.top + 20 : 46;
+  const legendWidth = Math.max(220, (stops.length - 1) * 78 + 82);
 
-  layer.attr("transform", `translate(${WIDTH - 250},${HEIGHT - 26})`);
+  layer.attr("transform", `translate(${legendX},${legendY})`);
+
+  layer
+    .selectAll("rect.legend-backdrop")
+    .data([0])
+    .join("rect")
+    .attr("class", "legend-backdrop")
+    .attr("x", -16)
+    .attr("y", -34)
+    .attr("width", legendWidth)
+    .attr("height", 56)
+    .attr("rx", 14)
+    .attr("ry", 14)
+    .lower();
 
   layer
     .selectAll("text.legend-title")

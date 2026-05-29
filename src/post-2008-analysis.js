@@ -56,9 +56,14 @@ export function renderBreakFinderAnalysis(rows, container) {
   const wrap = d3.select(container);
   wrap.selectAll("*").remove();
   wrap
-    .append("p")
+    .selectAll("p.story-methodology")
+    .data([
+      "For each metric, we fit the same piecewise-linear model to log(US / Europe) at every candidate break year from 2005 to 2015.",
+      "We then rank those candidates by BIC and rescale the scores within each metric so 1 marks the lowest-BIC fit and 0 the weakest; 2008 is kept as the crisis reference year.",
+    ])
+    .join("p")
     .attr("class", "story-methodology")
-    .text("Candidate break years from 2005-2015. Height shows relative BIC score for a piecewise US/Europe gap model; 1 is the best candidate for that metric.");
+    .text((text) => text);
 
   selectedRows.forEach((row) => {
     const item = wrap.append("div").attr("class", "story-break");
@@ -76,7 +81,7 @@ export function renderBreakFinderAnalysis(rows, container) {
     item
       .append("span")
       .attr("class", "story-break__axis-note")
-      .text("2005 -> 2015, highlighted bar = best fit; 2008 is marked where relevant.");
+      .text("2005 -> 2015, tallest bar = lowest BIC for that metric; 2008 is marked as the crisis reference year.");
   });
 }
 

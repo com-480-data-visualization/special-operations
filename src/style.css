@@ -1762,6 +1762,12 @@ button:active {
   letter-spacing: 0.02em;
 }
 
+.map-legend .legend-backdrop {
+  fill: rgba(7, 16, 29, 0.78);
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+}
+
 .scatter-axis path,
 .scatter-axis line {
   stroke: rgba(255, 255, 255, 0.18);

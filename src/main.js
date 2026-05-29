@@ -519,6 +519,7 @@ function renderStoryEvidenceCallout(container, callout) {
 
   content.append(title, body);
   container.append(label, content);
+  setStoryEvidenceCalloutCollapsedWidth(container, label);
 
   if (!callout.stats?.length) return;
   const statList = document.createElement("div");
@@ -559,6 +560,24 @@ function resetStoryEvidenceCallout(container) {
   container.replaceChildren();
   container.hidden = true;
   container.removeAttribute("tabindex");
+  container.style.removeProperty("--story-callout-collapsed-width");
+}
+
+/**
+ * Sizes the collapsed callout to the rendered label width.
+ *
+ * @param {HTMLElement} container Callout container.
+ * @param {HTMLElement} label Callout label element.
+ */
+function setStoryEvidenceCalloutCollapsedWidth(container, label) {
+  const collapsedWidth = Math.min(
+    Math.max(Math.ceil(label.scrollWidth + 34), 176),
+    320,
+  );
+  container.style.setProperty(
+    "--story-callout-collapsed-width",
+    `${collapsedWidth}px`,
+  );
 }
 
 /**
